@@ -386,7 +386,6 @@ GameObject:
   - component: {fileID: 858331931}
   - component: {fileID: 858331930}
   - component: {fileID: 858331933}
-  - component: {fileID: 858331932}
   m_Layer: 0
   m_Name: Bear
   m_TagString: Untagged
@@ -464,20 +463,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &858331932
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 858331929}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f12c24ccb6bcdb74094f2b12d2322ded, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  judgementState: 0
-  gm: {fileID: 0}
 --- !u!58 &858331933
 CircleCollider2D:
   m_ObjectHideFlags: 0
@@ -549,7 +534,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1070625643}
   - component: {fileID: 1070625644}
-  - component: {fileID: 1070625645}
   - component: {fileID: 1070625646}
   m_Layer: 0
   m_Name: Great
@@ -589,18 +573,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &1070625645
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1070625642}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62d4a809b30229b49ac7493320f92099, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1070625646
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -881,7 +853,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1716934961}
   - component: {fileID: 1716934962}
-  - component: {fileID: 1716934963}
   - component: {fileID: 1716934964}
   m_Layer: 0
   m_Name: Perfect
@@ -921,18 +892,6 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
---- !u!114 &1716934963
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1716934960}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62d4a809b30229b49ac7493320f92099, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!212 &1716934964
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -995,7 +954,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2116160806}
   - component: {fileID: 2116160809}
-  - component: {fileID: 2116160808}
   - component: {fileID: 2116160807}
   m_Layer: 0
   m_Name: Bad
@@ -1071,18 +1029,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &2116160808
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2116160805}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 62d4a809b30229b49ac7493320f92099, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!58 &2116160809
 CircleCollider2D:
   m_ObjectHideFlags: 0
