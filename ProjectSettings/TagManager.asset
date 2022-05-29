@@ -3,7 +3,10 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - Great
+  - Perfect
+  - Bad
   layers:
   - Default
   - TransparentFX
@@ -40,6 +43,21 @@ TagManager:
   m_SortingLayers:
   - name: Default
     uniqueID: 0
+    locked: 0
+  - name: Bad
+    uniqueID: 2223175289
+    locked: 0
+  - name: Great
+    uniqueID: 2159775083
+    locked: 0
+  - name: Perfect
+    uniqueID: 573233909
+    locked: 0
+  - name: Bear
+    uniqueID: 1056240097
+    locked: 0
+  - name: Wolf
+    uniqueID: 4281440897
     locked: 0
   - name: UI
     uniqueID: 4026215027
