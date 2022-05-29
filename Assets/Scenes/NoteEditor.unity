@@ -185,6 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   circleObj: {fileID: 5761834860472971314, guid: d9505c87e33288d4fa0fc4269f740abd, type: 3}
   lineObj: {fileID: 6777287398802829481, guid: 69d8a6717253fa24f8f171737c5255d7, type: 3}
+  wolfObj: {fileID: 2457453832302746028, guid: 22b8c38da0959a640b819ed45350fa02, type: 3}
   segments: 10
   baseAngle: 20
   BPM: 120
