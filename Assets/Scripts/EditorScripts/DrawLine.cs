@@ -12,9 +12,13 @@ public class DrawLine : MonoBehaviour
     LineRenderer line;
 
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         line = GetComponent<LineRenderer>();
+    }
+
+    public void CreatePoints()
+    {
         line.positionCount = 2;
         line.startColor = lineColor;
         line.endColor = lineColor;

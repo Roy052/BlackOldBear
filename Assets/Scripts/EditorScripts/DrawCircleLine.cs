@@ -9,7 +9,9 @@ public class DrawCircleLine : MonoBehaviour
     public float yradius;
     public float baseAngle; // 시작 앵글
     public Color lineColor;
+    public Color hideColor; // 투명 색깔
     public List<DrawCircleLine> subLines; // 회색 비트들 저장용. LineManageScript에서 꺼내서 씀
+    public bool hided = false;
     LineRenderer line;
 
     /// <summary>
@@ -20,20 +22,20 @@ public class DrawCircleLine : MonoBehaviour
     /// </summary>
     
     // Start is called before the first frame update
-    void Start()
+    void Awake()
     {
         line = GetComponent<LineRenderer>();
+    }
+
+    public void CreatePoints()
+    {
         line.positionCount = segments + 1;
         line.startColor = lineColor;
         line.endColor = lineColor;
         line.startWidth = 0.03f;
         line.endWidth = 0.03f;
         line.useWorldSpace = false;
-        CreatePoints();
-    }
 
-    void CreatePoints()
-    {
         float x;
         float y;
         float z = 0f;
@@ -52,5 +54,21 @@ public class DrawCircleLine : MonoBehaviour
     void Update()
     {
         
+    }
+
+    // 다시 보이게 할 때는 그냥 circleReload할때 보이게 됨
+    public void colorHide()
+    {
+        line.startColor = hideColor;
+        line.endColor = hideColor;
+    }
+
+    public void lineRemove()
+    {
+        foreach (DrawCircleLine lineObj in subLines)
+        {
+            Destroy(lineObj.gameObject);
+        }
+        Destroy(this.gameObject);
     }
 }

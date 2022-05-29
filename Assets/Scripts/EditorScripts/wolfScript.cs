@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class wolfScript : MonoBehaviour
 {
-    public int nodeNum;
-    public int beatNum;
+    public float beat;
     public float angle;
     public LineManageScript lineManagerScript;
 
@@ -24,7 +23,6 @@ public class wolfScript : MonoBehaviour
     {
         if (Input.GetMouseButton(1))
         {
-            Debug.Log("remove");
             lineManagerScript.wolfRemove(this);
         }
     }
