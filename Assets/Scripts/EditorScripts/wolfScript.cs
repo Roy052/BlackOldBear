@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class wolfScript : MonoBehaviour
+public class WolfScript : MonoBehaviour
 {
     public float beat;
     public float angle;
