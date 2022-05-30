@@ -13,6 +13,8 @@ public class Wolf : MonoBehaviour
     Vector3 direction; // to Bear(center)
     float Speed = 1.0f;
 
+    bool isDistroyed = false;
+
     void Start()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -36,18 +38,21 @@ public class Wolf : MonoBehaviour
             {
                 gm.score -= 10;
                 Debug.Log("Click on bad");
+                isDistroyed = true;
                 Destroy(gameObject);
             } 
             else if (judgementState == 2) // great
             {
                 gm.score += 5;
                 Debug.Log("Click on great");
+                isDistroyed = true;
                 Destroy(gameObject);
             }
             else if (judgementState == 3) // perfect
             {
                 gm.score += 10;
                 Debug.Log("Click on perfect");
+                isDistroyed = true;
                 Destroy(gameObject);
             } 
         }
@@ -85,10 +90,13 @@ public class Wolf : MonoBehaviour
         }
         else if(collision.tag=="Bad")
         {
-            judgementState = 0;
-            gm.score -= 10;
-            Debug.Log("Bad out");
-            Destroy(gameObject);
+            if(!isDistroyed)
+            {
+                judgementState = 0;
+                gm.score -= 10;
+                Debug.Log("Bad out");
+                Destroy(gameObject);
+            }
         }
     }
 }
