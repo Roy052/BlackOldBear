@@ -4,19 +4,31 @@ using UnityEngine;
 
 public class Wolf : MonoBehaviour
 {
-    public float Speed = 1.0f;
     public int judgementState = 0; // 0 : out, 1 : bad, 2 : great, 3 : perfect
     GameManager gm;
+    WolfManager wm;
 
- 
+    Vector3 bearPosition;
+    float distance; // to Bear(center)
+    Vector3 direction; // to Bear(center)
+    float Speed = 1.0f;
+
     void Start()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        wm = GameObject.Find("Wolfs").GetComponent<WolfManager>();
+        bearPosition = wm.getBearPosition();
+
+        Vector3 temp = bearPosition - this.transform.position; // set direction
+        distance = temp.magnitude;
+        direction = temp / distance;
+
+        Speed = gm.speed; // set Note Speed
     }
     // Update is called once per frame
     void Update()
     {
-        this.transform.position += new Vector3(1, 0) * Time.deltaTime * Speed;
+        this.transform.position += direction * Time.deltaTime * Speed;
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("Mouse Down");
@@ -46,17 +58,17 @@ public class Wolf : MonoBehaviour
         if(collision.tag=="Bad")
         {
             judgementState = 1;
-            Debug.Log("Bad in");
+            // Debug.Log("Bad in");
         }
         else if(collision.tag=="Great")
         {
             judgementState = 2;
-            Debug.Log("Great in");
+            // Debug.Log("Great in");
         }
         else if(collision.tag=="Perfect")
         {
             judgementState = 3;
-            Debug.Log("Perfect in");
+            // Debug.Log("Perfect in");
         }
     }
     private void OnTriggerExit2D(Collider2D collision)
@@ -64,19 +76,19 @@ public class Wolf : MonoBehaviour
         if(collision.tag=="Perfect")
         {
             judgementState = 2;
-            Debug.Log("Perfect out");
+            // Debug.Log("Perfect out");
         }
         else if(collision.tag=="Great")
         {
             judgementState = 1;
-            Debug.Log("Great out");
+            // Debug.Log("Great out");
         }
         else if(collision.tag=="Bad")
         {
             judgementState = 0;
+            gm.score -= 10;
             Debug.Log("Bad out");
             Destroy(gameObject);
         }
     }
-
 }

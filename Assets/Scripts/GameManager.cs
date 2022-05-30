@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class GameManager : MonoBehaviour
 {
     public int score = 0;
-
+    public float speed = 5.0f;
     private void Start()
     {
         DontDestroyOnLoad(this);
