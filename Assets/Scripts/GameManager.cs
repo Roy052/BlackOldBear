@@ -7,6 +7,7 @@ public class GameManager : MonoBehaviour
 {
     public int score = 0;
     public float speed = 5.0f;
+    public float time;
     private void Start()
     {
         DontDestroyOnLoad(this);

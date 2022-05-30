@@ -8,6 +8,7 @@ public class BattleSM : MonoBehaviour
     // Start is called before the first frame update
 
     public Text score;
+    public Text time;
     GameManager gm;
     void Start()
     {
@@ -19,5 +20,6 @@ public class BattleSM : MonoBehaviour
     void Update()
     {
         score.text = "Score : " + gm.score;
+        time.text = gm.time.ToString();
     }
 }
