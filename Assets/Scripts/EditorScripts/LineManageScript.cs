@@ -4,45 +4,46 @@ using UnityEngine;
 
 public class LineManageScript : MonoBehaviour
 {
-    public GameObject circleObj, lineObj, wolfObj, sliderObj;
+    public GameObject circleObj, lineObj, wolfObj, sliderObj, sideMenuObj;
+    SideMenu sideMenuScript;
 
-    public int segments; // ¿ø ±×¸®´Âµ¥ µé¾î°¡´Â Á÷¼± °¹¼ö
-    public float baseAngle; // ½ÃÀÛ ¾Ş±Û
+    public int segments; // ì› ê·¸ë¦¬ëŠ”ë° ë“¤ì–´ê°€ëŠ” ì§ì„  ê°¯ìˆ˜
+    public float baseAngle; // ì‹œì‘ ì•µê¸€
     public float BPM;
-    public int beat; // ÇÑ ¹ÚÀÚ¸¦ ¸î ºñÆ®·Î ÂÉ°¶ °ÇÁö
-    public float noteSpeed; // ÃÊ´ç ³ëÆ® ÀÌµ¿ °Å¸®
-    public float boundary; // °õ ÁÖº¯ ºñ¾îÀÖ´Â °ø°£ Å©±â
-    public Color majorBeatColor; // ¹ÚÀÚ »ö±ò
-    public Color minorBeatColor; // ºñÆ® »ö±ò
-    float screenWidth = 10f; // È­¸é Å©±â. È­¸é¿¡ Ç¥½ÃÇÒ ¹ÚÀÚ °¹¼ö ¼¼´Âµ¥ »ç¿ë
-    List<DrawCircleLine> circleList = new(); // ¹ÚÀÚ ¶óÀÎ ÀúÀåÇÏ´Â ¸®½ºÆ®
-    List<DrawLine> lineList = new(); // ¹æ»çÇü ¼± ÀúÀåÇÏ´Â ¸®½ºÆ®
+    public int beat; // í•œ ë°•ìë¥¼ ëª‡ ë¹„íŠ¸ë¡œ ìª¼ê°¤ ê±´ì§€
+    public float noteSpeed; // ì´ˆë‹¹ ë…¸íŠ¸ ì´ë™ ê±°ë¦¬
+    public float boundary; // ê³° ì£¼ë³€ ë¹„ì–´ìˆëŠ” ê³µê°„ í¬ê¸°
+    public Color majorBeatColor; // ë°•ì ìƒ‰ê¹”
+    public Color minorBeatColor; // ë¹„íŠ¸ ìƒ‰ê¹”
+    float screenWidth = 10f; // í™”ë©´ í¬ê¸°. í™”ë©´ì— í‘œì‹œí•  ë°•ì ê°¯ìˆ˜ ì„¸ëŠ”ë° ì‚¬ìš©
+    List<DrawCircleLine> circleList = new(); // ë°•ì ë¼ì¸ ì €ì¥í•˜ëŠ” ë¦¬ìŠ¤íŠ¸
+    List<DrawLine> lineList = new(); // ë°©ì‚¬í˜• ì„  ì €ì¥í•˜ëŠ” ë¦¬ìŠ¤íŠ¸
     List<WolfScript> wolfList = new();
 
     public float musicLength = 1f;
     float currentPos = 0f;
     bool movingSlider = false;
-    float gap; // ¹ÚÀÚ°£ °Å¸®
-    float subGap; // ¹ÚÀÚ ¼ÓÀÇ ºñÆ® °£ °Å¸®
-    int visibleBeat; // È­¸é¿¡ Ç¥½ÃµÇ´Â ¹ÚÀÚ °¹¼ö
+    float gap; // ë°•ìê°„ ê±°ë¦¬
+    float subGap; // ë°•ì ì†ì˜ ë¹„íŠ¸ ê°„ ê±°ë¦¬
+    int visibleBeat; // í™”ë©´ì— í‘œì‹œë˜ëŠ” ë°•ì ê°¯ìˆ˜
 
     /// <summary>
-    /// ºĞ´ç ¹ÚÀÚ ¼ö = BPM
-    /// ÃÊ´ç ¹ÚÀÚ ¼ö = BPM / 60
-    /// ÃÊ´ç ³ëÆ® ÀÌµ¿ °Å¸® = noteSpeed
-    /// ¹ÚÀÚ°£ °Å¸® = noteSpeed / (BPM / 60)
+    /// ë¶„ë‹¹ ë°•ì ìˆ˜ = BPM
+    /// ì´ˆë‹¹ ë°•ì ìˆ˜ = BPM / 60
+    /// ì´ˆë‹¹ ë…¸íŠ¸ ì´ë™ ê±°ë¦¬ = noteSpeed
+    /// ë°•ìê°„ ê±°ë¦¬ = noteSpeed / (BPM / 60)
     /// </summary>
     
     void gapRenew()
     {
-        gap = noteSpeed / (BPM / 60); // ¹ÚÀÚ°£ °Å¸®
-        subGap = gap / beat; // ¹ÚÀÚ ¼ÓÀÇ ºñÆ® °£ °Å¸®
-        visibleBeat = (int)(screenWidth / gap) + 1; // È­¸é¿¡ Ç¥½ÃµÇ´Â ¹ÚÀÚ °¹¼ö
+        gap = noteSpeed / (BPM / 60); // ë°•ìê°„ ê±°ë¦¬
+        subGap = gap / beat; // ë°•ì ì†ì˜ ë¹„íŠ¸ ê°„ ê±°ë¦¬
+        visibleBeat = (int)(screenWidth / gap) + 1; // í™”ë©´ì— í‘œì‹œë˜ëŠ” ë°•ì ê°¯ìˆ˜
     }
 
     void circleCheck()
     {
-        // ÇÊ¿äÇÑ Èò»ö ¿øÇü ¶óÀÎÀÇ °¹¼ö¸¦ ¸ÂÃã
+        // í•„ìš”í•œ í°ìƒ‰ ì›í˜• ë¼ì¸ì˜ ê°¯ìˆ˜ë¥¼ ë§ì¶¤
         if (circleList.Count > visibleBeat)
         {
             for (int i = visibleBeat; i < circleList.Count; i++)
@@ -62,8 +63,8 @@ public class LineManageScript : MonoBehaviour
             }
         }
 
-        // ÇÊ¿äÇÑ È¸»ö ¿øÇü ¶óÀÎÀÇ °¹¼ö¸¦ ¸ÂÃã
-        // È¸»ö ¶óÀÎÀÇ °¹¼ö´Â beat - 1°³
+        // í•„ìš”í•œ íšŒìƒ‰ ì›í˜• ë¼ì¸ì˜ ê°¯ìˆ˜ë¥¼ ë§ì¶¤
+        // íšŒìƒ‰ ë¼ì¸ì˜ ê°¯ìˆ˜ëŠ” beat - 1ê°œ
         for (int i = 0; i < visibleBeat; i++)
         {
             if (circleList[i].subLines.Count > beat - 1)
@@ -88,7 +89,7 @@ public class LineManageScript : MonoBehaviour
 
     void lineCheck()
     {
-        // ¹æ»çÇü ¼±ÀÇ °¹¼ö¸¦ ¸ÂÃã
+        // ë°©ì‚¬í˜• ì„ ì˜ ê°¯ìˆ˜ë¥¼ ë§ì¶¤
         if (lineList.Count > segments)
         {
             for (int i = segments; i < lineList.Count; i++)
@@ -114,7 +115,7 @@ public class LineManageScript : MonoBehaviour
 
         for (int i = 0; i < visibleBeat; i++)
         {
-            // ¹ÚÀÚ ¶óÀÎ »ı¼º
+            // ë°•ì ë¼ì¸ ìƒì„±
             DrawCircleLine instScript = circleList[i];
             instScript.segments = segments;
             instScript.xradius = boundary + gap * i - dist;
@@ -125,10 +126,10 @@ public class LineManageScript : MonoBehaviour
 
             if (instScript.xradius < boundary)
             {
-                instScript.colorHide(); // ¼û±â±â
+                instScript.colorHide(); // ìˆ¨ê¸°ê¸°
             }
 
-            // ºñÆ® ¶óÀÎ »ı¼º
+            // ë¹„íŠ¸ ë¼ì¸ ìƒì„±
             for (int j = 0; j < beat - 1; j++)
             {
                 DrawCircleLine subInstScript = instScript.subLines[j];
@@ -141,7 +142,7 @@ public class LineManageScript : MonoBehaviour
 
                 if (subInstScript.xradius < boundary)
                 {
-                    subInstScript.colorHide(); // ¼û±â±â
+                    subInstScript.colorHide(); // ìˆ¨ê¸°ê¸°
                 }
             }
         }
@@ -186,11 +187,12 @@ public class LineManageScript : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        gapRenew(); // gap, subGap, visibleBeat ÃÊ±âÈ­
-        circleCheck(); // ¿øÇü ¶óÀÎ »ı¼º
-        circleReload(); // ¹æ»çÇü ¶óÀÎ »ı¼º
-        lineCheck(); // ¿øÇü ¶óÀÎ À§Ä¡ ¸ÂÃß±â
-        lineReload(); // ¹æ»çÇü ¶óÀÎ À§Ä¡ ¸ÂÃß±â
+        sideMenuScript = sideMenuObj.GetComponent<SideMenu>();
+        gapRenew(); // gap, subGap, visibleBeat ì´ˆê¸°í™”
+        circleCheck(); // ì›í˜• ë¼ì¸ ìƒì„±
+        circleReload(); // ë°©ì‚¬í˜• ë¼ì¸ ìƒì„±
+        lineCheck(); // ì›í˜• ë¼ì¸ ìœ„ì¹˜ ë§ì¶”ê¸°
+        lineReload(); // ë°©ì‚¬í˜• ë¼ì¸ ìœ„ì¹˜ ë§ì¶”ê¸°
     }
 
     // Update is called once per frame
@@ -198,17 +200,33 @@ public class LineManageScript : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(0))
         {
-            // ¸¶¿ì½º À§Ä¡
+            Vector2 wp = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            Ray2D ray = new Ray2D(wp, Vector2.zero);
+            RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
+
+            if (hit.collider != null)
+            {
+                Debug.Log(hit.transform.gameObject);
+            }
+
+            // ë§ˆìš°ìŠ¤ ìœ„ì¹˜
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
-            // ½½¶óÀÌ´õ ¹Ù Á¶ÀıÀÏ °æ¿ì
+            // ì‚¬ì´ë“œ ë©”ë‰´ê°€ ì¼œì ¸ ìˆì„ ê²½ìš° ë©”ë‰´ë¥¼ ë„ëŠ” ê²ƒìœ¼ë¡œ ë™ì‘ì„ ëŒ€ì²´í•¨
+            /*if (sideMenuScript.isOpened)
+            {
+                // ì—´ë ¤ìˆìœ¼ë¯€ë¡œ ë‹«í˜
+                sideMenuScript.openOrClose();
+            }*/
+
+            // ìŠ¬ë¼ì´ë” ë°” ì¡°ì ˆì¼ ê²½ìš°
             if (pos.y > 4.2 && pos.y < 4.8)
             {
-                // ½½¶óÀÌ´õ À§Ä¡´Â -8 ~ 8, ÃÑ ±æÀÌ 16
+                // ìŠ¬ë¼ì´ë” ìœ„ì¹˜ëŠ” -8 ~ 8, ì´ ê¸¸ì´ 16
                 movingSlider = true;
             }
 
-            // ´Á´ë »ı¼ºÀÏ °æ¿ì
+            // ëŠ‘ëŒ€ ìƒì„±ì¼ ê²½ìš°
             else
             {
                 Vector2 myPos = new Vector2(transform.position.x + 1, transform.position.y);
@@ -219,16 +237,16 @@ public class LineManageScript : MonoBehaviour
                     mouseAngle = 360 - mouseAngle;
                 }
 
-                // ´Á´ë °¢µµ °è»ê
+                // ëŠ‘ëŒ€ ê°ë„ ê³„ì‚°
                 float angleNum = Mathf.Round((mouseAngle - baseAngle) / (360f / segments));
                 float wolfAngle = angleNum * (360f / segments) + baseAngle;
 
-                // ´Á´ë À§Ä¡ °è»ê
+                // ëŠ‘ëŒ€ ìœ„ì¹˜ ê³„ì‚°
                 myPos = new Vector2(transform.position.x, transform.position.y);
                 float scrollDist = currentPos * noteSpeed;
                 float nearestBoundary = Mathf.Ceil(currentPos * noteSpeed / subGap) * subGap
                                         - scrollDist + boundary;
-                Debug.Log("nearest : " + nearestBoundary);
+
                 float mouseDist = Vector2.Distance(myPos, mousePos);
 
                 if (mouseDist > nearestBoundary - (subGap / 2))
@@ -253,7 +271,7 @@ public class LineManageScript : MonoBehaviour
         {
             if (movingSlider)
             {
-                // ¸¶¿ì½º À§Ä¡
+                // ë§ˆìš°ìŠ¤ ìœ„ì¹˜
                 Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
 
                 if (pos.x < -8)
@@ -284,7 +302,7 @@ public class LineManageScript : MonoBehaviour
             }
         }
 
-        // ¸¶¿ì½º ÈÙ Á¶ÀÛ
+        // ë§ˆìš°ìŠ¤ íœ  ì¡°ì‘
         float wheelInput = Input.GetAxis("Mouse ScrollWheel");
         if (wheelInput > 0)
         {
@@ -295,7 +313,6 @@ public class LineManageScript : MonoBehaviour
             sliderObj.transform.position = new Vector3(currentPos / musicLength * 16 - 8, 4.5f, -2.1f);
 
             circleReload();
-            Debug.Log(currentPos);
         }
         else if (wheelInput < 0)
         {
@@ -306,7 +323,6 @@ public class LineManageScript : MonoBehaviour
             sliderObj.transform.position = new Vector3(currentPos / musicLength * 16 - 8, 4.5f, -2.1f);
 
             circleReload();
-            Debug.Log(currentPos);
         }
     }
 

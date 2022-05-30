@@ -7,18 +7,18 @@ public class DrawCircleLine : MonoBehaviour
     public int segments;
     public float xradius;
     public float yradius;
-    public float baseAngle; // ½ÃÀÛ ¾Ş±Û
+    public float baseAngle; // ì‹œì‘ ì•µê¸€
     public Color lineColor;
-    public Color hideColor; // Åõ¸í »ö±ò
-    public List<DrawCircleLine> subLines; // È¸»ö ºñÆ®µé ÀúÀå¿ë. LineManageScript¿¡¼­ ²¨³»¼­ ¾¸
+    public Color hideColor; // íˆ¬ëª… ìƒ‰ê¹”
+    public List<DrawCircleLine> subLines; // íšŒìƒ‰ ë¹„íŠ¸ë“¤ ì €ì¥ìš©. LineManageScriptì—ì„œ êº¼ë‚´ì„œ ì”€
     public bool hided = false;
     LineRenderer line;
 
     /// <summary>
-    /// ºĞ´ç ¹ÚÀÚ ¼ö = BPM
-    /// ÃÊ´ç ¹ÚÀÚ ¼ö = BPM / 60
-    /// ÃÊ´ç ³ëÆ® ÀÌµ¿ °Å¸® = noteSpeed
-    /// ¹ÚÀÚ°£ °Å¸® = noteSpeed / (BPM / 60)
+    /// ë¶„ë‹¹ ë°•ì ìˆ˜ = BPM
+    /// ì´ˆë‹¹ ë°•ì ìˆ˜ = BPM / 60
+    /// ì´ˆë‹¹ ë…¸íŠ¸ ì´ë™ ê±°ë¦¬ = noteSpeed
+    /// ë°•ìê°„ ê±°ë¦¬ = noteSpeed / (BPM / 60)
     /// </summary>
     
     // Start is called before the first frame update
@@ -56,7 +56,7 @@ public class DrawCircleLine : MonoBehaviour
         
     }
 
-    // ´Ù½Ã º¸ÀÌ°Ô ÇÒ ¶§´Â ±×³É circleReloadÇÒ¶§ º¸ÀÌ°Ô µÊ
+    // ë‹¤ì‹œ ë³´ì´ê²Œ í•  ë•ŒëŠ” ê·¸ëƒ¥ circleReloadí• ë•Œ ë³´ì´ê²Œ ë¨
     public void colorHide()
     {
         line.startColor = hideColor;
