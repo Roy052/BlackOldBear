@@ -15,7 +15,7 @@ public class WolfManager : MonoBehaviour
     public GameObject wolf;
     Vector3 position;
     public List<wolfDat> wolfList = new List<wolfDat>();
-    
+    public List<GameObject> wolfGenerated = new List<GameObject>();
     float time_start;
     float time_current = 0f;
 
@@ -27,7 +27,9 @@ public class WolfManager : MonoBehaviour
     bool isNextExist = true;
     float nextGenTime = 0.0f;
     Vector3 nextGenPos;
-
+    GameObject newNote;
+    [HideInInspector] public int first = 0;
+    [HideInInspector] public bool clicked = false;
     private void Start()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -53,7 +55,8 @@ public class WolfManager : MonoBehaviour
         {
             if(noteAvailable)
             {
-                Instantiate(wolf, nextGenPos, Quaternion.identity);
+                newNote = Instantiate(wolf, nextGenPos, Quaternion.identity);
+                wolfGenerated.Add(newNote);
                 if(!isNextExist)
                 {
                     noteAvailable = false;

@@ -334,6 +334,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 5466301639657028369, guid: e04449e69f050b445a1d79ee6140849f, type: 3}
+      propertyPath: speed
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 8289056040361999487, guid: e04449e69f050b445a1d79ee6140849f, type: 3}
       propertyPath: m_RootOrder
       value: 3
@@ -433,6 +437,9 @@ MonoBehaviour:
     genTime: 5
   - genPos: {x: -5, y: 5, z: 0}
     genTime: 5.1
+  wolfGenerated: []
+  first: 0
+  clicked: 0
 --- !u!1 &609049234
 GameObject:
   m_ObjectHideFlags: 0

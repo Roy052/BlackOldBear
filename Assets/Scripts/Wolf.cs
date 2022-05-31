@@ -33,31 +33,53 @@ public class Wolf : MonoBehaviour
         this.transform.position += direction * Time.deltaTime * Speed;
         if (Input.GetMouseButtonDown(0))
         {
-            Debug.Log("Mouse Down");
-            if (judgementState == 1) // Bad
+            if(!wm.clicked)
             {
-                gm.score -= 10;
-                Debug.Log("Click on bad");
-                isDistroyed = true;
-                Destroy(gameObject);
-            } 
-            else if (judgementState == 2) // great
-            {
-                gm.score += 5;
-                Debug.Log("Click on great");
-                isDistroyed = true;
-                Destroy(gameObject);
+                procNote();
             }
-            else if (judgementState == 3) // perfect
-            {
-                gm.score += 10;
-                Debug.Log("Click on perfect");
-                isDistroyed = true;
+        }
+        if (Input.GetMouseButtonUp(0))
+        {
+            if(isDistroyed)
                 Destroy(gameObject);
-            } 
+            wm.clicked = false;
+        }
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            procNote();
         }
     }
 
+    void procNote()
+    {
+        if(wm.wolfGenerated[wm.first]==gameObject)
+        {
+            wm.clicked = true;
+        }
+
+        // Debug.Log("processing Note");
+        if (judgementState == 1) // Bad
+        {
+            gm.score -= 10;
+            wm.first++;
+            isDistroyed = true;
+            // Destroy(gameObject);
+        } 
+        else if (judgementState == 2) // great
+        {
+            gm.score += 5;
+            wm.first++;
+            isDistroyed = true;
+            // Destroy(gameObject);
+        }
+        else if (judgementState == 3) // perfect
+        {
+            gm.score += 10;
+            wm.first++;
+            isDistroyed = true;
+            // Destroy(gameObject);
+        } 
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag=="Bad")
@@ -94,7 +116,8 @@ public class Wolf : MonoBehaviour
             {
                 judgementState = 0;
                 gm.score -= 10;
-                Debug.Log("Bad out");
+                wm.first++;
+                // Debug.Log("Bad out");
                 Destroy(gameObject);
             }
         }
