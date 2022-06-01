@@ -13,9 +13,11 @@ public class LineManageScript : MonoBehaviour
     public int beat; // 한 박자를 몇 비트로 쪼갤 건지
     public float noteSpeed; // 초당 노트 이동 거리
     public float boundary; // 곰 주변 비어있는 공간 크기
+    public Color judgeColor; // 판정라인 색깔
     public Color majorBeatColor; // 박자 색깔
     public Color minorBeatColor; // 비트 색깔
     float screenWidth = 10f; // 화면 크기. 화면에 표시할 박자 갯수 세는데 사용
+    DrawCircleLine judgeCircleLine = null;
     List<DrawCircleLine> circleList = new(); // 박자 라인 저장하는 리스트
     List<DrawLine> lineList = new(); // 방사형 선 저장하는 리스트
     List<WolfScript> wolfList = new();
@@ -43,6 +45,7 @@ public class LineManageScript : MonoBehaviour
 
     void circleCheck()
     {
+
         // 필요한 흰색 원형 라인의 갯수를 맞춤
         if (circleList.Count > visibleBeat)
         {
@@ -112,6 +115,18 @@ public class LineManageScript : MonoBehaviour
     void circleReload()
     {
         float dist = (currentPos * noteSpeed) % gap;
+
+        // 판정 라인
+        if (judgeCircleLine)
+        {
+            DrawCircleLine judgeScript = judgeCircleLine;
+            judgeScript.segments = segments;
+            judgeScript.xradius = boundary;
+            judgeScript.yradius = boundary;
+            judgeScript.baseAngle = baseAngle;
+            judgeScript.lineColor = judgeColor;
+            judgeScript.CreatePoints(0.07f, -0.1f);
+        }
 
         for (int i = 0; i < visibleBeat; i++)
         {
@@ -188,10 +203,14 @@ public class LineManageScript : MonoBehaviour
     void Start()
     {
         sideMenuScript = sideMenuObj.GetComponent<SideMenu>();
+
+        GameObject inst = Instantiate(circleObj);
+        judgeCircleLine = inst.GetComponent<DrawCircleLine>();
+
         gapRenew(); // gap, subGap, visibleBeat 초기화
         circleCheck(); // 원형 라인 생성
-        circleReload(); // 방사형 라인 생성
-        lineCheck(); // 원형 라인 위치 맞추기
+        lineCheck(); // 방사형 라인 생성
+        circleReload(); // 원형 라인 위치 맞추기
         lineReload(); // 방사형 라인 위치 맞추기
     }
 
@@ -204,10 +223,7 @@ public class LineManageScript : MonoBehaviour
             Ray2D ray = new Ray2D(wp, Vector2.zero);
             RaycastHit2D hit = Physics2D.Raycast(ray.origin, ray.direction);
 
-            if (hit.collider != null)
-            {
-                Debug.Log(hit.transform.gameObject);
-            }
+            
 
             // 마우스 위치
             Vector3 pos = Camera.main.ScreenToWorldPoint(Input.mousePosition);
@@ -229,41 +245,46 @@ public class LineManageScript : MonoBehaviour
             // 늑대 생성일 경우
             else
             {
-                Vector2 myPos = new Vector2(transform.position.x + 1, transform.position.y);
-                Vector2 mousePos = new Vector2(pos.x, pos.y);
-                float mouseAngle = Vector2.Angle(myPos, mousePos);
-                if (pos.y < myPos.y)
+                if (hit.collider != null && hit.transform.gameObject.name == "LineManager")
                 {
-                    mouseAngle = 360 - mouseAngle;
-                }
+                    Debug.Log(hit.transform.gameObject.name);
 
-                // 늑대 각도 계산
-                float angleNum = Mathf.Round((mouseAngle - baseAngle) / (360f / segments));
-                float wolfAngle = angleNum * (360f / segments) + baseAngle;
+                    Vector2 myPos = new Vector2(transform.position.x + 1, transform.position.y);
+                    Vector2 mousePos = new Vector2(pos.x, pos.y);
+                    float mouseAngle = Vector2.Angle(myPos, mousePos);
+                    if (pos.y < myPos.y)
+                    {
+                        mouseAngle = 360 - mouseAngle;
+                    }
 
-                // 늑대 위치 계산
-                myPos = new Vector2(transform.position.x, transform.position.y);
-                float scrollDist = currentPos * noteSpeed;
-                float nearestBoundary = Mathf.Ceil(currentPos * noteSpeed / subGap) * subGap
-                                        - scrollDist + boundary;
+                    // 늑대 각도 계산
+                    float angleNum = Mathf.Round((mouseAngle - baseAngle) / (360f / segments));
+                    float wolfAngle = angleNum * (360f / segments) + baseAngle;
 
-                float mouseDist = Vector2.Distance(myPos, mousePos);
+                    // 늑대 위치 계산
+                    myPos = new Vector2(transform.position.x, transform.position.y);
+                    float scrollDist = currentPos * noteSpeed;
+                    float nearestBoundary = Mathf.Ceil(currentPos * noteSpeed / subGap) * subGap
+                                            - scrollDist + boundary;
 
-                if (mouseDist > nearestBoundary - (subGap / 2))
-                {
-                    float dist = mouseDist - boundary + scrollDist;
-                    int beatNum = (int)(Mathf.Round(dist / subGap));
-                    float beatPos = beatNum / beat + (float)(beatNum % beat) / beat;
-                    float wolfx = Mathf.Cos(Mathf.Deg2Rad * wolfAngle) * (boundary + gap * beatPos - scrollDist);
-                    float wolfy = Mathf.Sin(Mathf.Deg2Rad * wolfAngle) * (boundary + gap * beatPos - scrollDist);
+                    float mouseDist = Vector2.Distance(myPos, mousePos);
 
-                    GameObject inst = Instantiate(wolfObj);
-                    WolfScript instScript = inst.GetComponent<WolfScript>();
-                    instScript.beat = beatPos;
-                    instScript.angle = wolfAngle;
-                    instScript.lineManagerScript = this;
-                    inst.transform.position = new Vector3(wolfx, wolfy, -1 + wolfy / 5);
-                    wolfList.Add(instScript);
+                    if (mouseDist > nearestBoundary - (subGap / 2))
+                    {
+                        float dist = mouseDist - boundary + scrollDist;
+                        int beatNum = (int)(Mathf.Round(dist / subGap));
+                        float beatPos = beatNum / beat + (float)(beatNum % beat) / beat;
+                        float wolfx = Mathf.Cos(Mathf.Deg2Rad * wolfAngle) * (boundary + gap * beatPos - scrollDist);
+                        float wolfy = Mathf.Sin(Mathf.Deg2Rad * wolfAngle) * (boundary + gap * beatPos - scrollDist);
+
+                        GameObject inst = Instantiate(wolfObj);
+                        WolfScript instScript = inst.GetComponent<WolfScript>();
+                        instScript.beat = beatPos;
+                        instScript.angle = wolfAngle;
+                        instScript.lineManagerScript = this;
+                        inst.transform.position = new Vector3(wolfx, wolfy, -1 + wolfy / 5);
+                        wolfList.Add(instScript);
+                    }
                 }
             }
         }
@@ -289,7 +310,6 @@ public class LineManageScript : MonoBehaviour
                     sliderObj.transform.position = new Vector3(pos.x, 4.5f, -2.1f);
                     currentPos = musicLength * ((pos.x + 8) / 16);
                 }
-                Debug.Log(currentPos);
 
                 circleReload();
             }
@@ -304,7 +324,7 @@ public class LineManageScript : MonoBehaviour
 
         // 마우스 휠 조작
         float wheelInput = Input.GetAxis("Mouse ScrollWheel");
-        if (wheelInput > 0)
+        if (wheelInput < 0)
         {
             currentPos += 0.2f;
             if (currentPos > musicLength)
@@ -314,7 +334,7 @@ public class LineManageScript : MonoBehaviour
 
             circleReload();
         }
-        else if (wheelInput < 0)
+        else if (wheelInput > 0)
         {
             currentPos -= 0.2f;
             if (currentPos < 0)

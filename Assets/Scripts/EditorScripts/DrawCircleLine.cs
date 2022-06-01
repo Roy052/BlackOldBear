@@ -27,18 +27,18 @@ public class DrawCircleLine : MonoBehaviour
         line = GetComponent<LineRenderer>();
     }
 
-    public void CreatePoints()
+    public void CreatePoints(float lineWidth = 0.03f, float zpos = 0f)
     {
         line.positionCount = segments + 1;
         line.startColor = lineColor;
         line.endColor = lineColor;
-        line.startWidth = 0.03f;
-        line.endWidth = 0.03f;
+        line.startWidth = lineWidth;
+        line.endWidth = lineWidth;
         line.useWorldSpace = false;
 
         float x;
         float y;
-        float z = 0f;
+        float z = zpos;
         float angle = baseAngle;
         for (int i = 0; i < (segments + 1); i++)
         {
