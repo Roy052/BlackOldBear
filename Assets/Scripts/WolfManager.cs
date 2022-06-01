@@ -8,7 +8,7 @@ public class WolfManager : MonoBehaviour
     public struct wolfDat
     {
         public Vector3 genPos;
-        public float genTime;
+        public float arriveTime;
     }
 
     public GameObject bear;
@@ -17,7 +17,7 @@ public class WolfManager : MonoBehaviour
     public List<wolfDat> wolfList = new List<wolfDat>();
     public List<GameObject> wolfGenerated = new List<GameObject>();
     float time_start;
-    float time_current = 0f;
+    public float time_current = 0f;
 
     GameManager gm;
     bool noteAvailable = true;
@@ -37,7 +37,7 @@ public class WolfManager : MonoBehaviour
         position = bear.transform.position;
 
         maxNote = wolfList.Count;
-        nextGenTime = wolfList[noteCount].genTime;
+        nextGenTime = wolfList[noteCount].arriveTime;
         nextGenPos = wolfList[noteCount++].genPos;
     }
 
@@ -65,7 +65,7 @@ public class WolfManager : MonoBehaviour
 
             if(isNextExist)
             {
-                nextGenTime = wolfList[noteCount].genTime;
+                nextGenTime = wolfList[noteCount].arriveTime;
                 nextGenPos = wolfList[noteCount++].genPos;
             }
             if(noteCount == maxNote)

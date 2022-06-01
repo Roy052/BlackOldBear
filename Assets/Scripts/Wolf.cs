@@ -11,7 +11,7 @@ public class Wolf : MonoBehaviour
     Vector3 bearPosition;
     float distance; // to Bear(center)
     Vector3 direction; // to Bear(center)
-    float Speed = 1.0f;
+    float latency;
 
     bool isDistroyed = false;
 
@@ -24,13 +24,13 @@ public class Wolf : MonoBehaviour
         Vector3 temp = bearPosition - this.transform.position; // set direction
         distance = temp.magnitude;
         direction = temp / distance;
-
-        Speed = gm.speed; // set Note Speed
+        direction = direction.normalized;
+        latency = gm.speed*-0.2f + 2.2f; // set Note Speed
     }
     // Update is called once per frame
     void Update()
     {
-        this.transform.position += direction * Time.deltaTime * Speed;
+        transform.position += direction * Time.deltaTime * (distance / latency);
         if (Input.GetMouseButtonDown(0))
         {
             if(!wm.clicked)
@@ -46,7 +46,16 @@ public class Wolf : MonoBehaviour
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            procNote();
+            if(!wm.clicked)
+            {
+                procNote();
+            }
+        }
+        if (Input.GetKeyUp(KeyCode.Space))
+        {
+            if(isDistroyed)
+                Destroy(gameObject);
+            wm.clicked = false;
         }
     }
 

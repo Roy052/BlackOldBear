@@ -237,7 +237,7 @@ GameObject:
   - component: {fileID: 228104332}
   - component: {fileID: 228104334}
   m_Layer: 0
-  m_Name: pointer_test
+  m_Name: Mouse Director
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -334,9 +334,13 @@ PrefabInstance:
       propertyPath: m_Name
       value: GameManager
       objectReference: {fileID: 0}
+    - target: {fileID: 1810295980845809428, guid: e04449e69f050b445a1d79ee6140849f, type: 3}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 5466301639657028369, guid: e04449e69f050b445a1d79ee6140849f, type: 3}
       propertyPath: speed
-      value: 10
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 8289056040361999487, guid: e04449e69f050b445a1d79ee6140849f, type: 3}
       propertyPath: m_RootOrder
@@ -409,7 +413,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 595641727}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.8711807, y: 0.7805855, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -432,12 +436,15 @@ MonoBehaviour:
   wolf: {fileID: 3895731865497552487, guid: 441f2b27f7b954a4baae7304511fecf7, type: 3}
   wolfList:
   - genPos: {x: 5, y: 5, z: 0}
-    genTime: 3
+    arriveTime: 3
   - genPos: {x: 5, y: 5, z: 0}
-    genTime: 5
+    arriveTime: 5
   - genPos: {x: -5, y: 5, z: 0}
-    genTime: 5.1
+    arriveTime: 5.2
+  - genPos: {x: 7, y: 7, z: 0}
+    arriveTime: 6
   wolfGenerated: []
+  time_current: 0
   first: 0
   clicked: 0
 --- !u!1 &609049234
@@ -621,6 +628,70 @@ CircleCollider2D:
   m_Offset: {x: 0, y: 0}
   serializedVersion: 2
   m_Radius: 0.5
+--- !u!1 &1270252489
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1270252491}
+  - component: {fileID: 1270252490}
+  - component: {fileID: 1270252492}
+  m_Layer: 0
+  m_Name: GenLineTest (Debug Only)
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1270252490
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270252489}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d64a753c84ec091409c967b37f39ab23, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  dot: {fileID: 586130028517666689, guid: d4b37122d2526de4e98462ffe7d4f1db, type: 3}
+  bear: {fileID: 1940184521}
+  distance: 5
+--- !u!4 &1270252491
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270252489}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!58 &1270252492
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1270252489}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  serializedVersion: 2
+  m_Radius: 0.03
 --- !u!1 &1329127479
 GameObject:
   m_ObjectHideFlags: 0
@@ -795,7 +866,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1940184524}
   - component: {fileID: 1940184523}
-  - component: {fileID: 1940184522}
   m_Layer: 0
   m_Name: Bear
   m_TagString: Untagged
@@ -803,22 +873,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!58 &1940184522
-CircleCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1940184521}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: -0.17}
-  serializedVersion: 2
-  m_Radius: 1.12
 --- !u!212 &1940184523
 SpriteRenderer:
   m_ObjectHideFlags: 0
