@@ -3,10 +3,11 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 using TMPro;
+using System.IO;
 
 public class SideMenu : MonoBehaviour
 {
-    public List<AudioClip> musics = new(){ null };
+    public List<AudioClip> musics = new(){ null }; // AudioClip 리스트
     public GameObject lineManageObj, musicManageObj;
     public GameObject sideButton; // 사이드메뉴 닫기/열기 버튼
     public GameObject gridButton, webButton; // 그리드형, 거미줄형
@@ -32,18 +33,11 @@ public class SideMenu : MonoBehaviour
     List<Button> uiButtons;
 
     [HideInInspector]
-    public List<string> optionTexts = new() 
-    { 
-        "Select Music",
-        "1. Electronic" 
-    };
+    public List<string> bgmTexts, loadTexts;
 
     [HideInInspector]
-    public List<int> FPSs = new()
-    {
-        120,
-        140 // 1. Electronic
-    };
+    public List<int> FPSs;
+
 
     // Start is called before the first frame update
     void Start()
@@ -56,7 +50,25 @@ public class SideMenu : MonoBehaviour
         lineManageScript = lineManageObj.GetComponent<LineManageScript>();
         musicManageScript = musicManageObj.GetComponent<MusicManage>();
 
-        SetDropdownOptions();
+        bgmTexts = new()
+        {
+            "Select Music",
+            "Electronic"
+        };
+
+        loadTexts = new()
+        {
+            "Select File"
+        };
+
+        FPSs = new()
+        {
+            120,
+            140 // 1. Electronic
+        };
+
+        SetBGMList();
+        SetLoadLists();
 
         bpmInput.text = "120";
         beatInput.text = "4";
@@ -66,11 +78,17 @@ public class SideMenu : MonoBehaviour
         speedInput.text = "5";
         fnInput.text = "NewPattern";
 
-        bpmInput.onSubmit.AddListener(delegate { lineManageScript.setBPM(float.Parse(bpmInput.text)); });
+        bpmInput.onEndEdit.AddListener(delegate { lineManageScript.setBPM(float.Parse(bpmInput.text)); });
         beatInput.onSubmit.AddListener(delegate { lineManageScript.setBeat(int.Parse(beatInput.text)); });
         NOWInput.onSubmit.AddListener(delegate { lineManageScript.setSegments(int.Parse(NOWInput.text)); });
+        BOInput.onSubmit.AddListener(delegate { lineManageScript.setBaseOffset(float.Parse(BOInput.text)); });
+        AOInput.onSubmit.AddListener(delegate { lineManageScript.setBaseAngle(float.Parse(AOInput.text)); });
+
         speedInput.onSubmit.AddListener(delegate { lineManageScript.setSpeed(float.Parse(speedInput.text)); });
         bgmSelect.onValueChanged.AddListener(delegate { setMusic(); });
+        loadSelect.onValueChanged.AddListener(delegate { loadData(loadTexts[loadSelect.value]); });
+
+        saveButton.onClick.AddListener(delegate { saveData(); });
 
         uiSetActive(false);
         sideButtonRenderer = sideButton.GetComponent<SpriteRenderer>();
@@ -82,21 +100,90 @@ public class SideMenu : MonoBehaviour
         
     }
 
-    void SetDropdownOptions()// Dropdown 목록 생성
+    void SetBGMList()
     {
+        // BGM 데이터
         bgmSelect.options.Clear();
-        for (int i = 0; i < optionTexts.Count; i++)
+        for (int i = 0; i < bgmTexts.Count; i++)
         {
             TMP_Dropdown.OptionData option = new();
-            option.text = optionTexts[i];
+            option.text = bgmTexts[i];
             bgmSelect.options.Add(option);
         }
+    }
+
+    void SetLoadLists()
+    {
+        // Load 데이터
+        loadSelect.options.Clear();
+        loadTexts = new()
+        {
+            "Select File"
+        };
+
+        TMP_Dropdown.OptionData Firstoption = new();
+        Firstoption.text = loadTexts[0];
+        loadSelect.options.Add(Firstoption);
+
+        string FolderName = "./Assets/Patterns/";
+        DirectoryInfo di = new DirectoryInfo(FolderName);
+        foreach (FileInfo File in di.GetFiles())
+        {
+            if (File.Extension.ToLower().CompareTo(".json") == 0)
+            {
+                string FileNameOnly = File.Name.Substring(0, File.Name.Length - 5);
+                loadTexts.Add(FileNameOnly);
+
+                TMP_Dropdown.OptionData option = new();
+                option.text = FileNameOnly;
+                loadSelect.options.Add(option);
+            }
+        }
+
+        Debug.Log(loadSelect.value);
     }
 
     void setMusic()
     {
         musicManageScript.setMusic(musics[bgmSelect.value]);
         bpmInput.text = FPSs[bgmSelect.value].ToString();
+    }
+
+    void saveData()
+    {
+        string filename = fnInput.text;
+        string bgm = null;
+        if (musicManageScript.mSource.clip != null)
+        {
+            bgm = musicManageScript.mSource.clip.name;
+        }
+        int diff = 1; // 난이도 설정은 나중에 추가
+
+        if (fnInput.text != "" && bgm != null)
+            lineManageScript.saveData(fnInput.text, bgm, diff);
+
+        SetLoadLists();
+    }
+
+    void loadData(string filename)
+    {
+        // 그냥 드롭다운 번호가 0보다 큰지 체크해도 됐는데
+        // 이 if문은 드롭다운에서 0번을 거르는 동시에
+        // 드롭다운에서 호출된 게 아닌 경우 파일명만으로 체크하기 위함
+        if (File.Exists("./Assets/Patterns/" + filename + ".json"))
+        {
+            PatternData pData = lineManageScript.loadData(filename);
+
+            int bgmIndex = bgmTexts.FindIndex(x => x == pData.BGM);
+            bgmSelect.value = bgmIndex;
+            bpmInput.text = pData.BPM.ToString();
+            beatInput.text = pData.beat.ToString();
+            NOWInput.text = pData.segments.ToString();
+            BOInput.text = pData.baseOffset.ToString();
+            AOInput.text = pData.baseAngle.ToString();
+            speedInput.text = pData.speed.ToString();
+            fnInput.text = filename;
+        }
     }
 
     public void openOrClose()

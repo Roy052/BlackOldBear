@@ -1,0 +1,60 @@
+{
+    "BPM": 145.0,
+    "BGM": "Electronic",
+    "beat": 4,
+    "segments": 10,
+    "baseAngle": 20.0,
+    "baseOffset": 0.0,
+    "difficult": 1,
+    "speed":  5,
+    "wolfs": [
+        {
+            "node": 2,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 200.0
+        },
+        {
+            "node": 6,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 200.0
+        },
+        {
+            "node": 11,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 200.0
+        },
+        {
+            "node": 15,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 200.0
+        },
+        {
+            "node": 19,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 200.0
+        },
+        {
+            "node": 23,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 200.0
+        },
+        {
+            "node": 27,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 164.0
+        },
+        {
+            "node": 31,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 164.0
+        }
+    ]
+}

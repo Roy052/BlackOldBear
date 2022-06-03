@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class WolfScript : MonoBehaviour
 {
-    public float beat;
+    public int node;
+    public int fullBeat;
+    public int beat;
     public float angle;
     public LineManageScript lineManagerScript;
 

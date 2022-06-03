@@ -9,6 +9,7 @@ public class LineManageScript : MonoBehaviour
 
     public int segments; // 원 그리는데 들어가는 직선 갯수
     public float baseAngle; // 시작 앵글
+    public float baseOffset; // 시작 시간 오프셋
     public float BPM;
     public int beat; // 한 박자를 몇 비트로 쪼갤 건지
     public float noteSpeed; // 초당 노트 이동 거리
@@ -23,6 +24,7 @@ public class LineManageScript : MonoBehaviour
     List<DrawLine> lineList = new(); // 방사형 선 저장하는 리스트
     List<WolfScript> wolfList = new();
     MusicManage musicScript;
+    SaveScript saveScript;
 
     [HideInInspector] public float musicLength = 1f;
     [HideInInspector] public float currentPos = 0f;
@@ -45,6 +47,7 @@ public class LineManageScript : MonoBehaviour
     {
         sideMenuScript = sideMenuObj.GetComponent<SideMenu>();
         musicScript = musicObj.GetComponent<MusicManage>();
+        saveScript = new();
 
         GameObject inst = Instantiate(circleObj);
         judgeCircleLine = inst.GetComponent<DrawCircleLine>();
@@ -134,7 +137,7 @@ public class LineManageScript : MonoBehaviour
 
     public void circleReload()
     {
-        float dist = (currentPos * noteSpeed) % gap;
+        float dist = ((currentPos - baseOffset / 1000) * noteSpeed) % gap;
 
         // 판정 라인
         if (judgeCircleLine)
@@ -199,12 +202,14 @@ public class LineManageScript : MonoBehaviour
         }
     }
 
+    // 늑대들의 위치를 재조정
     void wolfReload()
     {
         foreach (WolfScript wolf in wolfList)
         {
             float wolfAngle = wolf.angle;
-            float dist = boundary + (gap * wolf.beat) - (currentPos * noteSpeed);
+            float beatPos = wolf.node + ((float)wolf.beat / wolf.fullBeat);
+            float dist = boundary + (gap * beatPos) - ((currentPos - baseOffset / 1000) * noteSpeed);
 
             if (dist < boundary)
             {
@@ -265,8 +270,8 @@ public class LineManageScript : MonoBehaviour
 
                         // 늑대 위치 계산
                         myPos = new Vector2(transform.position.x, transform.position.y);
-                        float scrollDist = currentPos * noteSpeed;
-                        float nearestBoundary = Mathf.Ceil(currentPos * noteSpeed / subGap) * subGap
+                        float scrollDist = (currentPos - baseOffset / 1000) * noteSpeed;
+                        float nearestBoundary = Mathf.Ceil(scrollDist / subGap) * subGap
                                                 - scrollDist + boundary;
 
                         float mouseDist = Vector2.Distance(myPos, mousePos);
@@ -274,14 +279,16 @@ public class LineManageScript : MonoBehaviour
                         if (mouseDist > nearestBoundary - (subGap / 2))
                         {
                             float dist = mouseDist - boundary + scrollDist;
-                            int beatNum = (int)(Mathf.Round(dist / subGap));
-                            float beatPos = beatNum / beat + (float)(beatNum % beat) / beat;
+                            int beatCount = (int)(Mathf.Round(dist / subGap));
+                            float beatPos = beatCount / beat + (float)(beatCount % beat) / beat;
                             float wolfx = Mathf.Cos(Mathf.Deg2Rad * wolfAngle) * (boundary + gap * beatPos - scrollDist);
                             float wolfy = Mathf.Sin(Mathf.Deg2Rad * wolfAngle) * (boundary + gap * beatPos - scrollDist);
 
                             GameObject inst = Instantiate(wolfObj);
                             WolfScript instScript = inst.GetComponent<WolfScript>();
-                            instScript.beat = beatPos;
+                            instScript.node = beatCount / beat;
+                            instScript.fullBeat = beat;
+                            instScript.beat = beatCount % beat;
                             instScript.angle = wolfAngle;
                             instScript.lineManagerScript = this;
                             inst.transform.position = new Vector3(wolfx, wolfy, -1 + wolfy / 5);
@@ -369,13 +376,55 @@ public class LineManageScript : MonoBehaviour
                 sliderObj.transform.position = new Vector3(currentPos / fullTime * 16 - 8, 4.5f, -2.1f);
             }
         }
-        { }
     }
 
     public void wolfRemove(WolfScript instScript)
     {
         wolfList.Remove(instScript);
         Destroy(instScript.gameObject);
+    }
+
+    public void saveData(string filename, string bgm, int diff)
+    {
+        saveScript.saveData(filename, BPM, bgm, beat, segments, baseAngle, baseOffset, diff, noteSpeed, wolfList);
+    }
+
+    public PatternData loadData(string filename)
+    {
+        PatternData pData = saveScript.loadData(filename);
+        BPM = pData.BPM;
+        beat = pData.beat;
+        segments = pData.segments;
+        baseAngle = pData.baseAngle;
+        baseOffset = pData.baseOffset;
+        noteSpeed = pData.speed;
+
+        // 생성되어 있던 늑대들 삭제
+        foreach (WolfScript wolf in wolfList)
+        {
+            Destroy(wolf.gameObject);
+        }
+        wolfList = new();
+
+        // 늑대 불러오기
+        foreach (WolfData wolf in pData.wolfs)
+        {
+            GameObject inst = Instantiate(wolfObj);
+            WolfScript instScript = inst.GetComponent<WolfScript>();
+            instScript.node = wolf.node;
+            instScript.fullBeat = wolf.fullBeat;
+            instScript.beat = wolf.beat;
+            instScript.angle = wolf.angle;
+            wolfList.Add(instScript);
+        }
+
+        gapRenew(); // gap, subGap, visibleBeat 초기화
+        circleCheck(); // 원형 라인 생성
+        lineCheck(); // 방사형 라인 생성
+        circleReload(); // 원형 라인 위치 맞추기, 늑대 위치 조정
+        lineReload(); // 방사형 라인 위치 맞추기
+
+        return pData;
     }
 
     public void setBPM(float _bpm)
@@ -397,6 +446,20 @@ public class LineManageScript : MonoBehaviour
     public void setSegments(int _seg)
     {
         segments = _seg;
+        lineCheck();
+        circleReload();
+        lineReload();
+    }
+
+    public void setBaseOffset(float _bo)
+    {
+        baseOffset = _bo;
+        circleReload();
+    }
+
+    public void setBaseAngle(float _ao)
+    {
+        baseAngle = _ao;
         lineCheck();
         circleReload();
         lineReload();
