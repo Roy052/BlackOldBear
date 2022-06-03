@@ -1,6 +1,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System;
+using System.Linq;
 
 public class MapManager : MonoBehaviour
 {
@@ -12,11 +14,13 @@ public class MapManager : MonoBehaviour
 
     int[] tempMapArray;
 
-    int[,] mapContents; // 0 : Empty, 1 : Not contain, 2 : Start, 3 : Shop,
-                        // 4 : Bonfire, 5 : Random Event, 6 : Chest, 7 : Enemy
-                        // 8 : Mid Boss, 9 : Boss
+    // 0 : Empty, 1 : Not contain, 2 : Start, 3 : Shop,
+    // 4 : Bonfire, 5 : Random Event, 6 : Chest, 7 : Enemy
+    // 8 : Mid Boss, 9 : Boss
+    int[,] mapContentsRatio = { {1,1,2,1,7,0 },{ 1, 2, 3, 1, 9, 1 }, { 1, 2, 3, 2, 10, 1 } }; 
+    List<int> mapContentQueue = new List<int>();
     
-    // Start is called before the first frame update
+
     void Start()
     {
         map = new int[stagePerMapSize[stageNum], 3];
@@ -43,13 +47,13 @@ public class MapManager : MonoBehaviour
         Debug.Log(meanSum);
 
         //First Value In
-        tempMapArray[0] = Random.Range(0, 3) + 1;
+        tempMapArray[0] = UnityEngine.Random.Range(0, 3) + 1;
         tempMapSum = tempMapArray[0];
         beforeMapNum = tempMapArray[0];
 
         //After Value In
         for (int i = 1; i < tempMapArray.Length; i++){
-            int tempValue = Random.Range(0,3) + 1;
+            int tempValue = UnityEngine.Random.Range(0,3) + 1;
             
             //Current sum is more than mean sum
             if( (tempMapSum + tempValue) > meanSum * (i + 1) )
@@ -114,7 +118,7 @@ public class MapManager : MonoBehaviour
             }
             else if (tempMapArray[i] == 2)
             {
-                tempMapApperance = Random.Range(0, 2);
+                tempMapApperance = UnityEngine.Random.Range(0, 2);
                 for (int j = 0; j < 2; j++)
                 {
                     map[i + 1, mapApperance_two[tempMapApperance, j]] = 1;
@@ -126,17 +130,45 @@ public class MapManager : MonoBehaviour
             }
         }
 
-        string ForDebug = "";
-        for (int i = 0; i < stagePerMapSize[stageNum]; i++)
-        {
-            ForDebug += map[i, 0] + ", " + map[i, 1] + ", " + map[i, 2] + "\n";
-        }
-
-        Debug.Log(ForDebug);
+        
 
         //Map Apperance To Map Content
         map[0, 1] = 2; // Start
         map[stagePerMapSize[stageNum] - 1, 1] = 9; // Boss
         map[stagePerMapSize[stageNum] - 2, 1] = 4; // Bonfire
+
+        for(int i = 0; i < 6; i++)
+        {
+            for(int j = 0; j < mapContentsRatio[stageNum,i]; j++)
+            {
+                mapContentQueue.Add(i + 3);
+            }
+        }
+
+        var mixedMapContentQueue = mapContentQueue.OrderBy(a => Guid.NewGuid()).ToList();
+
+        int count = 0;
+        for(int i = 1; i < stagePerMapSize[stageNum] - 1; i++)
+        {
+            for(int j = 0; j < 3; j++)
+            {
+                if(map[i, j] == 1)
+                {
+                    map[i,j] = mixedMapContentQueue[count++];
+                }
+            }
+        }
+
+        string ForDebug = "";
+        for (int i = 0; i < stagePerMapSize[stageNum]; i++)
+        {
+            for(int j = 0; j < 3; j++)
+            {
+                ForDebug += map[i,j] + ", ";
+            }
+            ForDebug += "\n";
+        }
+
+        Debug.Log(ForDebug);
     }
 }
