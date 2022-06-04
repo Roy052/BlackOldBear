@@ -19,13 +19,14 @@ public class MapManager : MonoBehaviour
     // 8 : Mid Boss, 9 : Boss
     int[,] mapContentsRatio = { {1,1,2,1,7,0 },{ 1, 2, 3, 1, 9, 1 }, { 1, 2, 3, 2, 10, 1 } }; 
     List<int> mapContentQueue = new List<int>();
-    
+    public GameObject node;
+    public GameObject[] mapIcons;
 
     void Start()
     {
         map = new int[stagePerMapSize[stageNum], 3];
-        MapBuilding();
-
+        MapArrayBuilding();
+        MapImageBuilding();
     }
 
     // Update is called once per frame
@@ -34,7 +35,7 @@ public class MapManager : MonoBehaviour
         
     }
 
-    void MapBuilding()
+    void MapArrayBuilding()
     {
         //Initialize
         System.Array.Clear(map, 0, map.Length);
@@ -42,14 +43,12 @@ public class MapManager : MonoBehaviour
         //Temp Map Array
         tempMapArray = new int[stagePerMapSize[stageNum] - 2];
         int tempMapSum = 0;
-        int beforeMapNum = 0; // Before Random Num
         float meanSum = stageSum[stageNum] / (float) stagePerMapSize[stageNum];
         Debug.Log(meanSum);
 
         //First Value In
         tempMapArray[0] = UnityEngine.Random.Range(0, 3) + 1;
         tempMapSum = tempMapArray[0];
-        beforeMapNum = tempMapArray[0];
 
         //After Value In
         for (int i = 1; i < tempMapArray.Length; i++){
@@ -68,7 +67,6 @@ public class MapManager : MonoBehaviour
             }
 
             tempMapArray[i] = tempValue;
-            beforeMapNum = tempValue;
             tempMapSum += tempValue;
         }
 
@@ -170,5 +168,19 @@ public class MapManager : MonoBehaviour
         }
 
         Debug.Log(ForDebug);
+    }
+
+    void MapImageBuilding()
+    {
+        float[] position = { 2.5f, 0, -2.5f };
+        for(int i = 0; i < stagePerMapSize[stageNum]; i++)
+        {
+            for(int j = 0; j < 3; j++)
+            {
+                if(map[i,j] != 0)
+                Instantiate(node, new Vector3(-7.9f + (15.8f * ((float)i / 7)), position[j]), Quaternion.identity);
+                Instantiate(mapIcons[map[i,j]], new Vector3(-7.9f + (15.8f * ((float)i / 7)), position[j]), Quaternion.identity);
+            }
+        }
     }
 }
