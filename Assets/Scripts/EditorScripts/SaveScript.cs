@@ -119,4 +119,11 @@ public class SaveScript
         }
         return default;
     }
+
+    static public float wolfDist(WolfData wolf, float BPM, float baseOffset, float speed)
+    {
+        float beatPos = wolf.node + ((float)wolf.beat / wolf.fullBeat);
+        float time = beatPos / (BPM / 60) + (baseOffset / 1000);
+        return time * speed;
+    }
 }
