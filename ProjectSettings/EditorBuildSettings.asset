@@ -11,4 +11,31 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Battle.unity
     guid: 2cda990e2423bbf4892e6590ba056729
+  - enabled: 1
+    path: Assets/Scenes/MapScene.unity
+    guid: ce58059118a25cb48b4b7a5e3690c487
+  - enabled: 1
+    path: Assets/Scenes/MapScene/Start.unity
+    guid: f683e026cfee3bd41921805d75a1c42e
+  - enabled: 1
+    path: Assets/Scenes/MapScene/Shop.unity
+    guid: b1df060d985429b4ca4a2241566f8223
+  - enabled: 1
+    path: Assets/Scenes/MapScene/Bonfire.unity
+    guid: 0b6dc8f3c21b5ca49af81becbac5b508
+  - enabled: 1
+    path: Assets/Scenes/MapScene/Event.unity
+    guid: b98269f795cfeae438291c849a72e4e2
+  - enabled: 1
+    path: Assets/Scenes/MapScene/Chest.unity
+    guid: 2dace1c6e73801546bbb68feb59e2254
+  - enabled: 1
+    path: Assets/Scenes/MapScene/Enemy.unity
+    guid: ad6f4856461e9694690615f19352c1a2
+  - enabled: 1
+    path: Assets/Scenes/MapScene/MidBoss.unity
+    guid: bb0144249323d504482c54c68feb6159
+  - enabled: 1
+    path: Assets/Scenes/MapScene/Boss.unity
+    guid: eb1e61ab38e556e48a75ec76cf733e6a
   m_configObjects: {}

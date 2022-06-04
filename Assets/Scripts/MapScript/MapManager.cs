@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using UnityEngine.SceneManagement;
 
 public class MapManager : MonoBehaviour
 {
@@ -19,6 +20,8 @@ public class MapManager : MonoBehaviour
     // 8 : Mid Boss, 9 : Boss
     int[,] mapContentsRatio = { {1,1,2,1,7,0 },{ 1, 2, 3, 1, 9, 1 }, { 1, 2, 3, 2, 10, 1 } }; 
     List<int> mapContentQueue = new List<int>();
+
+    //public
     public GameObject node;
     public GameObject[] mapIcons;
 
@@ -182,5 +185,12 @@ public class MapManager : MonoBehaviour
                 Instantiate(mapIcons[map[i,j]], new Vector3(-7.9f + (15.8f * ((float)i / 7)), position[j]), Quaternion.identity);
             }
         }
+    }
+
+    public void SceneMovement(int num)
+    {
+        int sceneNum = SceneManager.GetSceneByName("MapScene").buildIndex - 1;
+        Debug.Log(sceneNum);
+        SceneManager.LoadScene(sceneNum + num);
     }
 }
