@@ -140,7 +140,7 @@ public class SideMenu : MonoBehaviour
             }
         }
 
-        Debug.Log(loadSelect.value);
+        loadSelect.value = 0;
     }
 
     void setMusic()

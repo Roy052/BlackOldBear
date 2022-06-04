@@ -29,17 +29,10 @@ public class PatternData
 
 public class SaveScript
 {
-    PatternData pData;
-
-    // Start is called before the first frame update
-    void Start()
+    static public void saveData(string filename, float _bpm, string _bgm, int _beat, int _seg, float _ba, float _bo, int _diff, float _speed, List<WolfScript> _WSs)
     {
+        PatternData pData = new();
 
-    }
-
-    public void saveData(string filename, float _bpm, string _bgm, int _beat, int _seg, float _ba, float _bo, int _diff, float _speed, List<WolfScript> _WSs)
-    {
-        pData = new();
         pData.BPM = _bpm;
         pData.BGM = _bgm;
         pData.beat = _beat;
@@ -60,16 +53,16 @@ public class SaveScript
             pData.wolfs.Add(wolf);
         }
 
-        DataSaveText(pData, filename + ".json");
+        DataSave(pData, filename + ".json");
     }
 
-    public PatternData loadData(string filename)
+    static public PatternData loadData(string filename)
     {
-        PatternData pData = DataLoadText(filename + ".json");
+        PatternData pData = DataLoad(filename + ".json");
         return pData;
     }
 
-    public void DataSaveText(PatternData data, string _fileName)
+    static public void DataSave(PatternData data, string _fileName)
     {
         try
         {
@@ -99,7 +92,7 @@ public class SaveScript
         }
     }
 
-    public PatternData DataLoadText(string _fileName)
+    static public PatternData DataLoad(string _fileName)
     {
         try
         {

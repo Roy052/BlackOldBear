@@ -24,7 +24,6 @@ public class LineManageScript : MonoBehaviour
     List<DrawLine> lineList = new(); // 방사형 선 저장하는 리스트
     List<WolfScript> wolfList = new();
     MusicManage musicScript;
-    SaveScript saveScript;
 
     [HideInInspector] public float musicLength = 1f;
     [HideInInspector] public float currentPos = 0f;
@@ -47,7 +46,6 @@ public class LineManageScript : MonoBehaviour
     {
         sideMenuScript = sideMenuObj.GetComponent<SideMenu>();
         musicScript = musicObj.GetComponent<MusicManage>();
-        saveScript = new();
 
         GameObject inst = Instantiate(circleObj);
         judgeCircleLine = inst.GetComponent<DrawCircleLine>();
@@ -386,12 +384,12 @@ public class LineManageScript : MonoBehaviour
 
     public void saveData(string filename, string bgm, int diff)
     {
-        saveScript.saveData(filename, BPM, bgm, beat, segments, baseAngle, baseOffset, diff, noteSpeed, wolfList);
+        SaveScript.saveData(filename, BPM, bgm, beat, segments, baseAngle, baseOffset, diff, noteSpeed, wolfList);
     }
 
     public PatternData loadData(string filename)
     {
-        PatternData pData = saveScript.loadData(filename);
+        PatternData pData = SaveScript.loadData(filename);
         BPM = pData.BPM;
         beat = pData.beat;
         segments = pData.segments;
