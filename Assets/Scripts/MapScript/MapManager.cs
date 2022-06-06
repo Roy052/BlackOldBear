@@ -10,6 +10,7 @@ public class MapManager : MonoBehaviour
     int stageNum = 0;
     
     int[,] map;
+    bool[,] visitableMap;
     int[] stagePerMapSize = new int[3] { 7, 8, 9 };
     int[] stageSum = new int[3] { 12, 14, 16 };
 
@@ -20,6 +21,7 @@ public class MapManager : MonoBehaviour
     // 8 : Mid Boss, 9 : Boss
     int[,] mapContentsRatio = { {1,1,2,1,7,0 },{ 1, 2, 3, 1, 9, 1 }, { 1, 2, 3, 2, 10, 1 } }; 
     List<int> mapContentQueue = new List<int>();
+    MapRecorder mapRecorder;
 
     //public
     public GameObject node;
@@ -27,20 +29,32 @@ public class MapManager : MonoBehaviour
 
     void Start()
     {
-        map = new int[stagePerMapSize[stageNum], 3];
-        MapArrayBuilding();
-        MapImageBuilding();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
         
+        mapRecorder = GameObject.Find("GameManager").GetComponent<MapRecorder>();
+        if (mapRecorder.recorded == false)
+        {
+            MapArrayBuilding();
+            VisitableMapArrayBuilding();
+
+            mapRecorder.RecordMap(map);
+            mapRecorder.RecordVisitableMap(visitableMap);
+
+            mapRecorder.currentPosition.y = 0;
+            mapRecorder.currentPosition.x = 1;
+        }
+        else
+        {
+            map = mapRecorder.ReturnMap();
+            visitableMap = mapRecorder.ReturnVisitableMap();
+        }
+            
+        MapImageBuilding();
     }
 
     void MapArrayBuilding()
     {
         //Initialize
+        map = new int[3, stagePerMapSize[stageNum]];
         System.Array.Clear(map, 0, map.Length);
 
         //Temp Map Array
@@ -115,28 +129,28 @@ public class MapManager : MonoBehaviour
             //Full
             if (tempMapArray[i] == 3)
             {
-                map[i + 1, 0] = 1; map[i + 1, 1] = 1; map[i + 1, 2] = 1;
+                map[0, i + 1] = 1; map[1, i + 1] = 1; map[2, i + 1] = 1;
             }
             else if (tempMapArray[i] == 2)
             {
                 tempMapApperance = UnityEngine.Random.Range(0, 2);
                 for (int j = 0; j < 2; j++)
                 {
-                    map[i + 1, mapApperance_two[tempMapApperance, j]] = 1;
+                    map[mapApperance_two[tempMapApperance, j], i + 1] = 1;
                 }
             }
             else
             {
-                map[i + 1, 1] = 1;
+                map[1, i + 1] = 1;
             }
         }
 
         
 
         //Map Apperance To Map Content
-        map[0, 1] = 2; // Start
-        map[stagePerMapSize[stageNum] - 1, 1] = 9; // Boss
-        map[stagePerMapSize[stageNum] - 2, 1] = 4; // Bonfire
+        map[1, 0] = 2; // Start
+        map[1, stagePerMapSize[stageNum] - 1] = 9; // Boss
+        map[1, stagePerMapSize[stageNum] - 2] = 4; // Bonfire
 
         for(int i = 0; i < 6; i++)
         {
@@ -149,9 +163,9 @@ public class MapManager : MonoBehaviour
         var mixedMapContentQueue = mapContentQueue.OrderBy(a => Guid.NewGuid()).ToList();
 
         int count = 0;
-        for(int i = 1; i < stagePerMapSize[stageNum] - 1; i++)
+        for(int i = 0; i < 3 ; i++)
         {
-            for(int j = 0; j < 3; j++)
+            for(int j = 1; j < stagePerMapSize[stageNum] - 1; j++)
             {
                 if(map[i, j] == 1)
                 {
@@ -160,10 +174,10 @@ public class MapManager : MonoBehaviour
             }
         }
 
-        string ForDebug = "";
-        for (int i = 0; i < stagePerMapSize[stageNum]; i++)
+        string ForDebug = "map\n";
+        for (int i = 0; i < 3; i++)
         {
-            for(int j = 0; j < 3; j++)
+            for(int j = 0; j < stagePerMapSize[stageNum]; j++)
             {
                 ForDebug += map[i,j] + ", ";
             }
@@ -171,26 +185,77 @@ public class MapManager : MonoBehaviour
         }
 
         Debug.Log(ForDebug);
+
+        
     }
 
-    void MapImageBuilding()
+    void VisitableMapArrayBuilding()
+    {
+        visitableMap = new bool[3, stagePerMapSize[stageNum]];
+        System.Array.Clear(visitableMap, 0, visitableMap.Length);
+        visitableMap[1, 0] = true;
+
+        string ForDebug = "visitablemap\n";
+        for (int i = 0; i < 3; i++)
+        {
+            for (int j = 0; j < stagePerMapSize[stageNum]; j++)
+            {
+                ForDebug += visitableMap[i, j] + ", ";
+            }
+            ForDebug += "\n";
+        }
+
+        Debug.Log(ForDebug);
+    }
+
+        void MapImageBuilding()
     {
         float[] position = { 2.5f, 0, -2.5f };
-        for(int i = 0; i < stagePerMapSize[stageNum]; i++)
+        for(int i = 0; i < 3; i++)
         {
-            for(int j = 0; j < 3; j++)
+            for(int j = 0; j < stagePerMapSize[stageNum]; j++)
             {
                 if(map[i,j] != 0)
-                Instantiate(node, new Vector3(-7.9f + (15.8f * ((float)i / 7)), position[j]), Quaternion.identity);
-                Instantiate(mapIcons[map[i,j]], new Vector3(-7.9f + (15.8f * ((float)i / 7)), position[j]), Quaternion.identity);
+                {
+                    Instantiate(node, new Vector3(-7.9f + (15.8f * ((float)j / 7)), position[i]), Quaternion.identity);
+                    GameObject temp = Instantiate(mapIcons[map[i, j]], new Vector3(-7.9f + (15.8f * ((float)j / 7)), position[i]), Quaternion.identity);
+                    temp.GetComponent<MapIcon>().position = new Vector2(j, i);
+                    if (visitableMap[i, j] == false) temp.GetComponent<SpriteRenderer>().sprite = temp.GetComponent<MapIcon>().sealedIcon;
+                }
             }
         }
     }
 
-    public void SceneMovement(int num)
+    public void SceneMovement(int num, Vector2 position)
     {
         int sceneNum = SceneManager.GetSceneByName("MapScene").buildIndex - 1;
+        mapRecorder.currentPosition = position;
         Debug.Log(sceneNum);
+        Debug.Log("y : " + (int) position.y + ", x : " + (int) position.x);
+        
+        //Used node
+        if (num != 3) map[(int) position.y, (int) position.x] = 1;
+
+        //Visitable
+        visitableMap[(int)position.y, (int)position.x] = true;
+        //Top
+        if ((int)position.y != 0 && map[(int)position.y - 1, (int)position.x] != 0) 
+            visitableMap[(int)position.y - 1, (int)position.x] = true;
+        //Bottom
+        if ((int)position.y != 2 && map[(int)position.y + 1, (int)position.x] != 0) 
+            visitableMap[(int)position.y + 1, (int)position.x] = true;
+        //Left
+        if ((int)position.x != 0 && map[(int)position.y, (int)position.x - 1] != 0) 
+            visitableMap[(int)position.y, (int)position.x - 1] = true;
+        // Right
+        if ((int)position.x != stagePerMapSize[stageNum] - 1 
+            && map[(int)position.y, (int)position.x + 1] != 0) 
+            visitableMap[(int)position.y, (int)position.x + 1] = true;
+
+        //Record
+        mapRecorder.RecordMap(map);
+        mapRecorder.RecordVisitableMap(visitableMap);
+
         SceneManager.LoadScene(sceneNum + num);
     }
 }

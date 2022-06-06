@@ -124,3 +124,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1db4b0ba2e2d0594390909408affd0ce, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  mm: {fileID: 0}
+  mapIconNum: 0
+  position: {x: 0, y: 0}
+  revealIcon: {fileID: 0}
+  sealedIcon: {fileID: 21300000, guid: 9eab7c6fae6306a4fba84054de71478f, type: 3}

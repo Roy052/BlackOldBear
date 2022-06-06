@@ -6,7 +6,8 @@ public class MapIcon : MonoBehaviour
 {
     public MapManager mm;
     public int mapIconNum;
-
+    public Vector2 position;
+    public Sprite revealIcon, sealedIcon;
     private void Start()
     {
         
@@ -14,6 +15,6 @@ public class MapIcon : MonoBehaviour
 
     private void OnMouseDown()
     {
-        mm.SceneMovement(mapIconNum);
+        mm.SceneMovement(mapIconNum, position);
     }
 }
