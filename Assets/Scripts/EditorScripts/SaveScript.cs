@@ -27,6 +27,21 @@ public class PatternData
     public List<WolfData> wolfs;
 }
 
+// 인게임에서 쓰이는 간략화된 데이터
+public class WolfData2
+{
+    public float time;
+    public float angle;
+}
+
+public class PatternData2
+{
+    public string BGM;
+    public int difficult;
+    public List<WolfData2> wolfs;
+}
+
+
 public class SaveScript
 {
     static public void saveData(string filename, float _bpm, string _bgm, int _beat, int _seg, float _ba, float _bo, int _diff, float _speed, List<WolfScript> _WSs)
@@ -60,6 +75,28 @@ public class SaveScript
     {
         PatternData pData = DataLoad(filename + ".json");
         return pData;
+
+    }
+
+    static public PatternData2 loadData2(string filename)
+    {
+        PatternData pData = DataLoad(filename + ".json");
+
+        PatternData2 newData = new();
+        newData.BGM = pData.BGM;
+        newData.difficult = pData.difficult;
+        newData.wolfs = new();
+
+        foreach (WolfData wolf in pData.wolfs)
+        {
+            WolfData2 wolf2 = new();
+            float beatPos = wolf.node + ((float)wolf.beat / wolf.fullBeat);
+            wolf2.time = beatPos / (pData.BPM / 60) + (pData.baseOffset / 1000);
+            wolf2.angle = wolf.angle;
+            newData.wolfs.Add(wolf2);
+        }
+
+        return newData;
     }
 
     static public void DataSave(PatternData data, string _fileName)
