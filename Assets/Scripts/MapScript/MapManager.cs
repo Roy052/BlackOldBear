@@ -226,6 +226,11 @@ public class MapManager : MonoBehaviour
         }
     }
 
+    public bool Visitable(int x, int y)
+    {
+        return visitableMap[y, x] && map[y,x] != 1;
+    }
+
     public void SceneMovement(int num, Vector2 position)
     {
         int sceneNum = SceneManager.GetSceneByName("MapScene").buildIndex - 1;

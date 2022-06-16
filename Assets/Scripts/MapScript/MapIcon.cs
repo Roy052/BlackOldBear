@@ -15,6 +15,7 @@ public class MapIcon : MonoBehaviour
 
     private void OnMouseDown()
     {
-        mm.SceneMovement(mapIconNum, position);
+        if(mm.Visitable((int) position.x, (int) position.y))
+            mm.SceneMovement(mapIconNum, position);
     }
 }

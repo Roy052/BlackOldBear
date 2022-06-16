@@ -66,3 +66,6 @@ TagManager:
   - name: Map
     uniqueID: 1464425879
     locked: 0
+  - name: Accessory
+    uniqueID: 2937379953
+    locked: 0
