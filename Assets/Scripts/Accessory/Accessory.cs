@@ -8,7 +8,7 @@ public class Accessory : MonoBehaviour
     public Sprite thumb;
     public string accessoryName, description, additionalText;
 
-    public Accesory_Description accDesc;
+    public Accessory_Description accDesc;
 
 
     private void OnMouseEnter()

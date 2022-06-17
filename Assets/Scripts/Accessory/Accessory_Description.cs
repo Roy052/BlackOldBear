@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class Accesory_Description : MonoBehaviour
+public class Accessory_Description : MonoBehaviour
 {
     private Vector2 mousePosition;
     public Image accImage;
