@@ -8,8 +8,12 @@ public class Accessory : MonoBehaviour
     public Sprite thumb;
     public string accessoryName, description, additionalText;
 
-    public Accessory_Description accDesc;
+    Accessory_Description accDesc;
 
+    private void Start()
+    {
+        accDesc = GameObject.Find("Accessory_Description").GetComponent<Accessory_Description>();
+    }
 
     private void OnMouseEnter()
     {
