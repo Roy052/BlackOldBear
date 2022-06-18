@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Accessory : MonoBehaviour
 {
-    public int accessoryNum, rarity, type;
+    public int accessoryNum, rarity, type, where;
     public Sprite thumb;
     public string accessoryName, description, additionalText;
 

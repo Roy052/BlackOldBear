@@ -6,6 +6,7 @@ public class Accessory_Info : MonoBehaviour
 {
     public int[] rarityArray = {1, 3 };
     public int[] typeArray = {0, 1 };
+    public int[] whereArray = { 0, 1 };
     
     public string[] nameArray = 
         { "핫 초코 밀크 머그컵", 

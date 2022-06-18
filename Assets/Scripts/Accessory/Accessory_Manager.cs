@@ -6,10 +6,22 @@ public class Accessory_Manager : MonoBehaviour
 {
     public GameObject accessoryPrefab;
     public Sprite[] accessorySpriteArray;
+    public Accessory_Info accessoryInfo;
+    public List<int> shopAccessoryList;
 
     float startX = -8.2f, startY = 4.4f, gap = 1.2f;
     List<GameObject> accessoryList = new List<GameObject>();
-    Accessory_Info accessoryInfo = new Accessory_Info();
+
+    private void Start()
+    {
+        accessoryInfo = new Accessory_Info();
+        shopAccessoryList = new List<int>();
+    }
+    private void Update()
+    {
+        //if (accessoryInfo == null) Debug.Log(accessoryInfo.nameArray[0]);
+        //else Debug.Log("BBBB");
+    }
     public void AddAccessory(int num)
     {
         GameObject clone = Instantiate(accessoryPrefab, 
