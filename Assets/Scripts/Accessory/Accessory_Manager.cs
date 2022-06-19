@@ -17,24 +17,23 @@ public class Accessory_Manager : MonoBehaviour
         accessoryInfo = new Accessory_Info();
         shopAccessoryList = new List<int>();
     }
-    private void Update()
-    {
-        //if (accessoryInfo == null) Debug.Log(accessoryInfo.nameArray[0]);
-        //else Debug.Log("BBBB");
-    }
     public void AddAccessory(int num)
     {
+
         GameObject clone = Instantiate(accessoryPrefab, 
             new Vector3(startX + gap * accessoryList.Count, startY, 0), Quaternion.identity);
         clone.SetActive(false);
 
         clone.GetComponent<SpriteRenderer>().sprite = accessorySpriteArray[num];
 
+
         Accessory cloneAccessory = clone.GetComponent<Accessory>();
+        accessoryInfo = new Accessory_Info();
 
         cloneAccessory.accessoryNum = num;
         cloneAccessory.rarity = accessoryInfo.rarityArray[num];
         cloneAccessory.type = accessoryInfo.typeArray[num];
+        cloneAccessory.where = accessoryInfo.whereArray[num];
         cloneAccessory.thumb = accessorySpriteArray[num];
         cloneAccessory.accessoryName = accessoryInfo.nameArray[num];
         cloneAccessory.description = accessoryInfo.descriptionArray[num];

@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 8289056040361999487}
   - component: {fileID: 5466301639657028369}
   - component: {fileID: 2041844906811661234}
+  - component: {fileID: 3731551805821742437}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -62,3 +63,38 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   currentPosition: {x: 0, y: 0}
   recorded: 0
+--- !u!114 &3731551805821742437
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810295980845809428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a42303f1223d9e74782bb355d2f47256, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  accessoryPrefab: {fileID: 1507671758656091161, guid: 646cecbb66e938340a6078ffdf566e8b, type: 3}
+  accessorySpriteArray:
+  - {fileID: 21300000, guid: 5334b4b5024a6684287a1a167c6fd0aa, type: 3}
+  - {fileID: 21300000, guid: 792f61b93a01fba4eb7ad2761dc834ae, type: 3}
+  - {fileID: 21300000, guid: 03b559f019e987a4b9cc65c856c58060, type: 3}
+  - {fileID: 21300000, guid: 03b559f019e987a4b9cc65c856c58060, type: 3}
+  - {fileID: 21300000, guid: 03b559f019e987a4b9cc65c856c58060, type: 3}
+  - {fileID: 21300000, guid: 03b559f019e987a4b9cc65c856c58060, type: 3}
+  - {fileID: 21300000, guid: 03b559f019e987a4b9cc65c856c58060, type: 3}
+  - {fileID: 21300000, guid: 03b559f019e987a4b9cc65c856c58060, type: 3}
+  - {fileID: 21300000, guid: 03b559f019e987a4b9cc65c856c58060, type: 3}
+  - {fileID: 21300000, guid: 03b559f019e987a4b9cc65c856c58060, type: 3}
+  - {fileID: 21300000, guid: 03b559f019e987a4b9cc65c856c58060, type: 3}
+  - {fileID: 21300000, guid: 03b559f019e987a4b9cc65c856c58060, type: 3}
+  - {fileID: 21300000, guid: 03b559f019e987a4b9cc65c856c58060, type: 3}
+  - {fileID: 21300000, guid: 03b559f019e987a4b9cc65c856c58060, type: 3}
+  - {fileID: 21300000, guid: 03b559f019e987a4b9cc65c856c58060, type: 3}
+  - {fileID: 21300000, guid: 03b559f019e987a4b9cc65c856c58060, type: 3}
+  - {fileID: 21300000, guid: 03b559f019e987a4b9cc65c856c58060, type: 3}
+  - {fileID: 21300000, guid: 03b559f019e987a4b9cc65c856c58060, type: 3}
+  - {fileID: 21300000, guid: 03b559f019e987a4b9cc65c856c58060, type: 3}
+  accessoryInfo: {fileID: 0}
+  shopAccessoryList: 
