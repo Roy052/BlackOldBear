@@ -13,7 +13,7 @@ public class ShopManager : MonoBehaviour
 
     public Image[] images;
     public Text[] nameTexts, descTexts, priceTexts;
-
+    public Button[] buyButtons;
     
     private void Start()
     {
@@ -93,5 +93,14 @@ public class ShopManager : MonoBehaviour
     public void ShopClose()
     {
 
+    }
+    public void Buy(int num)
+    {
+        accessory_Manager.AddAccessory(accessoryList[num]);
+        images[num].gameObject.SetActive(false);
+        nameTexts[num].gameObject.SetActive(false);
+        descTexts[num].gameObject.SetActive(false);
+        priceTexts[num].gameObject.SetActive(false);
+        buyButtons[num].gameObject.SetActive(false);
     }
 }
