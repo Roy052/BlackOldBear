@@ -1,0 +1,154 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+using UnityEngine.UI;
+using UnityEngine.SceneManagement;
+
+public class RewardManager : MonoBehaviour
+{
+    public GameObject rewardBackground;
+    public GameObject[] rewardboxes;
+    public Image[] icons;
+    public Text[] texts;
+    public Sprite money;
+
+    int mapNum;
+    int[] rewardType; //0 : 빈 것, 1 : 돈, 2 : 재료, 3 : 악세서리
+    int[] rewardValue;
+    GameObject gameManagerObject;
+    Accessory_Manager accessory_Manager;
+    Accessory_Info accessory_Info;
+
+    private void Start()
+    {
+        rewardType = new int[3];
+        rewardValue = new int[3];
+
+        rewardBackground.SetActive(false);
+        for (int i = 0; i < 3; i++)
+        {
+            rewardType[i] = 0;
+            rewardValue[i] = 0;
+            rewardboxes[i].SetActive(false);
+            icons[i].gameObject.SetActive(false);
+            texts[i].gameObject.SetActive(false);
+        }
+
+        gameManagerObject = GameObject.Find("GameManager");
+        accessory_Manager = gameManagerObject.GetComponent<Accessory_Manager>();
+        accessory_Info = new Accessory_Info();
+
+        mapNum = SceneManager.GetActiveScene().buildIndex - 1;
+        Debug.Log(SceneManager.GetSceneByName("MapScene").buildIndex);
+        switch (mapNum)
+        {
+            case 5:
+
+                break;
+            case 6: //Chest
+                rewardType[0] = 3;
+                //rewardValue[0] = RandomAccessory(Random.Range(1, 4));
+                rewardValue[0] = RandomAccessory(1);
+                break;
+            case 7: //Enemy
+                rewardType[0] = 1;
+                rewardValue[0] = 3;
+                rewardType[1] = 2;
+                rewardValue[1] = Random.Range(0, 2);
+                break;
+            case 8: //MidBoss
+
+                break;
+            case 9: //Boss
+
+                break;
+        }
+    }
+
+    public int RandomAccessory(int rarity)
+    {
+        int value;
+        int[] rarityArray = accessory_Info.rarityArray;
+        int[] whereArray = accessory_Info.whereArray;
+        int start = -1, end = -1, max = whereArray.Length;
+
+        for (int i = 0; i < max; i++)
+        {
+            if (start == -1 && whereArray[i] == 1 && rarityArray[i] == rarity)
+            {
+                start = i;
+            }
+            if (start != -1 && (whereArray[i] > 1 || rarityArray[i] > rarity))
+            {
+                end = i;
+                break;
+            }
+            if (i == max - 1) end = i;
+        }
+
+        value = Random.Range(start, end);
+
+        return value;
+    }
+
+    public void RewardON()
+    {
+        rewardBackground.SetActive(true);
+
+        for(int i = 0; i < 3; i++)
+        {
+            switch (rewardType[i])
+            {
+                case 0:
+                    break;
+                case 1:
+                    icons[i].sprite = money;
+                    texts[i].text = rewardValue[i].ToString();
+                    rewardboxes[i].gameObject.SetActive(true);
+                    icons[i].gameObject.SetActive(true);
+                    texts[i].gameObject.SetActive(true);
+                    break;
+                case 2:
+                    break;
+                case 3:
+                    icons[i].sprite = accessory_Manager.accessorySpriteArray[rewardValue[i]];
+                    texts[i].text = accessory_Info.nameArray[rewardValue[i]];
+
+                    rewardboxes[i].gameObject.SetActive(true);
+                    icons[i].gameObject.SetActive(true);
+                    texts[i].gameObject.SetActive(true);
+                    break;
+            }
+        }
+    }
+
+    public void RewardOFF()
+    {
+        for (int i = 0; i < 3; i++)
+        {
+            rewardboxes[i].SetActive(false);
+            icons[i].gameObject.SetActive(false);
+            texts[i].gameObject.SetActive(false);
+        }
+        rewardBackground.SetActive(false);
+    }
+
+    public void GainReward(int num)
+    {
+        switch (rewardType[num])
+        {
+            case 0:
+                break;
+            case 1:
+                break;
+            case 2:
+                break;
+            case 3:
+                accessory_Manager.AddAccessory(rewardValue[num]);
+                break;
+        }
+        rewardboxes[num].SetActive(false);
+        icons[num].gameObject.SetActive(false);
+        texts[num].gameObject.SetActive(false);
+    }
+}

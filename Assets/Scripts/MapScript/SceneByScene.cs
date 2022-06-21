@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 public class SceneByScene : MonoBehaviour
 {
     public GameObject nextButton;
-
+    public RewardManager reward;
     private void Start()
     {
         nextButton.SetActive(false);
@@ -19,5 +19,15 @@ public class SceneByScene : MonoBehaviour
     public void NextButtonPushed()
     {
         SceneManager.LoadScene("MapScene");
+    }
+
+    public void RewardON()
+    {
+
+    }
+
+    public void RewardOFF()
+    {
+
     }
 }

@@ -2,11 +2,11 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Accessory_Info : MonoBehaviour
+public class Accessory_Info
 {
-    public int[] rarityArray = {1, 3, 2, 1, 1, 3, 2, 1, 1, 3, 2, 1, 1, 3, 2, 1, 1, 3, 2, 1 };
-    public int[] typeArray = {0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2};
-    public int[] whereArray = { 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
+    public int[] rarityArray = {1, 3, 2, 1, 1, 3, 2, 1, 1, 3, 2, 1, 1, 3, 2, 1, 1, 1, 1, 1};
+    public int[] typeArray =   {0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1, 2, 0, 1};
+    public int[] whereArray =  {0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0, 1, 1, 1};
     
     public string[] nameArray = 
         { "핫 초코 밀크 머그컵", 
@@ -26,15 +26,15 @@ public class Accessory_Info : MonoBehaviour
         "Test",
         "Test",
         "Test",
+        "상자0",
+        "상자1",
+        "상자2",
+        "상자",
         "Test",
         "Test",
         "Test",
-        "Test",
-        "Test",
-        "Test",
-        "Test",
-        "Test",
-        "Test",
+        "상자0",
+        "상자1",
         "Test"};
     public string[] descriptionArray = 
         { "전투가 끝날 때, 체력을 2 회복한다.", 
