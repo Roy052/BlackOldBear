@@ -11,6 +11,7 @@ public class RewardManager : MonoBehaviour
     public Image[] icons;
     public Text[] texts;
     public Sprite money;
+    public Sprite[] itemSprite;
 
     int mapNum;
     int[] rewardType; //0 : 빈 것, 1 : 돈, 2 : 재료, 3 : 악세서리
@@ -101,16 +102,21 @@ public class RewardManager : MonoBehaviour
             {
                 case 0:
                     break;
-                case 1:
+                case 1: //Money
                     icons[i].sprite = money;
                     texts[i].text = rewardValue[i].ToString();
                     rewardboxes[i].gameObject.SetActive(true);
                     icons[i].gameObject.SetActive(true);
                     texts[i].gameObject.SetActive(true);
                     break;
-                case 2:
+                case 2: //Item
+                    icons[i].sprite = itemSprite[rewardValue[i]];
+                    texts[i].text = rewardValue[i] == 0 ? "Dagger" : "Leather";
+                    rewardboxes[i].gameObject.SetActive(true);
+                    icons[i].gameObject.SetActive(true);
+                    texts[i].gameObject.SetActive(true);
                     break;
-                case 3:
+                case 3: //Accessory
                     icons[i].sprite = accessory_Manager.accessorySpriteArray[rewardValue[i]];
                     texts[i].text = accessory_Info.nameArray[rewardValue[i]];
 
@@ -140,8 +146,10 @@ public class RewardManager : MonoBehaviour
             case 0:
                 break;
             case 1:
+                gameManagerObject.GetComponent<ItemManager>().moneyChange(rewardValue[num]);
                 break;
             case 2:
+                gameManagerObject.GetComponent<ItemManager>().itemChange(rewardValue[num], 1);
                 break;
             case 3:
                 accessory_Manager.AddAccessory(rewardValue[num]);
