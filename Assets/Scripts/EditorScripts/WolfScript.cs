@@ -26,6 +26,7 @@ public class WolfScript : MonoBehaviour
         if (Input.GetMouseButton(1))
         {
             lineManagerScript.wolfRemove(this);
+            Destroy(this.gameObject);
         }
     }
 }
