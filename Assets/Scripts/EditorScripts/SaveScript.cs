@@ -4,6 +4,17 @@ using UnityEngine;
 using System.IO;
 using System;
 
+/// <summary>
+/// 인게임에서 데이터 호출 방법
+/// 1. PatternData2 객체를 선언.
+/// - PatternData2 pData
+/// 2. 데이터 로드 함수를 호출.
+/// - pData = SaveScript.loadData2(filename)
+/// - filename은 확장자 뺴고. "Electronic_2.json"이면 SaveScript.loadData2("Electronic_2");
+/// 3. 패턴데이터에서 울프 데이터 추출
+/// - List<WolfData2> wData = PatternData2.wolfs;
+/// </summary>
+
 [Serializable]
 public class WolfData
 {
@@ -58,6 +69,20 @@ public class SaveScript
         pData.speed = _speed;
 
         pData.wolfs = new();
+
+        // wolfScript List 정렬
+        _WSs.Sort(delegate (WolfScript A, WolfScript B)
+        {
+            if (A.node < B.node) return -1;
+            else if (A.node > B.node) return 1;
+            else
+            {
+                if (A.beat * B.fullBeat < B.beat * A.fullBeat) return -1; // 비트를 정수로 비교
+                else if (A.beat * B.fullBeat > B.beat * A.fullBeat) return 1;
+                else return 0;
+            }
+        });
+
         foreach (WolfScript ws in _WSs)
         {
             WolfData wolf = new();

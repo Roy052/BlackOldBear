@@ -639,24 +639,6 @@
             "angle": 162.0
         },
         {
-            "node": 218,
-            "fullBeat": 3,
-            "beat": 0,
-            "angle": 18.0
-        },
-        {
-            "node": 219,
-            "fullBeat": 3,
-            "beat": 0,
-            "angle": 0.0
-        },
-        {
-            "node": 220,
-            "fullBeat": 3,
-            "beat": 0,
-            "angle": 342.0
-        },
-        {
             "node": 210,
             "fullBeat": 3,
             "beat": 0,
@@ -691,6 +673,24 @@
             "fullBeat": 3,
             "beat": 0,
             "angle": 18.0
+        },
+        {
+            "node": 218,
+            "fullBeat": 3,
+            "beat": 0,
+            "angle": 18.0
+        },
+        {
+            "node": 219,
+            "fullBeat": 3,
+            "beat": 0,
+            "angle": 0.0
+        },
+        {
+            "node": 220,
+            "fullBeat": 3,
+            "beat": 0,
+            "angle": 342.0
         },
         {
             "node": 222,
@@ -729,28 +729,16 @@
             "angle": 288.0
         },
         {
+            "node": 230,
+            "fullBeat": 3,
+            "beat": 0,
+            "angle": 108.0
+        },
+        {
             "node": 231,
             "fullBeat": 3,
             "beat": 0,
             "angle": 90.0
-        },
-        {
-            "node": 235,
-            "fullBeat": 3,
-            "beat": 0,
-            "angle": 90.0
-        },
-        {
-            "node": 234,
-            "fullBeat": 3,
-            "beat": 0,
-            "angle": 72.0
-        },
-        {
-            "node": 236,
-            "fullBeat": 3,
-            "beat": 0,
-            "angle": 108.0
         },
         {
             "node": 232,
@@ -759,7 +747,19 @@
             "angle": 72.0
         },
         {
-            "node": 230,
+            "node": 234,
+            "fullBeat": 3,
+            "beat": 0,
+            "angle": 72.0
+        },
+        {
+            "node": 235,
+            "fullBeat": 3,
+            "beat": 0,
+            "angle": 90.0
+        },
+        {
+            "node": 236,
             "fullBeat": 3,
             "beat": 0,
             "angle": 108.0
