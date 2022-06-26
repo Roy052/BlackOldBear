@@ -13,6 +13,7 @@ public class LineManageScript : MonoBehaviour
     public float BPM;
     public int beat; // 한 박자를 몇 비트로 쪼갤 건지
     public float noteSpeed; // 초당 노트 이동 거리
+    public float musicSpeed; // 노래 재생 속도
     public float boundary; // 곰 주변 비어있는 공간 크기
     [SerializeField] Color judgeColor; // 판정라인 색깔
     [SerializeField] Color majorBeatColor; // 박자 색깔
@@ -317,6 +318,7 @@ public class LineManageScript : MonoBehaviour
                         sliderObj.transform.position = new Vector3(pos.x, 4.5f, -2.1f);
                         currentPos = musicLength * ((pos.x + 8) / 16);
                     }
+                    Debug.Log(currentPos + " / " + musicLength);
 
                     circleReload();
                 }
@@ -339,6 +341,7 @@ public class LineManageScript : MonoBehaviour
 
                 sliderObj.transform.position = new Vector3(currentPos / musicLength * 16 - 8, 4.5f, -2.1f);
 
+                Debug.Log(currentPos + " / " + musicLength);
                 circleReload();
             }
             else if (wheelInput > 0)
@@ -349,6 +352,7 @@ public class LineManageScript : MonoBehaviour
 
                 sliderObj.transform.position = new Vector3(currentPos / musicLength * 16 - 8, 4.5f, -2.1f);
 
+                Debug.Log(currentPos + " / " + musicLength);
                 circleReload();
             }
         }
@@ -379,7 +383,6 @@ public class LineManageScript : MonoBehaviour
     public void wolfRemove(WolfScript instScript)
     {
         wolfList.Remove(instScript);
-        Destroy(instScript.gameObject);
     }
 
     public void saveData(string filename, string bgm, int diff)
@@ -413,6 +416,7 @@ public class LineManageScript : MonoBehaviour
             instScript.fullBeat = wolf.fullBeat;
             instScript.beat = wolf.beat;
             instScript.angle = wolf.angle;
+            instScript.lineManagerScript = this;
             wolfList.Add(instScript);
         }
 
@@ -463,12 +467,17 @@ public class LineManageScript : MonoBehaviour
         lineReload();
     }
 
-    public void setSpeed(float _speed)
+    public void setWolfSpeed(float _speed)
     {
         noteSpeed = _speed;
         gapRenew();
         circleCheck();
         circleReload();
+    }
+
+    public void setMusicSpeed(float _speed)
+    {
+        musicSpeed = _speed;
     }
 
     public void musicPlay()

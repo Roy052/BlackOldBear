@@ -9,52 +9,82 @@
     "speed": 5.0,
     "wolfs": [
         {
-            "node": 2,
+            "node": 1,
             "fullBeat": 4,
             "beat": 0,
             "angle": 200.0
         },
         {
-            "node": 6,
+            "node": 5,
             "fullBeat": 4,
             "beat": 0,
             "angle": 200.0
         },
         {
-            "node": 11,
-            "fullBeat": 4,
-            "beat": 0,
-            "angle": 200.0
-        },
-        {
-            "node": 15,
-            "fullBeat": 4,
-            "beat": 0,
-            "angle": 200.0
-        },
-        {
-            "node": 19,
-            "fullBeat": 4,
-            "beat": 0,
-            "angle": 200.0
-        },
-        {
-            "node": 23,
-            "fullBeat": 4,
-            "beat": 0,
-            "angle": 200.0
-        },
-        {
-            "node": 27,
+            "node": 9,
             "fullBeat": 4,
             "beat": 0,
             "angle": 164.0
         },
         {
-            "node": 31,
+            "node": 13,
             "fullBeat": 4,
             "beat": 0,
             "angle": 164.0
+        },
+        {
+            "node": 17,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 200.0
+        },
+        {
+            "node": 21,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 200.0
+        },
+        {
+            "node": 25,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 164.0
+        },
+        {
+            "node": 29,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 164.0
+        },
+        {
+            "node": 33,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 344.0
+        },
+        {
+            "node": 35,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 20.0
+        },
+        {
+            "node": 35,
+            "fullBeat": 4,
+            "beat": 2,
+            "angle": 20.0
+        },
+        {
+            "node": 36,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 20.0
+        },
+        {
+            "node": 36,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 20.0
         }
     ]
 }

@@ -1,0 +1,11 @@
+{
+    "BPM": 120.0,
+    "BGM": "Electronic",
+    "beat": 4,
+    "segments": 10,
+    "baseAngle": 20.0,
+    "baseOffset": 500.0,
+    "difficult": 1,
+    "speed": 5.0,
+    "wolfs": []
+}

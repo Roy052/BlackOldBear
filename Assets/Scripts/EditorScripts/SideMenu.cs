@@ -8,11 +8,11 @@ using System.IO;
 public class SideMenu : MonoBehaviour
 {
     public List<AudioClip> musics = new(){ null }; // AudioClip 리스트
-    public GameObject lineManageObj, musicManageObj;
+    public GameObject lineManageObj, musicManageObj, metObj;
     public GameObject sideButton; // 사이드메뉴 닫기/열기 버튼
     public GameObject gridButton, webButton; // 그리드형, 거미줄형
-    public TMP_Text loadText, bgmText, bpmText, beatText, NOWText, BOText, AOText, speedText, saveText;
-    public TMP_InputField bpmInput, beatInput, NOWInput, BOInput, AOInput, speedInput, fnInput;
+    public TMP_Text loadText, bgmText, bpmText, beatText, NOWText, BOText, AOText, wolfSpeedText, musicSpeedText, saveText;
+    public TMP_InputField bpmInput, beatInput, NOWInput, BOInput, AOInput, wolfSpeedInput, musicSpeedInput, fnInput;
     public TMP_Dropdown loadSelect, bgmSelect;
     public Button saveButton; // UI
     public Sprite sideButtonOpened, sideButtonClosed;
@@ -26,6 +26,7 @@ public class SideMenu : MonoBehaviour
     LineManageScript lineManageScript;
     MusicManage musicManageScript;
     SpriteRenderer sideButtonRenderer;
+    Metronome metScript;
 
     List<TMP_Text> uiTexts;
     List<TMP_InputField> uiInputFields;
@@ -42,13 +43,15 @@ public class SideMenu : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        uiTexts = new List<TMP_Text> { loadText, bgmText, bpmText, beatText, NOWText, BOText, AOText, speedText, saveText };
-        uiInputFields = new List<TMP_InputField> { bpmInput, beatInput, NOWInput, BOInput, AOInput, speedInput, fnInput };
+        // 사이드메뉴 UI들은 여기 넣어줘야 메뉴 열고닫을때 같이 움직임
+        uiTexts = new List<TMP_Text> { loadText, bgmText, bpmText, beatText, NOWText, BOText, AOText, wolfSpeedText, musicSpeedText, saveText };
+        uiInputFields = new List<TMP_InputField> { bpmInput, beatInput, NOWInput, BOInput, AOInput, wolfSpeedInput, musicSpeedInput, fnInput };
         uiDropdowns = new List<TMP_Dropdown> { loadSelect, bgmSelect };
         uiButtons = new List<Button> { saveButton };
 
         lineManageScript = lineManageObj.GetComponent<LineManageScript>();
         musicManageScript = musicManageObj.GetComponent<MusicManage>();
+        metScript = metObj.GetComponent<Metronome>();
 
         bgmTexts = new()
         {
@@ -74,17 +77,22 @@ public class SideMenu : MonoBehaviour
         beatInput.text = "4";
         NOWInput.text = "10";
         BOInput.text = "0";
-        AOInput.text = "20";
-        speedInput.text = "5";
+        AOInput.text = "0";
+        wolfSpeedInput.text = "5";
+        musicSpeedInput.text = "1.0";
         fnInput.text = "NewPattern";
 
-        bpmInput.onEndEdit.AddListener(delegate { lineManageScript.setBPM(float.Parse(bpmInput.text)); });
+        metScript.setBPM(120f);
+        metScript.setBaseOffset(0f);
+
+        bpmInput.onEndEdit.AddListener(delegate { setBPM(); });
         beatInput.onSubmit.AddListener(delegate { lineManageScript.setBeat(int.Parse(beatInput.text)); });
         NOWInput.onSubmit.AddListener(delegate { lineManageScript.setSegments(int.Parse(NOWInput.text)); });
-        BOInput.onSubmit.AddListener(delegate { lineManageScript.setBaseOffset(float.Parse(BOInput.text)); });
+        BOInput.onSubmit.AddListener(delegate { setBeatOffset(); });
         AOInput.onSubmit.AddListener(delegate { lineManageScript.setBaseAngle(float.Parse(AOInput.text)); });
 
-        speedInput.onSubmit.AddListener(delegate { lineManageScript.setSpeed(float.Parse(speedInput.text)); });
+        wolfSpeedInput.onSubmit.AddListener(delegate { lineManageScript.setWolfSpeed(float.Parse(wolfSpeedInput.text)); });
+        musicSpeedInput.onSubmit.AddListener(delegate { lineManageScript.setMusicSpeed(float.Parse(musicSpeedInput.text)); });
         bgmSelect.onValueChanged.AddListener(delegate { setMusic(); });
         loadSelect.onValueChanged.AddListener(delegate { loadData(loadTexts[loadSelect.value]); });
 
@@ -143,6 +151,20 @@ public class SideMenu : MonoBehaviour
         loadSelect.value = 0;
     }
 
+    void setBPM()
+    {
+        float bpm = float.Parse(bpmInput.text);
+        lineManageScript.setBPM(bpm);
+        metScript.setBPM(bpm);
+    }
+
+    void setBeatOffset()
+    {
+        float bo = float.Parse(BOInput.text);
+        lineManageScript.setBaseOffset(bo);
+        metScript.setBaseOffset(bo);
+    }
+
     void setMusic()
     {
         musicManageScript.setMusic(musics[bgmSelect.value]);
@@ -181,8 +203,11 @@ public class SideMenu : MonoBehaviour
             NOWInput.text = pData.segments.ToString();
             BOInput.text = pData.baseOffset.ToString();
             AOInput.text = pData.baseAngle.ToString();
-            speedInput.text = pData.speed.ToString();
+            wolfSpeedInput.text = pData.speed.ToString();
             fnInput.text = filename;
+
+            metScript.setBPM(pData.BPM);
+            metScript.setBaseOffset(pData.baseOffset);
         }
     }
 

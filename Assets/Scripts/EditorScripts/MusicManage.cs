@@ -28,8 +28,10 @@ public class MusicManage : MonoBehaviour
 
     public void setMusic(AudioClip mClip)
     {
+        Debug.Log("MusicManage.setMusic");
         mSource.clip = mClip;
         mSource.time = 0;
+        lineManageScript.musicLength = mClip.length;
     }
 
     public void musicPlay()
@@ -45,6 +47,7 @@ public class MusicManage : MonoBehaviour
                 else if (playPoint > mSource.clip.length)
                     playPoint = 0;
 
+                Debug.Log(playPoint + " / " + mSource.clip.length);
                 mSource.time = playPoint;
                 mSource.Play();
                 lineManageScript.musicPlay();
