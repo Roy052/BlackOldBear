@@ -18,6 +18,9 @@ EditorBuildSettings:
     path: Assets/Scenes/MapScene/Start.unity
     guid: f683e026cfee3bd41921805d75a1c42e
   - enabled: 1
+    path: Assets/Scenes/Mini-AimBooster.unity
+    guid: 124696e0934d78840aa1587592bfa28a
+  - enabled: 1
     path: Assets/Scenes/MapScene/Shop.unity
     guid: b1df060d985429b4ca4a2241566f8223
   - enabled: 1
