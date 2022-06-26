@@ -7,6 +7,7 @@ public class ShopManager : MonoBehaviour
 {
     public GameObject shopMain;
     List<int> accessoryList;
+    List<bool> accessoryAlreadyBuyList;
     GameObject gameManagerObject;
     Accessory_Manager accessory_Manager;
     Accessory_Info accessory_Info;
@@ -28,16 +29,21 @@ public class ShopManager : MonoBehaviour
 
         //상점 품목 진열
         if (accessory_Manager.shopAccessoryList != null 
-            && accessory_Manager.shopAccessoryList.Count != 0 )
+            && accessory_Manager.shopAccessoryList.Count != 0)
+        {
             accessoryList = accessory_Manager.shopAccessoryList;
+            accessoryAlreadyBuyList = accessory_Manager.shopAccessoryAlreadyBuyList;
+        }
         else
         {
             //생성
             accessoryList = new List<int>();
+            accessoryAlreadyBuyList = new List<bool>();
 
             //시작점
             int start = 0;
             int[] temp = accessory_Info.whereArray;
+            int accessoryOwnCount = accessory_Manager.accessaryOwnCount;
             for (int i = 0; i < temp.Length; i++)
             {
                 Debug.Log(temp[i]);
@@ -53,11 +59,14 @@ public class ShopManager : MonoBehaviour
             while (true)
             {
                 int random = Random.Range(start, temp.Length);
-                if(random >= start + 2)
+                if(accessory_Manager.IsAccessoryOwn(random) == false)
                 {
-                    accessoryList.Add(random);
-                    break;
-                }
+                    if (random >= start + 2 + accessoryOwnCount)
+                    {
+                        accessoryList.Add(random);
+                        break;
+                    }
+                }  
             }
 
             for (int i = 1; i < 3; i++)
@@ -65,16 +74,22 @@ public class ShopManager : MonoBehaviour
                 while (true)
                 {
                     int random = Random.Range(start, accessoryList[i - 1]);
-                    if (random >= start + 2 - i)
+                    if (accessory_Manager.IsAccessoryOwn(random) == false)
                     {
-                        accessoryList.Add(random);
-                        break;
+                        if (random >= start + 2 - i + accessoryOwnCount)
+                        {
+                            accessoryList.Add(random);
+                            break;
+                        }
                     }
                 }
             }
             
             //완성
             accessory_Manager.shopAccessoryList = accessoryList;
+            for(int i = 0; i < 3; i++)
+                accessoryAlreadyBuyList.Add(false);
+            accessory_Manager.shopAccessoryAlreadyBuyList = accessoryAlreadyBuyList;
         }
 
         for (int i = 0; i < 3; i++)
@@ -96,10 +111,21 @@ public class ShopManager : MonoBehaviour
     {
         for(int i = 0; i < 3; i++)
         {
-            images[i].sprite = accessory_Manager.accessorySpriteArray[accessoryList[i]];
-            nameTexts[i].text = accessory_Info.nameArray[accessoryList[i]];
-            descTexts[i].text = accessory_Info.descriptionArray[accessoryList[i]];
-            priceTexts[i].text = accessoryPrice[i].ToString();
+            if(accessoryAlreadyBuyList[i] == false)
+            {
+                images[i].sprite = accessory_Manager.accessorySpriteArray[accessoryList[i]];
+                nameTexts[i].text = accessory_Info.nameArray[accessoryList[i]];
+                descTexts[i].text = accessory_Info.descriptionArray[accessoryList[i]];
+                priceTexts[i].text = accessoryPrice[i].ToString();
+            }
+            else
+            {
+                images[i].gameObject.SetActive(false);
+                nameTexts[i].gameObject.SetActive(false);
+                descTexts[i].gameObject.SetActive(false);
+                priceTexts[i].gameObject.SetActive(false);
+                buyBoxes[i].SetActive(false);
+            }
 
             if (itemManager.currentMoney() < accessoryPrice[i])
             {
@@ -156,14 +182,13 @@ public class ShopManager : MonoBehaviour
             descTexts[num].gameObject.SetActive(false);
             priceTexts[num].gameObject.SetActive(false);
             buyBoxes[num].gameObject.SetActive(false);
+
+            accessoryAlreadyBuyList[num] = true;
         }
         else if(type == 1)
         {
             itemManager.moneyChange(-itemPrice[num]);
             itemManager.itemChange(num, 1);
-            itemImages[num].SetActive(false);
-            itemPriceTexts[num].gameObject.SetActive(false);
-            itemBuyBoxes[num].gameObject.SetActive(false);
         }
         else
         {

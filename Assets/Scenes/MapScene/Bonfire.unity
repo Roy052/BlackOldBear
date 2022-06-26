@@ -459,6 +459,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: BornFireSM
       objectReference: {fileID: 0}
+    - target: {fileID: 2611848759931057597, guid: ae7ebfd529fc875439850d7db26ab402, type: 3}
+      propertyPath: m_TagString
+      value: SceneManager
+      objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 2611848759931057592, guid: ae7ebfd529fc875439850d7db26ab402, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: ae7ebfd529fc875439850d7db26ab402, type: 3}

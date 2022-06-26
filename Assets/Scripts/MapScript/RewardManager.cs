@@ -86,8 +86,13 @@ public class RewardManager : MonoBehaviour
             }
             if (i == max - 1) end = i;
         }
-
         value = Random.Range(start, end);
+
+        while(true)
+        {
+            if (accessory_Manager.IsAccessoryOwn(value) == false) break;
+            value = Random.Range(start, end);
+        }
 
         return value;
     }
