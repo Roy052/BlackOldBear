@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerController : MonoBehaviour
 {
     Vector2 target, mouse;
-    float angle;
+    public float angle;
     public GameObject bear;
     // Start is called before the first frame update
     void Start()

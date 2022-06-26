@@ -4,13 +4,6 @@ using UnityEngine;
 
 public class WolfManager : MonoBehaviour
 {
-    [System.Serializable]
-    public struct wolfDat
-    {
-        public Vector3 genPos;
-        public float arriveTime;
-    }
-
     public string musicName = "Electronic_2";
     PatternData2 pData;
     public List<WolfData2> wData;
@@ -18,7 +11,6 @@ public class WolfManager : MonoBehaviour
     public GameObject bear;
     public GameObject wolf;
     Vector3 position;
-    public List<wolfDat> wolfList = new List<wolfDat>();
     public List<GameObject> wolfGenerated = new List<GameObject>();
     float time_start;
     public float time_current = 0f;

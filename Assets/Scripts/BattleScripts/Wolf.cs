@@ -1,16 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
 public class Wolf : MonoBehaviour
 {
     public int judgementState = 0; // 0 : out, 1 : bad, 2 : great, 3 : perfect
     GameManager gm;
     WolfManager wm;
+    PlayerController pc;
 
     Vector3 bearPosition;
     float distance; // to Bear(center)
-    Vector3 direction; // to Bear(center)
+    public Vector3 direction; // to Bear(center)
     float latency;
 
     bool isDistroyed = false;
@@ -19,6 +19,8 @@ public class Wolf : MonoBehaviour
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         wm = GameObject.Find("Wolfs").GetComponent<WolfManager>();
+        pc = GameObject.Find("Mouse Director").GetComponent<PlayerController>();
+
         bearPosition = wm.getBearPosition();
 
         Vector3 temp = bearPosition - this.transform.position; // set direction
@@ -59,9 +61,18 @@ public class Wolf : MonoBehaviour
         }
     }
 
+    float cosineDistance()
+    {
+        float angle = pc.angle;
+        Vector3 mDirection = new Vector3(-Mathf.Cos(angle * Mathf.Deg2Rad), -Mathf.Sin(angle * Mathf.Deg2Rad), 0);
+        return Vector3.Dot(mDirection, direction)/mDirection.magnitude/direction.magnitude;
+    }
+
     void procNote()
     {
-        if(wm.wolfGenerated[wm.first]==gameObject)
+        float cosDis = cosineDistance();
+
+        if (wm.wolfGenerated[wm.first] == gameObject)
         {
             wm.clicked = true;
         }
@@ -70,23 +81,57 @@ public class Wolf : MonoBehaviour
         if (judgementState == 1) // Bad
         {
             gm.score -= 10;
-            wm.first++;
-            isDistroyed = true;
-            // Destroy(gameObject);
-        } 
-        else if (judgementState == 2) // great
-        {
-            gm.score += 5;
-            wm.first++;
+            wm.first=Mathf.Min(wm.first+1,wm.wolfGenerated.Count);
             isDistroyed = true;
             // Destroy(gameObject);
         }
+        else if (judgementState == 2) // great
+        {
+            if (cosDis > 0.97) // great
+            {
+                gm.score += 5;
+                wm.first++;
+                isDistroyed = true;
+                // Destroy(gameObject);
+            }
+            else if (cosDis > 0.85) // good
+            {
+                gm.score += 3;
+                wm.first++;
+                isDistroyed = true;
+                // Destroy(gameObject);
+            }
+            else // bad
+            {
+                gm.score += -1;
+                wm.first++;
+                isDistroyed = true;
+                // Destroy(gameObject);
+            }
+        }
         else if (judgementState == 3) // perfect
         {
-            gm.score += 10;
-            wm.first++;
-            isDistroyed = true;
-            // Destroy(gameObject);
+            if (cosDis > 0.97) // perfect
+            {
+                gm.score += 10;
+                wm.first++;
+                isDistroyed = true;
+                // Destroy(gameObject);
+            }
+            else if (cosDis > 0.85) // great
+            {
+                gm.score += 7;
+                wm.first++;
+                isDistroyed = true;
+                // Destroy(gameObject);
+            }
+            else // bad
+            {
+                gm.score += 1;
+                wm.first++;
+                isDistroyed = true;
+                // Destroy(gameObject);
+            }
         } 
     }
     private void OnTriggerEnter2D(Collider2D collision)

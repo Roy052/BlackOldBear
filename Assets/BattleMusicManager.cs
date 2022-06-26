@@ -12,10 +12,10 @@ public class BattleMusicManager : MonoBehaviour
     void Start()
     {
         pData = SaveScript.loadData2(musicName);
-        Debug.Log(pData.BGM);
-        Debug.Log(pData.difficult);
+        //Debug.Log(pData.BGM);
+        //Debug.Log(pData.difficult);
         wData = pData.wolfs;
-        Debug.Log(wData.Count);
+        //Debug.Log(wData.Count);
     
         audioSource = gameObject.GetComponent<AudioSource>();
         // audioSource.clip
