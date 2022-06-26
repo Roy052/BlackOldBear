@@ -10,10 +10,10 @@ GameObject:
   m_Component:
   - component: {fileID: 2457453832302746029}
   - component: {fileID: 5744356784533215681}
-  - component: {fileID: -8767509344708625620}
   - component: {fileID: -5805720358933689038}
+  - component: {fileID: -4162508804314022424}
   m_Layer: 0
-  m_Name: wolf
+  m_Name: AimWolf
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -86,23 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!114 &-8767509344708625620
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2457453832302746028}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e621c11a51aedad4f85f9b60ed5a0897, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  node: 0
-  fullBeat: 0
-  beat: 0
-  angle: 0
-  lineManagerScript: {fileID: 0}
 --- !u!61 &-5805720358933689038
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -113,7 +96,7 @@ BoxCollider2D:
   m_Enabled: 1
   m_Density: 1
   m_Material: {fileID: 0}
-  m_IsTrigger: 1
+  m_IsTrigger: 0
   m_UsedByEffector: 0
   m_UsedByComposite: 0
   m_Offset: {x: 0, y: 0}
@@ -129,3 +112,15 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 1.6, y: 2.28}
   m_EdgeRadius: 0
+--- !u!114 &-4162508804314022424
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2457453832302746028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4fb6c921fdb70a045adcc75a43f6bac6, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
