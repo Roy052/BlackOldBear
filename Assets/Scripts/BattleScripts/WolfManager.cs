@@ -23,6 +23,7 @@ public class WolfManager : MonoBehaviour
     bool isNextExist = true;
     float nextGenTime = 0.0f;
     float nextAngle = 0.0f;
+    float musicLoadDelay = 3.0f;
     Vector3 nextGenPos;
     GameObject newNote;
     [HideInInspector] public int first = 0;
@@ -31,6 +32,7 @@ public class WolfManager : MonoBehaviour
     private void Start()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        musicLoadDelay = gm.musicLoadDelay;
         time_start = Time.time;
         position = bear.transform.position;
 
@@ -42,6 +44,7 @@ public class WolfManager : MonoBehaviour
         nextGenTime = wData[noteCount].time;
         nextAngle = wData[noteCount++].angle;
         nextGenPos = AngleToPosition(nextAngle);
+        Debug.Log("time: "+nextGenTime+" / angle: "+nextAngle+" / pos: "+nextGenPos);
     }
 
     public Vector3 AngleToPosition(float Angle)
@@ -61,7 +64,7 @@ public class WolfManager : MonoBehaviour
         time_current = Time.time - time_start;
         gm.time = time_current;
 
-        if(time_current>=nextGenTime)
+        if(time_current>=nextGenTime+musicLoadDelay-(-0.2*gm.speed + 2.2))
         {
             if(noteAvailable)
             {
@@ -78,6 +81,7 @@ public class WolfManager : MonoBehaviour
                 nextGenTime = wData[noteCount].time;
                 nextAngle = wData[noteCount++].angle;
                 nextGenPos = nextGenPos = AngleToPosition(nextAngle);
+                Debug.Log("time: "+nextGenTime+" / angle: "+nextAngle+" / pos: "+nextGenPos);
             }
             if(noteCount == maxNote)
                 isNextExist = false;

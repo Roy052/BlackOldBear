@@ -322,6 +322,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 36a6caa0f776524428e27fdf9454451e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  angle: 0
   bear: {fileID: 1940184521}
 --- !u!1 &456418256
 GameObject:
@@ -355,6 +356,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicName: Electronic_2
   audioSource: {fileID: 0}
+  song1: {fileID: 8300000, guid: 935d03e461a53e849a5a37a0b8ce609d, type: 3}
 --- !u!4 &456418258
 Transform:
   m_ObjectHideFlags: 0
@@ -381,7 +383,7 @@ AudioSource:
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
   m_audioClip: {fileID: 0}
-  m_PlayOnAwake: 1
+  m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
   Loop: 0
@@ -591,19 +593,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eda47d6de9abe2447bf8a164691f531c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  musicName: Electronic_2
   bear: {fileID: 1940184521}
   wolf: {fileID: 3895731865497552487, guid: 441f2b27f7b954a4baae7304511fecf7, type: 3}
-  wolfList:
-  - genPos: {x: 5, y: 5, z: 0}
-    arriveTime: 3
-  - genPos: {x: 5, y: 5, z: 0}
-    arriveTime: 5
-  - genPos: {x: -5, y: 5, z: 0}
-    arriveTime: 5.2
-  - genPos: {x: 7, y: 7, z: 0}
-    arriveTime: 6
   wolfGenerated: []
   time_current: 0
+  radius: 7
   first: 0
   clicked: 0
 --- !u!1 &609049234
@@ -804,7 +799,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!114 &1270252490
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1360,6 +1355,10 @@ PrefabInstance:
     - target: {fileID: 7150609903139263429, guid: 94b1f3f7afe80314fa787dce5877a770, type: 3}
       propertyPath: m_Name
       value: JudgeEffect
+      objectReference: {fileID: 0}
+    - target: {fileID: 7150609903139263429, guid: 94b1f3f7afe80314fa787dce5877a770, type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7150609903139263430, guid: 94b1f3f7afe80314fa787dce5877a770, type: 3}
       propertyPath: m_fontSize
