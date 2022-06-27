@@ -12,10 +12,12 @@ public class ObjectSpawner : MonoBehaviour
     public GameObject boxPrefab4;
     public GameObject boxPrefab5;
 
+    public bool miniGameEnd = false;
 
     private float currTime;
     private int WolfNum = 0;
     private Transform[] targets = new Transform[6];
+    private float[,] spawnRange = new float[2, 2] { { -9f, 9f }, { -4.5f, 4.5f } };
 
     // Start is called before the first frame update
     void Start()
@@ -32,11 +34,14 @@ public class ObjectSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        currTime += Time.deltaTime;
+        if(miniGameEnd == false)
+            currTime += Time.deltaTime;
 
         if(currTime > 0.5)
         {
-            float newX = Random.Range(-15f, 15f), newY = Random.Range(-10f, 10f), newZ = Random.Range(-10f, 10f);
+            float newX = Random.Range(spawnRange[0, 0], spawnRange[0, 1]),
+                newY = Random.Range(spawnRange[1, 0], spawnRange[1, 1]),
+                newZ = -1;
             targets[WolfNum].position = new Vector3(newX, newY, newZ);
 
             currTime = 0;

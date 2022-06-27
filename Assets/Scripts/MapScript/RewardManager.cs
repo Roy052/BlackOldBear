@@ -44,7 +44,8 @@ public class RewardManager : MonoBehaviour
         switch (mapNum)
         {
             case 5:
-
+                rewardType[0] = 1;
+                rewardValue[0] = 100;
                 break;
             case 6: //Chest
                 rewardType[0] = 3;
@@ -146,6 +147,7 @@ public class RewardManager : MonoBehaviour
 
     public void GainReward(int num)
     {
+        Debug.Log("Reward : " + num);
         switch (rewardType[num])
         {
             case 0:

@@ -6,10 +6,11 @@ using UnityEngine.SceneManagement;
 public class SceneByScene : MonoBehaviour
 {
     public GameObject nextButton;
-    public RewardManager reward;
+    public RewardManager rewardManager;
     private void Start()
     {
         nextButton.SetActive(false);
+        rewardManager = this.GetComponent<RewardManager>();
     }
     public void NextButtonON()
     {
@@ -23,11 +24,11 @@ public class SceneByScene : MonoBehaviour
 
     public void RewardON()
     {
-
+        rewardManager.RewardON();
     }
 
     public void RewardOFF()
     {
-
+        rewardManager.RewardOFF();
     }
 }

@@ -1,12 +1,15 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class AimWolfCheck : MonoBehaviour
 {
 
     public int count = 0;
     private Vector3 mouseposition;
+    public TextMeshProUGUI countText;
+    int countMax = 16;
 
     // Start is called before the first frame update
     void Start()
@@ -35,5 +38,6 @@ public class AimWolfCheck : MonoBehaviour
                 hit.transform.position = new Vector3(-17, 21, 0);
             }
         }
+        countText.text = count + " / " + countMax;
     }
 }
