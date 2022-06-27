@@ -35,7 +35,7 @@ public class AimWolfCheck : MonoBehaviour
                 Debug.Log(count);
                 Debug.Log(hit.transform.gameObject);
 
-                hit.transform.position = new Vector3(-17, 21, 0);
+                hit.transform.position = new Vector3(-5, -9, 0);
             }
         }
         countText.text = count + " / " + countMax;

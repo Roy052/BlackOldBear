@@ -14,6 +14,7 @@ public class StopWatch : MonoBehaviour
 
     GameObject sceneManager;
     ObjectSpawner wolfSpawner;
+    bool onetime = false; //한번만 실행하기 위함
     
     // Start is called before the first frame update
     void Start()
@@ -37,21 +38,28 @@ public class StopWatch : MonoBehaviour
             resourceText.text = timeText;
         }
 
-        if(AimWolfCheck.GetComponent<AimWolfCheck>().count > 15)
+        if(onetime == false && AimWolfCheck.GetComponent<AimWolfCheck>().count > 15)
         {
             sceneManager.GetComponent<SceneByScene>().RewardON();
             sceneManager.GetComponent<SceneByScene>().NextButtonON();
 
-            miniGameEnd = true;
-            wolfSpawner.miniGameEnd = true;
+            MiniGameEnd();
         }
-        else if (time <= 0)
+        else if (onetime == false && time <= 0)
         {
             sceneManager.GetComponent<SceneByScene>().NextButtonON();
 
-            miniGameEnd = true;
-            wolfSpawner.miniGameEnd = true;
+            MiniGameEnd();
         }
+    }
+
+    void MiniGameEnd()
+    {
+        miniGameEnd = true;
+        wolfSpawner.miniGameEnd = true;
+        wolfSpawner.Arrangement();
+
+        onetime = true;
     }
 
 }

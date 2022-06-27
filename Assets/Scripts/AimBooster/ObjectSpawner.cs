@@ -34,10 +34,10 @@ public class ObjectSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(miniGameEnd == false)
+        if (miniGameEnd == false)
             currTime += Time.deltaTime;
 
-        if(currTime > 0.5)
+        if (currTime > 0.5)
         {
             float newX = Random.Range(spawnRange[0, 0], spawnRange[0, 1]),
                 newY = Random.Range(spawnRange[1, 0], spawnRange[1, 1]),
@@ -53,10 +53,9 @@ public class ObjectSpawner : MonoBehaviour
 
     }
 
-    private void Awake()
+    public void Arrangement()
     {
-
-
-
+        for (int i = 0; i < targets.Length; i++)
+            targets[i].position = new Vector3(-5, -9, 0);
     }
 }
