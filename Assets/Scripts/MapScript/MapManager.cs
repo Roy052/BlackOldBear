@@ -16,6 +16,8 @@ public class MapManager : MonoBehaviour
 
     int[] tempMapArray;
 
+    float[] nodePositions = new float[2] { -6.4f, 15.8f };
+
     // 0 : Empty, 1 : Not contain, 2 : Start, 3 : Shop,
     // 4 : Bonfire, 5 : Random Event, 6 : Chest, 7 : Enemy
     // 8 : Mid Boss, 9 : Boss
@@ -217,8 +219,10 @@ public class MapManager : MonoBehaviour
             {
                 if(map[i,j] != 0)
                 {
-                    Instantiate(node, new Vector3(-7.9f + (15.8f * ((float)j / 7)), position[i]), Quaternion.identity);
-                    GameObject temp = Instantiate(mapIcons[map[i, j]], new Vector3(-7.9f + (15.8f * ((float)j / 7)), position[i]), Quaternion.identity);
+                    float positionX = nodePositions[0] + (nodePositions[1] * ((float)j / 7));
+                    Instantiate(node, new Vector3(positionX, position[i]), Quaternion.identity);
+                    GameObject temp = Instantiate(mapIcons[map[i, j]], 
+                        new Vector3(positionX, position[i]), Quaternion.identity);
                     temp.GetComponent<MapIcon>().position = new Vector2(j, i);
                     if (visitableMap[i, j] == false) temp.GetComponent<SpriteRenderer>().sprite = temp.GetComponent<MapIcon>().sealedIcon;
                 }

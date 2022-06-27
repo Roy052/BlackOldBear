@@ -59,10 +59,16 @@ public class RewardManager : MonoBehaviour
                 rewardValue[1] = Random.Range(0, 2);
                 break;
             case 8: //MidBoss
-
+                rewardType[0] = 1;
+                rewardValue[0] = 100;
+                rewardType[1] = 3;
+                rewardValue[1] = RandomAccessory(1);
                 break;
             case 9: //Boss
-
+                rewardType[0] = 1;
+                rewardValue[0] = 150;
+                rewardType[1] = 3;
+                rewardValue[1] = RandomAccessory(3);
                 break;
         }
     }
