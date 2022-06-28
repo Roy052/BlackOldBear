@@ -171,7 +171,14 @@ public class Wolf : MonoBehaviour
     {
         if(collision.tag=="Perfect")
         {
-            judgementState = 2;
+            if (!isDistroyed)
+            {
+                judgementState = 2;
+                gm.score += scB;
+                wm.first++;
+                // Debug.Log("Bad out");
+                Destroy(gameObject);
+            }
             // Debug.Log("Perfect out");
         }
         else if(collision.tag=="Great")
@@ -181,14 +188,7 @@ public class Wolf : MonoBehaviour
         }
         else if(collision.tag=="Bad")
         {
-            if(!isDistroyed)
-            {
-                judgementState = 0;
-                gm.score += scB;
-                wm.first++;
-                // Debug.Log("Bad out");
-                Destroy(gameObject);
-            }
+            judgementState = 0;
         }
     }
 
