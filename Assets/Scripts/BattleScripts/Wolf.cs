@@ -7,12 +7,23 @@ public class Wolf : MonoBehaviour
     GameManager gm;
     WolfManager wm;
     PlayerController pc;
+    BattleManager bm;
 
     Vector3 bearPosition;
     float distance; // to Bear(center)
     public Vector3 direction; // to Bear(center)
     float latency;
 
+    //score
+    float anglePf = 0.97f;
+    float angleGr = 0.85f;
+    int scPP = 10;
+    int scPG = 7;
+    int scPB = 1;
+    int scGP = 5;
+    int scGG = 3;
+    int scGB = -1;
+    int scB = -10;
     bool isDistroyed = false;
 
     void Start()
@@ -20,6 +31,10 @@ public class Wolf : MonoBehaviour
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
         wm = GameObject.Find("Wolfs").GetComponent<WolfManager>();
         pc = GameObject.Find("Mouse Director").GetComponent<PlayerController>();
+        bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+
+        setScore();
+        setAngle();
 
         bearPosition = wm.getBearPosition();
 
@@ -80,30 +95,30 @@ public class Wolf : MonoBehaviour
         // Debug.Log("processing Note");
         if (judgementState == 1) // Bad
         {
-            gm.score -= 10;
+            gm.score += scB;
             wm.first=Mathf.Min(wm.first+1,wm.wolfGenerated.Count);
             isDistroyed = true;
             // Destroy(gameObject);
         }
         else if (judgementState == 2) // great
         {
-            if (cosDis > 0.97) // great
+            if (cosDis > anglePf) // perfect
             {
-                gm.score += 5;
+                gm.score += scGP;
                 wm.first++;
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
-            else if (cosDis > 0.85) // good
+            else if (cosDis > angleGr) // great
             {
-                gm.score += 3;
+                gm.score += scGG;
                 wm.first++;
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
             else // bad
             {
-                gm.score += -1;
+                gm.score += scGB;
                 wm.first++;
                 isDistroyed = true;
                 // Destroy(gameObject);
@@ -111,23 +126,23 @@ public class Wolf : MonoBehaviour
         }
         else if (judgementState == 3) // perfect
         {
-            if (cosDis > 0.97) // perfect
+            if (cosDis > anglePf) // perfect
             {
-                gm.score += 10;
+                gm.score += scPP;
                 wm.first++;
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
-            else if (cosDis > 0.85) // great
+            else if (cosDis > angleGr) // great
             {
-                gm.score += 7;
+                gm.score += scPG;
                 wm.first++;
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
             else // bad
             {
-                gm.score += 1;
+                gm.score += scPB;
                 wm.first++;
                 isDistroyed = true;
                 // Destroy(gameObject);
@@ -169,11 +184,28 @@ public class Wolf : MonoBehaviour
             if(!isDistroyed)
             {
                 judgementState = 0;
-                gm.score -= 10;
+                gm.score += scB;
                 wm.first++;
                 // Debug.Log("Bad out");
                 Destroy(gameObject);
             }
         }
+    }
+
+    private void setScore()
+    {
+        scPP = bm.scPP;
+        scPG = bm.scPG;
+        scPB = bm.scPB;
+        scGP = bm.scGP;
+        scGG = bm.scGG;
+        scGB = bm.scGB;
+        scB = bm.scB;
+    }
+
+    private void setAngle()
+    {
+        anglePf = bm.anglePf;
+        angleGr = bm.angleGr;
     }
 }

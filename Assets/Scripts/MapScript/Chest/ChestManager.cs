@@ -14,6 +14,8 @@ public class ChestManager : MonoBehaviour
         chestON = false;
         gameManagerObject = GameObject.Find("GameManager");
         rewardManager = this.gameObject.GetComponent<RewardManager>();
+
+        this.gameObject.GetComponent<SceneByScene>().NextButtonON();
     }
 
     public void ChestON()

@@ -64,9 +64,12 @@ TagManager:
   - name: UI
     uniqueID: 4026215027
     locked: 0
+  - name: Reward
+    uniqueID: 241686279
+    locked: 0
   - name: Map
     uniqueID: 1464425879
     locked: 0
   - name: Accessory
-    uniqueID: 2937379953
+    uniqueID: 1415796781
     locked: 0

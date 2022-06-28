@@ -11,7 +11,7 @@ public class Accessory_Manager : MonoBehaviour
     public List<bool> shopAccessoryAlreadyBuyList;
     public int accessaryOwnCount = 0;
 
-    float startX = -8.2f, startY = 4.4f, gap = 1.2f;
+    float startX = -8.9f, startY = 4.1f, gap = 1.2f;
     List<GameObject> accessoryList = new List<GameObject>();
     bool[] accessoryOwnList;
     private void Start()

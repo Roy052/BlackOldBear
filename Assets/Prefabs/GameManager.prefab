@@ -13,6 +13,8 @@ GameObject:
   - component: {fileID: 2041844906811661234}
   - component: {fileID: 3731551805821742437}
   - component: {fileID: 3307346620586022712}
+  - component: {fileID: 4339133123690465208}
+  - component: {fileID: 187058624201041765}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -51,6 +53,7 @@ MonoBehaviour:
   score: 0
   speed: 5
   time: 0
+  musicLoadDelay: 3
 --- !u!114 &2041844906811661234
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -99,6 +102,8 @@ MonoBehaviour:
   - {fileID: 21300000, guid: 03b559f019e987a4b9cc65c856c58060, type: 3}
   - {fileID: 21300000, guid: 03b559f019e987a4b9cc65c856c58060, type: 3}
   shopAccessoryList: 
+  shopAccessoryAlreadyBuyList: 
+  accessaryOwnCount: 0
 --- !u!114 &3307346620586022712
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +116,38 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 19bcf8429a6d6b4418bfbde19ed88a50, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  money: 0
+  items: 
+  uIBarManager: {fileID: 0}
+--- !u!114 &4339133123690465208
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810295980845809428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f3231541afb79b42a38fef623b7d79a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  UIBar: {fileID: 0}
+  healthText: {fileID: 0}
+  moneyText: {fileID: 0}
+  daggerText: {fileID: 0}
+  leatherText: {fileID: 0}
+--- !u!114 &187058624201041765
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1810295980845809428}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4b318f729c00f7a43bf4e8354a09e3b9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &3450591279355454537
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -118,6 +155,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8289056040361999487}
     m_Modifications:
+    - target: {fileID: 4681533074706562696, guid: ad1035501a4985b4eac7204967f5e88d, type: 3}
+      propertyPath: m_SortingLayer
+      value: 9
+      objectReference: {fileID: 0}
+    - target: {fileID: 4681533074706562696, guid: ad1035501a4985b4eac7204967f5e88d, type: 3}
+      propertyPath: m_SortingLayerID
+      value: 1415796781
+      objectReference: {fileID: 0}
     - target: {fileID: 4681533074706562697, guid: ad1035501a4985b4eac7204967f5e88d, type: 3}
       propertyPath: m_RootOrder
       value: 0

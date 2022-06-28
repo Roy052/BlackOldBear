@@ -17,7 +17,7 @@ public class ObjectSpawner : MonoBehaviour
     private float currTime;
     private int WolfNum = 0;
     private Transform[] targets = new Transform[6];
-    private float[,] spawnRange = new float[2, 2] { { -9f, 9f }, { -4.5f, 4.5f } };
+    private float[,] spawnRange = new float[2, 2] { { -9f, 9f }, { -4.5f, 2.8f } };
 
     // Start is called before the first frame update
     void Start()
@@ -34,10 +34,10 @@ public class ObjectSpawner : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(miniGameEnd == false)
+        if (miniGameEnd == false)
             currTime += Time.deltaTime;
 
-        if(currTime > 0.5)
+        if (currTime > 0.5)
         {
             float newX = Random.Range(spawnRange[0, 0], spawnRange[0, 1]),
                 newY = Random.Range(spawnRange[1, 0], spawnRange[1, 1]),
@@ -53,10 +53,9 @@ public class ObjectSpawner : MonoBehaviour
 
     }
 
-    private void Awake()
+    public void Arrangement()
     {
-
-
-
+        for (int i = 0; i < targets.Length; i++)
+            targets[i].position = new Vector3(-5, -9, 0);
     }
 }

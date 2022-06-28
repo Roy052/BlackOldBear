@@ -12,6 +12,7 @@ public class EnemyManager : MonoBehaviour
     {
         gameManagerObject = GameObject.Find("GameManager");
         rewardManager = this.gameObject.GetComponent<RewardManager>();
+        this.gameObject.GetComponent<SceneByScene>().NextButtonON();
     }
 
     public void RewardON()

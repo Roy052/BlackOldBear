@@ -8,7 +8,7 @@ public class ItemManager : MonoBehaviour
     const int itemMAX = 99;
     public int money;
     public int[] items;
-
+    public UIBarManager uIBarManager;
     private void Start()
     {
         items = new int[2];
@@ -30,6 +30,9 @@ public class ItemManager : MonoBehaviour
         if (num < 0 && money + num < 0) return -1;
         else if (num > 0 && money + num > moneyMAX) money = moneyMAX;
         else money += num;
+
+        if(uIBarManager != null)
+            uIBarManager.UITextUpdate(1, num, 0);
         return 1;
     }
 
@@ -38,6 +41,9 @@ public class ItemManager : MonoBehaviour
         if (num < 0 && items[type] + num < 0) return -1;
         else if (items[type] + num > itemMAX) items[type] = itemMAX;
         else items[type] += num;
+
+        if (uIBarManager != null)
+            uIBarManager.UITextUpdate(type+2, num, 0);
         return 1;
     }
 }
