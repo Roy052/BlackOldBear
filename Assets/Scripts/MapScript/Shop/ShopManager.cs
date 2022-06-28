@@ -27,6 +27,8 @@ public class ShopManager : MonoBehaviour
         accessory_Info = new Accessory_Info();
         itemManager = gameManagerObject.GetComponent<ItemManager>();
 
+        this.gameObject.GetComponent<SceneByScene>().NextButtonON();
+
         //상점 품목 진열
         if (accessory_Manager.shopAccessoryList != null 
             && accessory_Manager.shopAccessoryList.Count != 0)

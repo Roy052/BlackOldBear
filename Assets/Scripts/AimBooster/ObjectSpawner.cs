@@ -17,7 +17,7 @@ public class ObjectSpawner : MonoBehaviour
     private float currTime;
     private int WolfNum = 0;
     private Transform[] targets = new Transform[6];
-    private float[,] spawnRange = new float[2, 2] { { -9f, 9f }, { -4.5f, 4.5f } };
+    private float[,] spawnRange = new float[2, 2] { { -9f, 9f }, { -4.5f, 2.8f } };
 
     // Start is called before the first frame update
     void Start()

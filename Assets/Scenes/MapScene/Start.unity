@@ -388,7 +388,7 @@ GameObject:
   - component: {fileID: 1670047160}
   m_Layer: 0
   m_Name: StartSM
-  m_TagString: Untagged
+  m_TagString: SceneManager
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -406,6 +406,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   nextButton: {fileID: 1285328428}
+  rewardManager: {fileID: 0}
 --- !u!4 &1670047161
 Transform:
   m_ObjectHideFlags: 0

@@ -2,18 +2,17 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class BornfireManager : MonoBehaviour
 {
     public GameObject bornfireMenu, healBox, damageUpgradeBox, armorUpgradeBox;
     public Text daggerText, leatherText;
     GameObject gameManagerObject;
-    SceneByScene sbs;
     
     private void Start()
     {
         gameManagerObject = GameObject.Find("GameManager");
-        sbs = this.gameObject.GetComponent<SceneByScene>();
         daggerText.text = "3";
         leatherText.text = "3";
         ItemManager itemManager = gameManagerObject.GetComponent<ItemManager>();
@@ -28,13 +27,15 @@ public class BornfireManager : MonoBehaviour
             leatherText.color = Color.red;
             armorUpgradeBox.SetActive(false);
         }
+
+        StartCoroutine(OneTickAfter());
     }
 
     public void Heal()
     {
         Debug.Log("Heal");
         bornfireMenu.SetActive(false);
-        sbs.NextButtonON();
+        this.GetComponent<SceneByScene>().NextButtonON();
     }
 
     public void Upgrade(int num)
@@ -51,6 +52,10 @@ public class BornfireManager : MonoBehaviour
                 break;
         }
         bornfireMenu.SetActive(false);
-        sbs.NextButtonON();
+    }
+    IEnumerator OneTickAfter()
+    {
+        yield return new WaitForEndOfFrame();
+        this.GetComponent<SceneByScene>().NextButtonON();
     }
 }
