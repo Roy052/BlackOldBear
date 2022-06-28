@@ -617,9 +617,11 @@ MonoBehaviour:
   musicName: Electronic_2
   bear: {fileID: 1940184521}
   wolf: {fileID: 3895731865497552487, guid: 441f2b27f7b954a4baae7304511fecf7, type: 3}
+  fox: {fileID: 3895731865497552487, guid: a3766097c5b5a9f44a90cea29cc2cab9, type: 3}
   wolfGenerated: []
   time_current: 0
   radius: 7
+  curveAngle: 70
   first: 0
   clicked: 0
 --- !u!1 &609049234
@@ -714,8 +716,8 @@ GameObject:
   - component: {fileID: 1033516402}
   - component: {fileID: 1033516401}
   m_Layer: 0
-  m_Name: Bad
-  m_TagString: Bad
+  m_Name: Great
+  m_TagString: Great
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1130,8 +1132,8 @@ GameObject:
   - component: {fileID: 1941685764}
   - component: {fileID: 1941685763}
   m_Layer: 0
-  m_Name: Great
-  m_TagString: Great
+  m_Name: Perfect
+  m_TagString: Perfect
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1231,8 +1233,8 @@ GameObject:
   - component: {fileID: 2091946187}
   - component: {fileID: 2091946186}
   m_Layer: 0
-  m_Name: Perfect
-  m_TagString: Perfect
+  m_Name: Bad
+  m_TagString: Bad
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1246,7 +1248,7 @@ Transform:
   m_GameObject: {fileID: 2091946184}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2, y: 2, z: 1}
+  m_LocalScale: {x: 1.5, y: 1.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1940184524}
