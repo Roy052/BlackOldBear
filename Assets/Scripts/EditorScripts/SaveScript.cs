@@ -48,6 +48,7 @@ public class WolfData2
 public class PatternData2
 {
     public string BGM;
+    public float duration;
     public int difficult;
     public List<WolfData2> wolfs;
 }
@@ -109,6 +110,8 @@ public class SaveScript
 
         PatternData2 newData = new();
         newData.BGM = pData.BGM;
+        AudioClip bgmfile = Resources.Load("EditorResource/" + newData.BGM) as AudioClip;
+        newData.duration = bgmfile.length;
         newData.difficult = pData.difficult;
         newData.wolfs = new();
 
