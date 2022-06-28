@@ -8,7 +8,6 @@ public class BattleMusicManager : MonoBehaviour
     GameManager gm;
     float musicLoadDelay = 3.0f;
     public AudioSource audioSource;
-    public AudioClip song1;
     bool playing = false;
     // Start is called before the first frame update
     void Start()
@@ -17,8 +16,7 @@ public class BattleMusicManager : MonoBehaviour
         audioSource = this.GetComponent<AudioSource>();
         musicLoadDelay = gm.musicLoadDelay;
 
-        // audioSource.clip = Resources.Load("EditorResources/electronic") as AudioClip;
-        audioSource.clip = song1;
+        audioSource.clip = Resources.Load<AudioClip>("EditorResourse/Electronic");
     }
 
     // Update is called once per frame

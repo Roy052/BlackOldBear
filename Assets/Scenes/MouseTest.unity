@@ -357,7 +357,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   musicName: Electronic_2
   audioSource: {fileID: 0}
-  song1: {fileID: 8300000, guid: 935d03e461a53e849a5a37a0b8ce609d, type: 3}
 --- !u!4 &456418258
 Transform:
   m_ObjectHideFlags: 0
