@@ -10,11 +10,13 @@ public class WolfManager : MonoBehaviour
 
     public GameObject bear;
     public GameObject wolf;
+    public GameObject fox;
     Vector3 position;
     public List<GameObject> wolfGenerated = new List<GameObject>();
     float time_start;
     public float time_current = 0f;
     public float radius = 7f;
+    public float curveAngle = 70;
     GameManager gm;
     bool noteAvailable = true;
 
@@ -58,7 +60,7 @@ public class WolfManager : MonoBehaviour
     {
         return position;
     }
-
+    //int k = 0;
     private void Update()
     {
         time_current = Time.time - time_start;
@@ -68,6 +70,15 @@ public class WolfManager : MonoBehaviour
         {
             if(noteAvailable)
             {
+                //if (k % 4 == 0)
+                //    newNote = Instantiate(wolf, nextGenPos, Quaternion.identity);
+                //else if (k % 4 == 1)
+                //    newNote = Instantiate(wolf, 2*nextGenPos, Quaternion.identity);
+                //else if (k % 4 == 2)
+                //    newNote = Instantiate(fox, Quaternion.Euler(0, 0, 70 * 0.7f)*nextGenPos, Quaternion.identity);
+                //else
+                //    newNote = Instantiate(fox, Quaternion.Euler(0, 0, 70 * 0.7f)*nextGenPos *2, Quaternion.identity);
+                //k++;
                 newNote = Instantiate(wolf, nextGenPos, Quaternion.identity);
                 wolfGenerated.Add(newNote);
                 if(!isNextExist)
