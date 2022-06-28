@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class FadeOutWolf : MonoBehaviour
 {
-    Renderer renderer;
+    Renderer renderering;
     public GameObject target;
 
     // Start is called before the first frame update
     void Start()
     {
-        renderer = target.GetComponent<Renderer>();
+        renderering = target.GetComponent<Renderer>();
         Debug.Log("START");
     }
 
@@ -21,9 +21,9 @@ public class FadeOutWolf : MonoBehaviour
         {
             i -= 1;
             float f = i / 10.0f;
-            Color c = renderer.sharedMaterial.color;
+            Color c = renderering.sharedMaterial.color;
             c.a = f;
-            renderer.sharedMaterial.color = c;
+            renderering.sharedMaterial.color = c;
             yield return new WaitForSeconds(0.02f);
         }
     }
