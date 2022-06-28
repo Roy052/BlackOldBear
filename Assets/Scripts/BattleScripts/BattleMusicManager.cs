@@ -16,7 +16,7 @@ public class BattleMusicManager : MonoBehaviour
         audioSource = this.GetComponent<AudioSource>();
         musicLoadDelay = gm.musicLoadDelay;
 
-        audioSource.clip = Resources.Load<AudioClip>("EditorResourse/Electronic");
+        audioSource.clip = Resources.Load<AudioClip>("EditorResource/Electronic");
     }
 
     // Update is called once per frame

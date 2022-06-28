@@ -8,6 +8,7 @@ public class Wolf : MonoBehaviour
     WolfManager wm;
     PlayerController pc;
     BattleManager bm;
+    JudgeManager jm;
 
     Vector3 bearPosition;
     float distance; // to Bear(center)
@@ -32,7 +33,8 @@ public class Wolf : MonoBehaviour
         wm = GameObject.Find("Wolfs").GetComponent<WolfManager>();
         pc = GameObject.Find("Mouse Director").GetComponent<PlayerController>();
         bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
-
+        jm = GameObject.Find("JudgeEffect").GetComponent<JudgeManager>();
+        
         setScore();
         setAngle();
 
@@ -96,7 +98,8 @@ public class Wolf : MonoBehaviour
         if (judgementState == 1) // Bad
         {
             gm.score += scB;
-            wm.first=Mathf.Min(wm.first+1,wm.wolfGenerated.Count);
+            wm.first++;
+            jm.setJudgeImage(1);
             isDistroyed = true;
             // Destroy(gameObject);
         }
@@ -106,6 +109,7 @@ public class Wolf : MonoBehaviour
             {
                 gm.score += scGP;
                 wm.first++;
+                jm.setJudgeImage(2);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -113,6 +117,7 @@ public class Wolf : MonoBehaviour
             {
                 gm.score += scGG;
                 wm.first++;
+                jm.setJudgeImage(2);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -120,6 +125,7 @@ public class Wolf : MonoBehaviour
             {
                 gm.score += scGB;
                 wm.first++;
+                jm.setJudgeImage(1);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -130,6 +136,7 @@ public class Wolf : MonoBehaviour
             {
                 gm.score += scPP;
                 wm.first++;
+                jm.setJudgeImage(3);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -137,6 +144,7 @@ public class Wolf : MonoBehaviour
             {
                 gm.score += scPG;
                 wm.first++;
+                jm.setJudgeImage(3);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -144,6 +152,7 @@ public class Wolf : MonoBehaviour
             {
                 gm.score += scPB;
                 wm.first++;
+                jm.setJudgeImage(1);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -176,6 +185,7 @@ public class Wolf : MonoBehaviour
                 judgementState = 2;
                 gm.score += scB;
                 wm.first++;
+                jm.setJudgeImage(1);
                 // Debug.Log("Bad out");
                 Destroy(gameObject);
             }
