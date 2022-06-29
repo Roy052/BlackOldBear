@@ -25,13 +25,18 @@ public class MapManager : MonoBehaviour
     List<int> mapContentQueue = new List<int>();
     MapRecorder mapRecorder;
 
+    //Fade
+    FadeManager fadeManager;
+
     //public
     public GameObject node;
     public GameObject[] mapIcons;
+    
 
     void Start()
     {
-        
+        fadeManager = GameObject.FindGameObjectWithTag("FadeManager").GetComponent<FadeManager>();
+
         mapRecorder = GameObject.Find("GameManager").GetComponent<MapRecorder>();
         if (mapRecorder.recorded == false)
         {
@@ -51,7 +56,10 @@ public class MapManager : MonoBehaviour
         }
             
         MapImageBuilding();
+
+        StartCoroutine(fadeManager.FadeIn(GameManager.FadeTimeGap));
     }
+
 
     void MapArrayBuilding()
     {
@@ -147,8 +155,6 @@ public class MapManager : MonoBehaviour
             }
         }
 
-        
-
         //Map Apperance To Map Content
         map[1, 0] = 2; // Start
         map[1, stagePerMapSize[stageNum] - 1] = 9; // Boss
@@ -235,6 +241,7 @@ public class MapManager : MonoBehaviour
         return visitableMap[y, x] && map[y,x] != 1;
     }
 
+
     public void SceneMovement(int num, Vector2 position)
     {
         int sceneNum = SceneManager.GetSceneByName("MapScene").buildIndex - 1;
@@ -265,6 +272,13 @@ public class MapManager : MonoBehaviour
         mapRecorder.RecordMap(map);
         mapRecorder.RecordVisitableMap(visitableMap);
 
+        StartCoroutine(LoadSceneWithTerm(GameManager.FadeTimeGap, sceneNum, num));
+    }
+
+    IEnumerator LoadSceneWithTerm(float term, int sceneNum, int num)
+    {
+        StartCoroutine(fadeManager.FadeOut(term));
+        yield return new WaitForSeconds(term);
         SceneManager.LoadScene(sceneNum + num);
     }
 }

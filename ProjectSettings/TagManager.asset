@@ -9,6 +9,7 @@ TagManager:
   - Bad
   - Wolf
   - SceneManager
+  - FadeManager
   layers:
   - Default
   - TransparentFX
@@ -72,4 +73,7 @@ TagManager:
     locked: 0
   - name: Accessory
     uniqueID: 1415796781
+    locked: 0
+  - name: Fade
+    uniqueID: 3275224475
     locked: 0
