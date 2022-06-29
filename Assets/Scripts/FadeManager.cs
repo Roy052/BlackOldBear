@@ -6,16 +6,11 @@ using UnityEngine.SceneManagement;
 public class FadeManager : MonoBehaviour
 {
     public GameObject fade;
-
     SpriteRenderer fadeSpriteRenderer;
-
-    private void Start()
-    {
-        fadeSpriteRenderer = fade.GetComponent<SpriteRenderer>();
-    }
 
     public IEnumerator FadeIn(float timeLength)
     {
+        fadeSpriteRenderer = fade.GetComponent<SpriteRenderer>();
         Color color = fadeSpriteRenderer.color;
 
         while (color.a > 0)
@@ -28,6 +23,7 @@ public class FadeManager : MonoBehaviour
 
     public IEnumerator FadeOut(float timeLength)
     {
+        fadeSpriteRenderer = fade.GetComponent<SpriteRenderer>();
         Color color = fadeSpriteRenderer.color;
 
         while (color.a < 1)
