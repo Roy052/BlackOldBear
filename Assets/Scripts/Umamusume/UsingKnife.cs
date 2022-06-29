@@ -6,7 +6,7 @@ public class UsingKnife : MonoBehaviour
 {
     private Vector3 ClickDaggerPosition;
     private Vector3 pos;
-    private GameObject copyKnife;
+    private bool kill = false;
     public GameObject Knife;
     public GameObject Bear;
     public GameObject Wolf;
@@ -28,16 +28,19 @@ public class UsingKnife : MonoBehaviour
 
             if (hit)
             {
-                Debug.Log("Dagging");
-   //             transform.position = new Vector3(-20, 20, 0); //치우기
-
-//                copyKnife = Instantiate(Knife,Bear.transform.position,Quaternion.identity);
-//                copyKnife.transform.position = Vector3.MoveTowards(Bear.transform.position, Wolf.transform.position, 3);
-//                if (copyKnife.transform.position == Wolf.transform.position)
-//                {
-//                    Destroy(copyKnife);
-//                }
+                kill = true;
             }
+
+
+
         }
+
+        if (kill)
+        {
+            transform.position = Wolf.transform.position;
+            GameObject.Find("Wolf").GetComponent<MovingAnimal>().speed = 1;
+        }
+
+        
     }
 }
