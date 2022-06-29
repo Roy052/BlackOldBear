@@ -46,7 +46,7 @@ public class WolfManager : MonoBehaviour
         nextGenTime = wData[noteCount].time;
         nextAngle = wData[noteCount++].angle;
         nextGenPos = AngleToPosition(nextAngle);
-        Debug.Log("time: "+nextGenTime+" / angle: "+nextAngle+" / pos: "+nextGenPos);
+        //Debug.Log("time: "+nextGenTime+" / angle: "+nextAngle+" / pos: "+nextGenPos);
     }
 
     public Vector3 AngleToPosition(float Angle)
@@ -66,7 +66,7 @@ public class WolfManager : MonoBehaviour
         time_current = Time.time - time_start;
         gm.time = time_current;
 
-        if(time_current>=nextGenTime+musicLoadDelay-(-0.2*gm.speed + 2.2))
+        if (time_current>=nextGenTime+musicLoadDelay-(-0.159 * gm.speed + 1.759))
         {
             if(noteAvailable)
             {
@@ -92,7 +92,7 @@ public class WolfManager : MonoBehaviour
                 nextGenTime = wData[noteCount].time;
                 nextAngle = wData[noteCount++].angle;
                 nextGenPos = nextGenPos = AngleToPosition(nextAngle);
-                Debug.Log("time: "+nextGenTime+" / angle: "+nextAngle+" / pos: "+nextGenPos);
+                //Debug.Log("time: "+nextGenTime+" / angle: "+nextAngle+" / pos: "+nextGenPos);
             }
             if(noteCount == maxNote)
                 isNextExist = false;

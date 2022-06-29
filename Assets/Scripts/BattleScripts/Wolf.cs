@@ -26,7 +26,7 @@ public class Wolf : MonoBehaviour
     int scGB = -1;
     int scB = -10;
     bool isDistroyed = false;
-
+    float currTime,enterTime;
     void Start()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -37,7 +37,8 @@ public class Wolf : MonoBehaviour
         
         setScore();
         setAngle();
-
+        currTime = Time.time;
+        enterTime = Time.time;
         bearPosition = wm.getBearPosition();
 
         Vector3 temp = bearPosition - this.transform.position; // set direction
@@ -59,7 +60,7 @@ public class Wolf : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(0))
         {
-            if(isDistroyed)
+            if (isDistroyed)
                 Destroy(gameObject);
             wm.clicked = false;
         }
@@ -144,7 +145,7 @@ public class Wolf : MonoBehaviour
             {
                 gm.score += scPG;
                 wm.first++;
-                jm.setJudgeImage(3);
+                jm.setJudgeImage(2);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -158,11 +159,26 @@ public class Wolf : MonoBehaviour
             }
         } 
     }
+    float check;
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if(collision.tag=="Bad")
         {
-            judgementState = 1;
+            float time = Time.time;
+            Debug.Log("exit time " + (time - currTime));
+            Debug.Log("mid time " + (check + time - currTime) / 2);
+            currTime = time;
+
+            if (!isDistroyed)
+            {
+                judgementState = 1;
+                gm.score += scB;
+                wm.first++;
+                jm.setJudgeImage(1);
+                // Debug.Log("Bad in");
+                Destroy(gameObject);
+            }
+
             // Debug.Log("Bad in");
         }
         else if(collision.tag=="Great")
@@ -172,6 +188,10 @@ public class Wolf : MonoBehaviour
         }
         else if(collision.tag=="Perfect")
         {
+            float time = Time.time;
+            Debug.Log("enter time " + (time - enterTime));
+            check = time - enterTime;
+            enterTime = time;
             judgementState = 3;
             // Debug.Log("Perfect in");
         }
@@ -180,15 +200,7 @@ public class Wolf : MonoBehaviour
     {
         if(collision.tag=="Perfect")
         {
-            if (!isDistroyed)
-            {
-                judgementState = 2;
-                gm.score += scB;
-                wm.first++;
-                jm.setJudgeImage(1);
-                // Debug.Log("Bad out");
-                Destroy(gameObject);
-            }
+            judgementState = 2;
             // Debug.Log("Perfect out");
         }
         else if(collision.tag=="Great")
