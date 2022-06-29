@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public float time;
     public float musicLoadDelay = 3.0f;
 
+    public static float FadeTimeGap = 0.5f;
     //Unique GameManager
     private static GameManager gameManagerInstance;
     void Awake()
@@ -40,4 +41,5 @@ public class GameManager : MonoBehaviour
     {
         SceneManager.LoadScene("Menu");
     }
+
 }

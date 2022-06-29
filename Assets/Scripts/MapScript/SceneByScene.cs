@@ -7,10 +7,23 @@ public class SceneByScene : MonoBehaviour
 {
     public GameObject nextButton;
     public RewardManager rewardManager;
+
+    bool ready = true, onetime = false;
+    FadeManager fadeManager;
     private void Start()
     {
         nextButton.SetActive(false);
+        fadeManager = GameObject.FindGameObjectWithTag("FadeManager").GetComponent<FadeManager>();
         rewardManager = this.GetComponent<RewardManager>();
+    }
+
+    private void Update()
+    {
+        if (onetime == false && ready == true)
+        {
+            StartCoroutine(fadeManager.FadeIn(GameManager.FadeTimeGap));
+            onetime = true;
+        }
     }
     public void NextButtonON()
     {
@@ -19,7 +32,7 @@ public class SceneByScene : MonoBehaviour
 
     public void NextButtonPushed()
     {
-        SceneManager.LoadScene("MapScene");
+        StartCoroutine(LoadSceneWithTerm(GameManager.FadeTimeGap));
     }
 
     public void RewardON()
@@ -30,5 +43,12 @@ public class SceneByScene : MonoBehaviour
     public void RewardOFF()
     {
         rewardManager.RewardOFF();
+    }
+
+    IEnumerator LoadSceneWithTerm(float term)
+    {
+        StartCoroutine(fadeManager.FadeOut(term));
+        yield return new WaitForSeconds(term);
+        SceneManager.LoadScene("MapScene");
     }
 }

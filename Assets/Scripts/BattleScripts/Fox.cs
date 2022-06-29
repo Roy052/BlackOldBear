@@ -1,7 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-public class Wolf : MonoBehaviour
+public class Fox : MonoBehaviour
 {
     public int judgementState = 0; // 0 : out, 1 : bad, 2 : great, 3 : perfect
     GameManager gm;
@@ -14,7 +14,7 @@ public class Wolf : MonoBehaviour
     float distance; // to Bear(center)
     public Vector3 direction; // to Bear(center)
     float latency;
-
+    float curveAngle;
     //score
     float anglePf = 0.97f;
     float angleGr = 0.85f;
@@ -34,45 +34,50 @@ public class Wolf : MonoBehaviour
         pc = GameObject.Find("Mouse Director").GetComponent<PlayerController>();
         bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
         jm = GameObject.Find("JudgeEffect").GetComponent<JudgeManager>();
-        
+
         setScore();
         setAngle();
 
         bearPosition = wm.getBearPosition();
 
+        latency = gm.speed * -0.2f + 2.2f; // set Note Speed
         Vector3 temp = bearPosition - this.transform.position; // set direction
+        //Vector3 temp = bearPosition - Quaternion.Euler(0,0, -curveAngle*0.7f) * this.transform.position; // set direction
         distance = temp.magnitude;
         direction = temp / distance;
         direction = direction.normalized;
-        latency = gm.speed*-0.2f + 2.2f; // set Note Speed
+        
     }
     // Update is called once per frame
     void Update()
     {
+        direction = (bearPosition - this.transform.position).normalized; // set direction
         transform.position += direction * Time.deltaTime * (distance / latency);
+        transform.RotateAround(bearPosition, Vector3.back, Time.deltaTime * curveAngle);
+        transform.Rotate(Vector3.forward,Time.deltaTime*curveAngle);
         if (Input.GetMouseButtonDown(0))
         {
-            if(!wm.clicked)
+            if (!wm.clicked)
             {
                 procNote();
             }
         }
         if (Input.GetMouseButtonUp(0))
         {
-            if(isDistroyed)
+            if (isDistroyed)
                 Destroy(gameObject);
             wm.clicked = false;
         }
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            if(!wm.clicked)
+            if (!wm.clicked)
             {
                 procNote();
             }
         }
         if (Input.GetKeyUp(KeyCode.Space))
         {
-            if(isDistroyed)
+            if (isDistroyed)
                 Destroy(gameObject);
             wm.clicked = false;
         }
@@ -82,7 +87,7 @@ public class Wolf : MonoBehaviour
     {
         float angle = pc.angle;
         Vector3 mDirection = new Vector3(-Mathf.Cos(angle * Mathf.Deg2Rad), -Mathf.Sin(angle * Mathf.Deg2Rad), 0);
-        return Vector3.Dot(mDirection, direction)/mDirection.magnitude/direction.magnitude;
+        return Vector3.Dot(mDirection, direction) / mDirection.magnitude / direction.magnitude;
     }
 
     void procNote()
@@ -156,21 +161,29 @@ public class Wolf : MonoBehaviour
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
-        } 
+        }
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag=="Bad")
+        if (collision.tag == "Bad")
         {
-            judgementState = 1;
+            if (!isDistroyed)
+            {
+                judgementState = 1;
+                gm.score += scB;
+                wm.first++;
+                jm.setJudgeImage(1);
+                // Debug.Log("Bad out");
+                Destroy(gameObject);
+            }
             // Debug.Log("Bad in");
         }
-        else if(collision.tag=="Great")
+        else if (collision.tag == "Great")
         {
             judgementState = 2;
             // Debug.Log("Great in");
         }
-        else if(collision.tag=="Perfect")
+        else if (collision.tag == "Perfect")
         {
             judgementState = 3;
             // Debug.Log("Perfect in");
@@ -178,25 +191,17 @@ public class Wolf : MonoBehaviour
     }
     private void OnTriggerExit2D(Collider2D collision)
     {
-        if(collision.tag=="Perfect")
+        if (collision.tag == "Perfect")
         {
-            if (!isDistroyed)
-            {
-                judgementState = 2;
-                gm.score += scB;
-                wm.first++;
-                jm.setJudgeImage(1);
-                // Debug.Log("Bad out");
-                Destroy(gameObject);
-            }
+            judgementState = 2;
             // Debug.Log("Perfect out");
         }
-        else if(collision.tag=="Great")
+        else if (collision.tag == "Great")
         {
             judgementState = 1;
             // Debug.Log("Great out");
         }
-        else if(collision.tag=="Bad")
+        else if (collision.tag == "Bad")
         {
             judgementState = 0;
         }
@@ -217,5 +222,6 @@ public class Wolf : MonoBehaviour
     {
         anglePf = bm.anglePf;
         angleGr = bm.angleGr;
+        curveAngle = wm.curveAngle;
     }
 }
