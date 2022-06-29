@@ -13,6 +13,8 @@ public class GameManager : MonoBehaviour
     public float musicLoadDelay = 3.0f;
 
     public static float FadeTimeGap = 0.5f;
+
+    public int stageNum;
     //Unique GameManager
     private static GameManager gameManagerInstance;
     void Awake()
@@ -30,6 +32,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         DontDestroyOnLoad(this);
+        stageNum = 0;
     }
 
     public void MenuToBattle()

@@ -7,12 +7,12 @@ using UnityEngine.SceneManagement;
 
 public class MapManager : MonoBehaviour
 {
-    int stageNum = 0;
+    int stageNum;
     
     int[,] map;
     bool[,] visitableMap;
-    int[] stagePerMapSize = new int[3] { 7, 8, 9 };
-    int[] stageSum = new int[3] { 12, 14, 16 };
+    int[] stagePerMapSize = new int[3] { 7, 7, 7 };
+    int[] stageSum = new int[3] { 12, 12, 12 };
 
     int[] tempMapArray;
 
@@ -31,11 +31,18 @@ public class MapManager : MonoBehaviour
     //public
     public GameObject node;
     public GameObject[] mapIcons;
-    
+
+    public GameObject nextStageButton;
+    public GameObject mapBackground;
+    public Sprite[] mapBackgroundSprites;
+
 
     void Start()
     {
         fadeManager = GameObject.FindGameObjectWithTag("FadeManager").GetComponent<FadeManager>();
+
+        stageNum = GameObject.Find("GameManager").GetComponent<GameManager>().stageNum;
+        mapBackground.GetComponent<SpriteRenderer>().sprite = mapBackgroundSprites[stageNum];
 
         mapRecorder = GameObject.Find("GameManager").GetComponent<MapRecorder>();
         if (mapRecorder.recorded == false)
@@ -56,6 +63,11 @@ public class MapManager : MonoBehaviour
         }
             
         MapImageBuilding();
+
+        if(map[1, stagePerMapSize[stageNum]-1] != 1)
+        {
+            nextStageButton.SetActive(false);
+        }
 
         StartCoroutine(fadeManager.FadeIn(GameManager.FadeTimeGap));
     }
@@ -280,5 +292,12 @@ public class MapManager : MonoBehaviour
         StartCoroutine(fadeManager.FadeOut(term));
         yield return new WaitForSeconds(term);
         SceneManager.LoadScene(sceneNum + num);
+    }
+
+    public void NextStage()
+    {
+        GameObject.Find("GameManager").GetComponent<GameManager>().stageNum++;
+        mapRecorder.recorded = false;
+        SceneManager.LoadScene(SceneManager.GetActiveScene().name);
     }
 }
