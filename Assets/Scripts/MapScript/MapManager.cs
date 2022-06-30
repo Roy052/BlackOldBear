@@ -19,7 +19,8 @@ public class MapManager : MonoBehaviour
 
     float[] nodePositions = new float[2] { -6.4f, 15.8f };
 
-    string[] mapTextArray = { "Stage 1 - CAVE", "Stage 2 - FOREST", "Stage 3 - TEMPLE" };
+    string[] mapTextHeadArray = { "도입부", "중간부", "결말부" };
+    string[] mapTextMainArray = {  "동굴", "숲", "사원"};
 
     // 0 : Empty, 1 : Not contain, 2 : Start, 3 : Shop,
     // 4 : Bonfire, 5 : Random Event, 6 : Chest, 7 : Enemy
@@ -39,8 +40,8 @@ public class MapManager : MonoBehaviour
     public GameObject mapBackground;
     public Sprite[] mapBackgroundSprites;
 
-    public Text mapText, mapTextShadow;
-
+    public Text mapHeadText, mapHeadShadowText, mapText, mapTextShadow;
+    public GameObject mapTextBackground;
 
     void Start()
     {
@@ -339,24 +340,43 @@ public class MapManager : MonoBehaviour
     IEnumerator MapTextONandOFF()
     {
         yield return new WaitForSeconds(0.3f);
-        mapText.fontSize = 50;
-        mapTextShadow.fontSize = 50;
-        mapText.text = mapTextArray[stageNum];
-        mapTextShadow.text = mapTextArray[stageNum];
-        Color color = new Color(1, 1, 1, 0);
-        Color color1 = new Color(0, 0, 0, 0);
 
+        mapHeadText.text = mapTextHeadArray[stageNum];
+        mapHeadShadowText.text = mapTextHeadArray[stageNum];
+
+        mapText.text = mapTextMainArray[stageNum];
+        mapTextShadow.text = mapTextMainArray[stageNum];
+
+        Color color = new Color(1, 1, 1, 0);
+        Color color1 = new Color(0.25f, 0.25f, 0.25f, 0);
+
+        StartCoroutine(FadeManager.FadeOut(mapTextBackground.GetComponent<SpriteRenderer>(), 1));
         while(color.a < 1)
         {
+            mapHeadText.color = color;
+            mapHeadShadowText.color = color1;
             mapText.color = color;
             mapTextShadow.color = color1;
-            color.a += Time.fixedDeltaTime;
-            color1.a += Time.fixedDeltaTime;
+
+            color.a += Time.fixedDeltaTime / 3;
+            color1.a += Time.fixedDeltaTime / 3;
             yield return new WaitForFixedUpdate();
         }
-        yield return new WaitForSeconds(4.2f);
 
-        mapText.text = "";
-        mapTextShadow.text = "";
+        yield return new WaitForSeconds(3.2f);
+
+        StartCoroutine(FadeManager.FadeIn(mapTextBackground.GetComponent<SpriteRenderer>(), 1));
+        while (color.a > 0)
+        {
+            mapHeadText.color = color;
+            mapHeadShadowText.color = color1;
+
+            mapText.color = color;
+            mapTextShadow.color = color1;
+
+            color.a -= Time.fixedDeltaTime;
+            color1.a -= Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
     }
 }

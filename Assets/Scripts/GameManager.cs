@@ -37,7 +37,7 @@ public class GameManager : MonoBehaviour
 
     public void MenuToBattle()
     {
-        SceneManager.LoadScene(1);
+        SceneManager.LoadScene("MapScene");
     }
 
     public void GameOver()

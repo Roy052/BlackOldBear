@@ -15,8 +15,11 @@ public class FadeManager : MonoBehaviour
 
         while (color.a > 0)
         {
-            color.a -= Time.fixedDeltaTime / timeLength;
-            fadeSpriteRenderer.color = color;
+            if(fadeSpriteRenderer != null && fadeSpriteRenderer.color != null)
+            {
+                color.a -= Time.fixedDeltaTime / timeLength;
+                fadeSpriteRenderer.color = color;
+            }
             yield return new WaitForFixedUpdate();
         }
     }
@@ -36,7 +39,7 @@ public class FadeManager : MonoBehaviour
 
     static public IEnumerator FadeIn(SpriteRenderer spriteRenderer, float timeLength)
     {
-
+        spriteRenderer.color = new Color(1, 1, 1, 1);
         Color color = spriteRenderer.color;
 
         while (color.a > 0)
@@ -48,6 +51,7 @@ public class FadeManager : MonoBehaviour
     }
     static public IEnumerator FadeOut(SpriteRenderer spriteRenderer, float timeLength)
     {
+        spriteRenderer.color = new Color(1, 1, 1, 0);
         Color color = spriteRenderer.color;
 
         while (color.a < 1)
