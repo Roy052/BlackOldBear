@@ -11,7 +11,7 @@ public class UIBarManager : MonoBehaviour
     private void Start()
     {
         if(UIBar != null)
-        DontDestroyOnLoad(UIBar);
+            DontDestroyOnLoad(UIBar);
     }
 
     public void UITextUpdate(int type_health_money_dagger_leather, int num, int num1_maxhealth)

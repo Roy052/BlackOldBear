@@ -7,12 +7,14 @@ public class GameManager : MonoBehaviour
 {
     public int score = 0;
     [Range(1.0f, 10.0f)]
-    public float speed = 5.0f; // 1 ~ 10.  1 - 생성으로부터 도착까지 2초 / 10 - 생성으로부터 도착까지 0.2초
-                               // y = -0.2x + 2.2 when x = speed
+    public float speed = 5.0f; // 1 ~ 10.  1 - 생성으로부터 도착까지 1.6초 / 10 - 생성으로부터 도착까지 0.17초
+                               // y = -0.159x + 1.759 when x = speed
     public float time;
     public float musicLoadDelay = 3.0f;
 
     public static float FadeTimeGap = 0.5f;
+
+    public int stageNum;
     //Unique GameManager
     private static GameManager gameManagerInstance;
     void Awake()
@@ -30,6 +32,7 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         DontDestroyOnLoad(this);
+        stageNum = 0;
     }
 
     public void MenuToBattle()

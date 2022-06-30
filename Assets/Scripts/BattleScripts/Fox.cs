@@ -173,7 +173,7 @@ public class Fox : MonoBehaviour
                 gm.score += scB;
                 wm.first++;
                 jm.setJudgeImage(1);
-                // Debug.Log("Bad out");
+                // Debug.Log("Bad in");
                 Destroy(gameObject);
             }
             // Debug.Log("Bad in");

@@ -32,7 +32,7 @@ public class ItemManager : MonoBehaviour
         else money += num;
 
         if(uIBarManager != null)
-            uIBarManager.UITextUpdate(1, num, 0);
+            uIBarManager.UITextUpdate(1, money, 0);
         return 1;
     }
 
@@ -43,7 +43,7 @@ public class ItemManager : MonoBehaviour
         else items[type] += num;
 
         if (uIBarManager != null)
-            uIBarManager.UITextUpdate(type+2, num, 0);
+            uIBarManager.UITextUpdate(type+2, items[type], 0);
         return 1;
     }
 }
