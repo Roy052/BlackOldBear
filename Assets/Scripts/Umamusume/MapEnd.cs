@@ -25,17 +25,17 @@ public class MapEnd : MonoBehaviour {
         Wolfpos = Wolf.transform.position;
         Bearpos = Bear.transform.position;
 
-        if (Wolfpos.x > 7.5)
+        if (Wolfpos.x < 0 && Wolfpos.y >= 3.7)
         {
             WolfReach = true;
         }
 
-        if (Bearpos.x > 7.5)
+        if (Bearpos.x < 0 && Bearpos.y >= 4.8)
         {
             BearReach = true;
         }
 
-        if(WolfReach && BearReach)
+        if(WolfReach && !BearReach)
         {
             //lose
             Debug.Log("lose");
