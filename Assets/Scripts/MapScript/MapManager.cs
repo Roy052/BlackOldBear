@@ -4,6 +4,7 @@ using UnityEngine;
 using System;
 using System.Linq;
 using UnityEngine.SceneManagement;
+using UnityEngine.UI;
 
 public class MapManager : MonoBehaviour
 {
@@ -17,6 +18,8 @@ public class MapManager : MonoBehaviour
     int[] tempMapArray;
 
     float[] nodePositions = new float[2] { -6.4f, 15.8f };
+
+    string[] mapTextArray = { "Stage 1 - CAVE", "Stage 2 - FOREST", "Stage 3 - TEMPLE" };
 
     // 0 : Empty, 1 : Not contain, 2 : Start, 3 : Shop,
     // 4 : Bonfire, 5 : Random Event, 6 : Chest, 7 : Enemy
@@ -36,6 +39,8 @@ public class MapManager : MonoBehaviour
     public GameObject mapBackground;
     public Sprite[] mapBackgroundSprites;
 
+    public Text mapText, mapTextShadow;
+
 
     void Start()
     {
@@ -44,9 +49,16 @@ public class MapManager : MonoBehaviour
         stageNum = GameObject.Find("GameManager").GetComponent<GameManager>().stageNum;
         mapBackground.GetComponent<SpriteRenderer>().sprite = mapBackgroundSprites[stageNum];
 
+
+        //Map 생성 파트
         mapRecorder = GameObject.Find("GameManager").GetComponent<MapRecorder>();
+
+        //기록 없음
         if (mapRecorder.recorded == false)
         {
+            //Text 파트
+            StartCoroutine(MapTextONandOFF());
+
             MapArrayBuilding();
             VisitableMapArrayBuilding();
 
@@ -56,13 +68,18 @@ public class MapManager : MonoBehaviour
             mapRecorder.currentPosition.y = 0;
             mapRecorder.currentPosition.x = 1;
         }
+        //기록 있음
         else
         {
+            mapText.text = "";
+            mapTextShadow.text = "";
             map = mapRecorder.ReturnMap();
             visitableMap = mapRecorder.ReturnVisitableMap();
         }
             
-        MapImageBuilding();
+        StartCoroutine(MapImageBuilding());
+
+        
 
         if(map[1, stagePerMapSize[stageNum]-1] != 1)
         {
@@ -228,25 +245,43 @@ public class MapManager : MonoBehaviour
         Debug.Log(ForDebug);
     }
 
-        void MapImageBuilding()
+        IEnumerator MapImageBuilding()
     {
         float[] position = { 2.5f, 0, -2.5f };
-        for(int i = 0; i < 3; i++)
+        for (int j = 0; j < stagePerMapSize[stageNum]; j++) 
         {
-            for(int j = 0; j < stagePerMapSize[stageNum]; j++)
+            for (int i = 0; i < 3; i++)
             {
                 if(map[i,j] != 0)
                 {
                     float positionX = nodePositions[0] + (nodePositions[1] * ((float)j / 7));
-                    Instantiate(node, new Vector3(positionX, position[i]), Quaternion.identity);
+                    GameObject tempNode = Instantiate(node, new Vector3(positionX, position[i]), Quaternion.identity);
+
                     GameObject temp = Instantiate(mapIcons[map[i, j]], 
                         new Vector3(positionX, position[i]), Quaternion.identity);
                     temp.GetComponent<MapIcon>().position = new Vector2(j, i);
                     if (visitableMap[i, j] == false) temp.GetComponent<SpriteRenderer>().sprite = temp.GetComponent<MapIcon>().sealedIcon;
+
+                    if(visitableMap[1,1] == false)
+                    {
+                        //Fading
+                        Color tempColor = new Color(1, 1, 1, 0);
+                        tempNode.GetComponent<SpriteRenderer>().color = tempColor;
+                        StartCoroutine(FadeManager.FadeOut(tempNode.GetComponent<SpriteRenderer>(), 1));
+
+                        //Fading
+                        Color tempColor1 = new Color(1, 1, 1, 0);
+                        temp.GetComponent<SpriteRenderer>().color = tempColor1;
+                        StartCoroutine(FadeManager.FadeOut(temp.GetComponent<SpriteRenderer>(), 1));
+                    }
                 }
+                if (visitableMap[1, 1] == false)
+                    yield return new WaitForSeconds(0.3f);
             }
         }
     }
+    
+    
 
     public bool Visitable(int x, int y)
     {
@@ -299,5 +334,29 @@ public class MapManager : MonoBehaviour
         GameObject.Find("GameManager").GetComponent<GameManager>().stageNum++;
         mapRecorder.recorded = false;
         SceneManager.LoadScene(SceneManager.GetActiveScene().name);
+    }
+
+    IEnumerator MapTextONandOFF()
+    {
+        yield return new WaitForSeconds(0.3f);
+        mapText.fontSize = 50;
+        mapTextShadow.fontSize = 50;
+        mapText.text = mapTextArray[stageNum];
+        mapTextShadow.text = mapTextArray[stageNum];
+        Color color = new Color(1, 1, 1, 0);
+        Color color1 = new Color(0, 0, 0, 0);
+
+        while(color.a < 1)
+        {
+            mapText.color = color;
+            mapTextShadow.color = color1;
+            color.a += Time.fixedDeltaTime;
+            color1.a += Time.fixedDeltaTime;
+            yield return new WaitForFixedUpdate();
+        }
+        yield return new WaitForSeconds(4.2f);
+
+        mapText.text = "";
+        mapTextShadow.text = "";
     }
 }
