@@ -7,14 +7,17 @@ using UnityEngine.SceneManagement;
 public class BornfireManager : MonoBehaviour
 {
     public GameObject bornfireMenu, healBox, damageUpgradeBox, armorUpgradeBox;
-    public Text daggerText, leatherText;
+    public Text daggerText, leatherText, healAmountText;
     GameObject gameManagerObject;
+    int healAmount;
     
     private void Start()
     {
         gameManagerObject = GameObject.Find("GameManager");
         daggerText.text = "3";
         leatherText.text = "3";
+        healAmount = gameManagerObject.GetComponent<StatusManager>().GetMaxhealth() / 5;
+        healAmountText.text = healAmount + "";
         ItemManager itemManager = gameManagerObject.GetComponent<ItemManager>();
         int[] itemArray = itemManager.currentItem();
         if (itemArray[0] < 3)
@@ -35,6 +38,7 @@ public class BornfireManager : MonoBehaviour
     {
         Debug.Log("Heal");
         bornfireMenu.SetActive(false);
+        gameManagerObject.GetComponent<StatusManager>().ChangeHealth(healAmount);
         this.GetComponent<SceneByScene>().NextButtonON();
     }
 
@@ -48,6 +52,7 @@ public class BornfireManager : MonoBehaviour
                 break;
             case 1:
                 gameManagerObject.GetComponent<ItemManager>().itemChange(1, -3);
+                gameManagerObject.GetComponent<StatusManager>().ChangeMaxhealth(10);
                 Debug.Log("Upgrade Armor");
                 break;
         }

@@ -73,7 +73,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1464425879
-  m_SortingLayer: 7
+  m_SortingLayer: 8
   m_SortingOrder: 1
   m_Sprite: {fileID: 21300000, guid: b7db6799c1b866e40a02b7505a576b9b, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -128,4 +128,7 @@ MonoBehaviour:
   mapIconNum: 0
   position: {x: 0, y: 0}
   revealIcon: {fileID: 0}
-  sealedIcon: {fileID: 21300000, guid: 9eab7c6fae6306a4fba84054de71478f, type: 3}
+  sealedIcon:
+  - {fileID: 21300000, guid: da9e00d5b8c33ee4bb7a1901440afc78, type: 3}
+  - {fileID: 21300000, guid: 9eab7c6fae6306a4fba84054de71478f, type: 3}
+  - {fileID: 21300000, guid: 24e0185d5fc0ede48abe4e9ab258aefc, type: 3}

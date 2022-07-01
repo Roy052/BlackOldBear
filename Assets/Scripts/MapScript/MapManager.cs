@@ -12,20 +12,20 @@ public class MapManager : MonoBehaviour
     
     int[,] map;
     bool[,] visitableMap;
-    int[] stagePerMapSize = new int[3] { 7, 7, 7 };
-    int[] stageSum = new int[3] { 12, 12, 12 };
+    readonly int[] stagePerMapSize = new int[3] { 7, 7, 7 };
+    readonly int[] stageSum = new int[3] { 12, 12, 12 };
 
     int[] tempMapArray;
 
-    float[] nodePositions = new float[2] { -6.4f, 15.8f };
+    readonly float[] nodePositions = new float[2] { -6.4f, 15.8f };
 
-    string[] mapTextHeadArray = { "도입부", "중간부", "결말부" };
-    string[] mapTextMainArray = {  "동굴", "숲", "사원"};
+    readonly string[] mapTextHeadArray = { "도입부", "중간부", "결말부", "결말의 끝" };
+    readonly string[] mapTextMainArray = {  "동굴", "숲", "사원", "??"};
 
     // 0 : Empty, 1 : Not contain, 2 : Start, 3 : Shop,
     // 4 : Bonfire, 5 : Random Event, 6 : Chest, 7 : Enemy
     // 8 : Mid Boss, 9 : Boss
-    int[,] mapContentsRatio = { {1,1,2,1,7,0 },{ 1, 2, 3, 1, 9, 1 }, { 1, 2, 3, 2, 10, 1 } }; 
+    readonly int[,] mapContentsRatio = { {1,1,2,1,7,0 },{ 1, 2, 3, 1, 9, 1 }, { 1, 2, 3, 2, 10, 1 } }; 
     List<int> mapContentQueue = new List<int>();
     MapRecorder mapRecorder;
 
@@ -249,6 +249,9 @@ public class MapManager : MonoBehaviour
         IEnumerator MapImageBuilding()
     {
         float[] position = { 2.5f, 0, -2.5f };
+
+        if (map[1, 0] == 2)
+            yield return new WaitForSeconds(1);
         for (int j = 0; j < stagePerMapSize[stageNum]; j++) 
         {
             for (int i = 0; i < 3; i++)
@@ -261,7 +264,7 @@ public class MapManager : MonoBehaviour
                     GameObject temp = Instantiate(mapIcons[map[i, j]], 
                         new Vector3(positionX, position[i]), Quaternion.identity);
                     temp.GetComponent<MapIcon>().position = new Vector2(j, i);
-                    if (visitableMap[i, j] == false) temp.GetComponent<SpriteRenderer>().sprite = temp.GetComponent<MapIcon>().sealedIcon;
+                    if (visitableMap[i, j] == false && map[i,j] != 9) temp.GetComponent<SpriteRenderer>().sprite = temp.GetComponent<MapIcon>().sealedIcon[stageNum];
 
                     if(visitableMap[1,1] == false)
                     {
@@ -358,12 +361,12 @@ public class MapManager : MonoBehaviour
             mapText.color = color;
             mapTextShadow.color = color1;
 
-            color.a += Time.fixedDeltaTime / 3;
-            color1.a += Time.fixedDeltaTime / 3;
+            color.a += Time.fixedDeltaTime;
+            color1.a += Time.fixedDeltaTime;
             yield return new WaitForFixedUpdate();
         }
 
-        yield return new WaitForSeconds(3.2f);
+        yield return new WaitForSeconds(6.2f);
 
         StartCoroutine(FadeManager.FadeIn(mapTextBackground.GetComponent<SpriteRenderer>(), 1));
         while (color.a > 0)
