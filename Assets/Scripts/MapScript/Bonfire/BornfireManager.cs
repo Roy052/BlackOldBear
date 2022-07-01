@@ -16,8 +16,7 @@ public class BornfireManager : MonoBehaviour
         gameManagerObject = GameObject.Find("GameManager");
         daggerText.text = "3";
         leatherText.text = "3";
-        healAmount = gameManagerObject.GetComponent<StatusManager>().GetMaxhealth() / 5;
-        healAmountText.text = healAmount + "";
+        
         ItemManager itemManager = gameManagerObject.GetComponent<ItemManager>();
         int[] itemArray = itemManager.currentItem();
         if (itemArray[0] < 3)
@@ -32,6 +31,12 @@ public class BornfireManager : MonoBehaviour
         }
 
         StartCoroutine(OneTickAfter());
+    }
+
+    private void Update()
+    {
+        healAmount = gameManagerObject.GetComponent<StatusManager>().GetMaxhealth() / 5;
+        healAmountText.text = healAmount + "";
     }
 
     public void Heal()
