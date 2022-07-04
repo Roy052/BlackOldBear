@@ -13,6 +13,11 @@ public class StatusManager : MonoBehaviour
     {
         gm = this.GetComponent<GameManager>();
         uIBarManager = this.GetComponent<UIBarManager>();
+
+        maxhealth = 100;
+        health = maxhealth;
+
+        uIBarManager.UITextUpdate(0, health, maxhealth);
     }
 
     public int GetHealth()

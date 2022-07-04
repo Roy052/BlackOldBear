@@ -48,25 +48,23 @@ public class RewardManager : MonoBehaviour
                 rewardValue[0] = 100;
                 break;
             case 6: //Chest
-                rewardType[0] = 3;
-                //rewardValue[0] = RandomAccessory(Random.Range(1, 4));
                 rewardValue[0] = RandomAccessory(1);
                 break;
             case 7: //Enemy
                 rewardType[0] = 1;
-                rewardValue[0] = 3;
+                rewardValue[0] = Random.Range(17, 24);
                 rewardType[1] = 2;
                 rewardValue[1] = Random.Range(0, 2);
                 break;
             case 8: //MidBoss
                 rewardType[0] = 1;
-                rewardValue[0] = 100;
+                rewardValue[0] = 100 + Random.Range(-5, 5);
                 rewardType[1] = 3;
                 rewardValue[1] = RandomAccessory(1);
                 break;
             case 9: //Boss
                 rewardType[0] = 1;
-                rewardValue[0] = 150;
+                rewardValue[0] = 150 + Random.Range(-10, 10); ;
                 rewardType[1] = 3;
                 rewardValue[1] = RandomAccessory(3);
                 break;

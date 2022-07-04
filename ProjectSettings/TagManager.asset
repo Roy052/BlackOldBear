@@ -77,3 +77,6 @@ TagManager:
   - name: Fade
     uniqueID: 3275224475
     locked: 0
+  - name: MapText
+    uniqueID: 687620805
+    locked: 0

@@ -41,4 +41,7 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/Mini-AimBooster.unity
     guid: 124696e0934d78840aa1587592bfa28a
+  - enabled: 1
+    path: Assets/Scenes/RunningBear.unity
+    guid: 4cabff47789fa704b8f035268e4706e3
   m_configObjects: {}

@@ -7,7 +7,8 @@ public class MapIcon : MonoBehaviour
     public MapManager mm;
     public int mapIconNum;
     public Vector2 position;
-    public Sprite revealIcon, sealedIcon;
+    public Sprite revealIcon;
+    public Sprite[] sealedIcon;
     private void Start()
     {
         
