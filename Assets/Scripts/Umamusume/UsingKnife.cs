@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class UsingKnife : MonoBehaviour
 {
@@ -10,30 +11,28 @@ public class UsingKnife : MonoBehaviour
     public GameObject Knife;
     public GameObject Bear;
     public GameObject Wolf;
-    // Start is called before the first frame update
+    public Text money;
+    GameObject gameManagerObject;
+    bool notEnoughMoney = false;
     void Start()
     {
+        gameManagerObject = GameObject.Find("GameManager");
         
+        money.text = "10";
+        if (gameManagerObject.GetComponent<ItemManager>().currentMoney() < 10)
+        {
+            money.color = Color.red;
+            notEnoughMoney = true;
+        }   
     }
 
-    // Update is called once per frame
+    private void OnMouseDown()
+    {
+        if(notEnoughMoney == false)
+        kill = true;
+    }
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
-        {
-            ClickDaggerPosition = Input.mousePosition;
-            ClickDaggerPosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
-            RaycastHit2D hit;
-            hit = Physics2D.Raycast(ClickDaggerPosition, transform.forward, 15f);
-
-            if (hit)
-            {
-                kill = true;
-            }
-
-
-
-        }
 
         if (kill)
         {

@@ -12,11 +12,13 @@ public class MapEnd : MonoBehaviour {
 
     public GameObject Wolf;
     public GameObject Bear;
+    public bool gameEnd = false;
+    GameObject sceneManagerObject;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        sceneManagerObject = GameObject.FindGameObjectWithTag("SceneManager");
     }
 
     // Update is called once per frame
@@ -25,25 +27,36 @@ public class MapEnd : MonoBehaviour {
         Wolfpos = Wolf.transform.position;
         Bearpos = Bear.transform.position;
 
-        if (Wolfpos.x < 0 && Wolfpos.y >= 3.7)
+        
+        if(gameEnd == false)
         {
-            WolfReach = true;
+            if (Wolfpos.x < 0 && Wolfpos.y >= 3.7)
+            {
+                WolfReach = true;
+            }
+
+            if (Bearpos.x < 0 && Bearpos.y >= 4.8)
+            {
+                BearReach = true;
+            }
+
+            if (WolfReach && !BearReach)
+            {
+                //lose
+                Debug.Log("lose");
+                sceneManagerObject.GetComponent<SceneByScene>().NextButtonON();
+                gameEnd = true;
+            }
+            if (!WolfReach && BearReach)
+            {
+                //win
+                Debug.Log("win");
+                sceneManagerObject.GetComponent<RewardManager>().RewardON();
+                sceneManagerObject.GetComponent<SceneByScene>().NextButtonON();
+                gameEnd = true;
+            }
         }
 
-        if (Bearpos.x < 0 && Bearpos.y >= 4.8)
-        {
-            BearReach = true;
-        }
-
-        if(WolfReach && !BearReach)
-        {
-            //lose
-            Debug.Log("lose");
-        }
-        if(!WolfReach && BearReach)
-        {
-            //win
-            Debug.Log("win");
-        }
+        
     }
 }

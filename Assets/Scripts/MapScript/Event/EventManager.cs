@@ -23,7 +23,8 @@ public class EventManager : MonoBehaviour
         eventSceneList.Add("RunningBear");
         gameManagerObject = GameObject.Find("GameManager");
 
-        eventNum = Random.Range(0, event_Info.eventDescription.Length);
+        //eventNum = Random.Range(0, event_Info.eventDescription.Length);
+        eventNum = 1;
 
         descriptionText.text = event_Info.eventDescription[eventNum];
         Debug.Log(eventNum);
@@ -111,16 +112,18 @@ public class EventManager : MonoBehaviour
                 case 3:
                     gameManagerObject.GetComponent<ItemManager>().moneyChange(50);
                     break;
-
             }
             this.GetComponent<SceneByScene>().NextButtonPushed();
         }
-
-        
     }
 
     public void EventPass()
     {
         this.GetComponent<SceneByScene>().NextButtonPushed();
+    }
+
+    public int GetEventNum()
+    {
+        return eventNum;
     }
 }

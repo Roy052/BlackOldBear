@@ -19,6 +19,7 @@ public class RewardManager : MonoBehaviour
     GameObject gameManagerObject;
     Accessory_Manager accessory_Manager;
     Accessory_Info accessory_Info;
+    EventManager eventManager;
 
     private void Start()
     {
@@ -43,9 +44,24 @@ public class RewardManager : MonoBehaviour
         Debug.Log(SceneManager.GetSceneByName("MapScene").buildIndex);
         switch (mapNum)
         {
-            case 5:
-                rewardType[0] = 1;
-                rewardValue[0] = 100;
+            case 5: //Event
+                eventManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<EventManager>();
+                switch (eventManager.GetEventNum())
+                {
+                    case 0:
+                        rewardType[0] = 1;
+                        rewardValue[0] = 100;
+                        break;
+                    case 1:
+                        rewardType[0] = 2;
+                        rewardValue[0] = 0;
+                        rewardType[1] = 2;
+                        rewardValue[1] = 1;
+                        break;
+                    case 2:
+                        break;
+                }
+                
                 break;
             case 6: //Chest
                 rewardValue[0] = RandomAccessory(1);
