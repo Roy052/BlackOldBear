@@ -4,6 +4,7 @@ using UnityEngine;
 public class Wolf : MonoBehaviour
 {
     public int judgementState = 0; // 0 : out, 1 : bad, 2 : great, 3 : perfect
+
     GameManager gm;
     WolfManager wm;
     PlayerController pc;
@@ -16,6 +17,7 @@ public class Wolf : MonoBehaviour
     float latency;
 
     //score
+    float type = 0.0f;
     float anglePf = 0.97f;
     float angleGr = 0.85f;
     int scPP = 10;
@@ -46,11 +48,23 @@ public class Wolf : MonoBehaviour
         direction = temp / distance;
         direction = direction.normalized;
         latency = gm.speed*-0.2f + 2.2f; // set Note Speed
+
+        type = wm.wolfTyped[wm.now++];
     }
     // Update is called once per frame
     void Update()
     {
-        transform.position += direction * Time.deltaTime * (distance / latency);
+        if (type == 0.0f)
+        {
+            transform.position += direction * Time.deltaTime * (distance / latency);
+        }
+        else
+        {
+            direction = (bearPosition - this.transform.position).normalized; // set direction
+            transform.position += direction * Time.deltaTime * (distance / latency);
+            transform.RotateAround(bearPosition, Vector3.back, Time.deltaTime * 70);
+            transform.Rotate(Vector3.forward, Time.deltaTime * 70);
+        }
         if (Input.GetMouseButtonDown(0))
         {
             if(!wm.clicked)
@@ -165,8 +179,8 @@ public class Wolf : MonoBehaviour
         if(collision.tag=="Bad")
         {
             float time = Time.time;
-            Debug.Log("exit time " + (time - currTime));
-            Debug.Log("mid time " + (check + time - currTime) / 2);
+            //Debug.Log("exit time " + (time - currTime));
+            //Debug.Log("mid time " + (check + time - currTime) / 2);
             currTime = time;
 
             if (!isDistroyed)
@@ -189,7 +203,7 @@ public class Wolf : MonoBehaviour
         else if(collision.tag=="Perfect")
         {
             float time = Time.time;
-            Debug.Log("enter time " + (time - enterTime));
+            //Debug.Log("enter time " + (time - enterTime));
             check = time - enterTime;
             enterTime = time;
             judgementState = 3;
