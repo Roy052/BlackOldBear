@@ -265,7 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Card_Front: {fileID: 255123155}
   Card_Back: {fileID: 43619125}
-  Cam: {fileID: 1047858306}
+  Camera: {fileID: 0}
 --- !u!4 &98110332
 Transform:
   m_ObjectHideFlags: 0
@@ -450,7 +450,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 6
+  orthographic size: 5.4
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
