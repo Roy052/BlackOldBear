@@ -78,18 +78,45 @@ public class EventManager : MonoBehaviour
 
     public void EventStart()
     {
-        if(eventNum <= 1)
+        yesButton.interactable = false;
+        noButton.interactable = false;
+
+        //Cost
+        switch (event_Info.eventConditionType[eventNum])
+        {
+            case 1:
+                gameManagerObject.GetComponent<ItemManager>().moneyChange(-event_Info.eventConditionValue[eventNum]);
+                break;
+            case 2:
+                gameManagerObject.GetComponent<ItemManager>().itemChange(0, -event_Info.eventConditionValue[eventNum]);
+                break;
+            case 3:
+                gameManagerObject.GetComponent<ItemManager>().itemChange(1, -event_Info.eventConditionValue[eventNum]);
+                break;
+            case 4:
+                gameManagerObject.GetComponent<StatusManager>().ChangeHealth(-event_Info.eventConditionValue[eventNum]);
+                break;
+        }
+
+        if (eventNum < eventSceneList.Count)
             SceneManager.LoadSceneAsync(eventSceneList[eventNum], LoadSceneMode.Additive);
         else
         {
+            //Reward
             switch (eventNum)
             {
                 case 2:
-                    Debug.Log("재료 주세요");
+                    gameManagerObject.GetComponent<ItemManager>().itemChange(0, 3);
                     break;
+                case 3:
+                    gameManagerObject.GetComponent<ItemManager>().moneyChange(50);
+                    break;
+
             }
+            this.GetComponent<SceneByScene>().NextButtonPushed();
         }
-            
+
+        
     }
 
     public void EventPass()
