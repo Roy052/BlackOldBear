@@ -7,17 +7,18 @@ public class JudgeManager : MonoBehaviour
     public Sprite perfect;
     public Sprite great;
     public Sprite bad;
+
+    public AudioClip perfectSound;
+    public AudioClip greatSound;
+    public AudioClip badSound;
+
+    public AudioSource audioSource;
     SpriteRenderer sr;
     // Start is called before the first frame update
     void Start()
     {
         sr = GetComponent<SpriteRenderer>();
-    }
-
-    // Update is called once per frame
-    void Update()
-    {
-        
+        audioSource = GetComponent<AudioSource>();
     }
 
     public void setJudgeImage(int state)
@@ -36,5 +37,24 @@ public class JudgeManager : MonoBehaviour
             default:
                 break;
         }
+    }
+
+    public void playJudgeSound(int state)
+    {
+        switch(state)
+        {
+            case 1:
+                audioSource.clip = badSound;
+                break;
+            case 2:
+                audioSource.clip = greatSound;
+                break;
+            case 3:
+                audioSource.clip = perfectSound;
+                break;
+            default:
+                break;
+        }
+        audioSource.Play();
     }
 }

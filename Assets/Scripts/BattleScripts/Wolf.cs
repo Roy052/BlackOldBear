@@ -115,6 +115,7 @@ public class Wolf : MonoBehaviour
             gm.score += scB;
             wm.first++;
             jm.setJudgeImage(1);
+            jm.playJudgeSound(1);
             isDistroyed = true;
             // Destroy(gameObject);
         }
@@ -125,6 +126,7 @@ public class Wolf : MonoBehaviour
                 gm.score += scGP;
                 wm.first++;
                 jm.setJudgeImage(2);
+                jm.playJudgeSound(2);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -133,6 +135,7 @@ public class Wolf : MonoBehaviour
                 gm.score += scGG;
                 wm.first++;
                 jm.setJudgeImage(2);
+                jm.playJudgeSound(2);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -141,6 +144,7 @@ public class Wolf : MonoBehaviour
                 gm.score += scGB;
                 wm.first++;
                 jm.setJudgeImage(1);
+                jm.playJudgeSound(1);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -152,6 +156,7 @@ public class Wolf : MonoBehaviour
                 gm.score += scPP;
                 wm.first++;
                 jm.setJudgeImage(3);
+                jm.playJudgeSound(3);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -160,6 +165,7 @@ public class Wolf : MonoBehaviour
                 gm.score += scPG;
                 wm.first++;
                 jm.setJudgeImage(2);
+                jm.playJudgeSound(2);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -168,6 +174,7 @@ public class Wolf : MonoBehaviour
                 gm.score += scPB;
                 wm.first++;
                 jm.setJudgeImage(1);
+                jm.playJudgeSound(1);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -189,6 +196,7 @@ public class Wolf : MonoBehaviour
                 gm.score += scB;
                 wm.first++;
                 jm.setJudgeImage(1);
+                jm.playJudgeSound(1);
                 // Debug.Log("Bad in");
                 Destroy(gameObject);
             }

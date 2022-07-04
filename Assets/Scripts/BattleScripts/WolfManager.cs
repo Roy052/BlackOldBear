@@ -63,7 +63,6 @@ public class WolfManager : MonoBehaviour
     {
         return position;
     }
-
     private void Update()
     {
         time_current = Time.time - time_start;
