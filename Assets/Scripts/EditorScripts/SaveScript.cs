@@ -22,6 +22,7 @@ public class WolfData
     public int fullBeat;
     public int beat;
     public float angle;
+    public int type;
 }
 
 [Serializable]
@@ -43,6 +44,7 @@ public class WolfData2
 {
     public float time;
     public float angle;
+    public float type;
 }
 
 public class PatternData2
@@ -91,6 +93,7 @@ public class SaveScript
             wolf.fullBeat = ws.fullBeat;
             wolf.beat = ws.beat;
             wolf.angle = ws.angle;
+            wolf.type = ws.type;
             pData.wolfs.Add(wolf);
         }
 
@@ -121,6 +124,7 @@ public class SaveScript
             float beatPos = wolf.node + ((float)wolf.beat / wolf.fullBeat);
             wolf2.time = beatPos / (pData.BPM / 60) + (pData.baseOffset / 1000);
             wolf2.angle = wolf.angle;
+            wolf2.type = wolf.type;
             newData.wolfs.Add(wolf2);
         }
 

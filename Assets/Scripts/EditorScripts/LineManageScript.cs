@@ -15,6 +15,7 @@ public class LineManageScript : MonoBehaviour
     public float noteSpeed; // 초당 노트 이동 거리
     public float musicSpeed; // 노래 재생 속도
     public float boundary; // 곰 주변 비어있는 공간 크기
+    [HideInInspector] public int wolfType = 0; // 울프 종류
     [SerializeField] Color judgeColor; // 판정라인 색깔
     [SerializeField] Color majorBeatColor; // 박자 색깔
     [SerializeField] Color minorBeatColor; // 비트 색깔
@@ -253,8 +254,6 @@ public class LineManageScript : MonoBehaviour
                 {
                     if (hit.collider != null && hit.transform.gameObject.name == "LineManager")
                     {
-                        Debug.Log(hit.transform.gameObject.name);
-
                         Vector2 myPos = new Vector2(transform.position.x + 1, transform.position.y);
                         Vector2 mousePos = new Vector2(pos.x, pos.y);
                         float mouseAngle = Vector2.Angle(myPos, mousePos);
@@ -289,6 +288,7 @@ public class LineManageScript : MonoBehaviour
                             instScript.fullBeat = beat;
                             instScript.beat = beatCount % beat;
                             instScript.angle = wolfAngle;
+                            instScript.type = wolfType;
                             instScript.lineManagerScript = this;
                             inst.transform.position = new Vector3(wolfx, wolfy, -1 + wolfy / 5);
                             wolfList.Add(instScript);
@@ -416,6 +416,7 @@ public class LineManageScript : MonoBehaviour
             instScript.fullBeat = wolf.fullBeat;
             instScript.beat = wolf.beat;
             instScript.angle = wolf.angle;
+            instScript.type = wolf.type;
             instScript.lineManagerScript = this;
             wolfList.Add(instScript);
         }

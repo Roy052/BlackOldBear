@@ -9,6 +9,7 @@ public class WolfScript : MonoBehaviour
     public int beat;
     public float angle;
     public LineManageScript lineManagerScript;
+    public int type;
 
     // Start is called before the first frame update
     void Start()
