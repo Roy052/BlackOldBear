@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class WolfManager : MonoBehaviour
 {
-    public string musicName = "Electronic_2";
-    PatternData2 pData;
+    public string patternName = "Electronic_2";
     public List<WolfData2> wData;
 
     public GameObject bear;
@@ -40,8 +39,8 @@ public class WolfManager : MonoBehaviour
         time_start = Time.time;
         position = bear.transform.position;
 
-        pData = SaveScript.loadData2(musicName);
-        wData = pData.wolfs;
+        // pData = SaveScript.loadData2(patternName);
+        // wData = pData.wolfs;
 
         maxNote = wData.Count;
 

@@ -4,8 +4,9 @@ using UnityEngine;
 
 public class BattleMusicManager : MonoBehaviour
 {
-    public string musicName = "Electronic_2";
+    public string musicName;
     GameManager gm;
+    BattleManager bm;
     float musicLoadDelay = 3.0f;
     public AudioSource audioSource;
     bool playing = false;
@@ -13,10 +14,13 @@ public class BattleMusicManager : MonoBehaviour
     void Start()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
+        bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
+
         audioSource = this.GetComponent<AudioSource>();
         musicLoadDelay = gm.musicLoadDelay;
 
-        audioSource.clip = Resources.Load<AudioClip>("EditorResource/Electronic");
+        audioSource.clip = Resources.Load<AudioClip>("EditorResource/"+musicName);
+        bm.musicDuration = audioSource.clip.length;
     }
 
     // Update is called once per frame

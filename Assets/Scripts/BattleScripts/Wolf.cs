@@ -10,6 +10,7 @@ public class Wolf : MonoBehaviour
     PlayerController pc;
     BattleManager bm;
     JudgeManager jm;
+    StatusManager sm;
 
     Vector3 bearPosition;
     float distance; // to Bear(center)
@@ -36,7 +37,8 @@ public class Wolf : MonoBehaviour
         pc = GameObject.Find("Mouse Director").GetComponent<PlayerController>();
         bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
         jm = GameObject.Find("JudgeEffect").GetComponent<JudgeManager>();
-        
+        sm = GameObject.Find("GameManager").GetComponent<StatusManager>();
+
         setScore();
         setAngle();
         currTime = Time.time;
@@ -116,6 +118,7 @@ public class Wolf : MonoBehaviour
             wm.first++;
             jm.setJudgeImage(1);
             jm.playJudgeSound(1);
+            bm.countJudge(1);
             isDistroyed = true;
             // Destroy(gameObject);
         }
@@ -127,6 +130,7 @@ public class Wolf : MonoBehaviour
                 wm.first++;
                 jm.setJudgeImage(2);
                 jm.playJudgeSound(2);
+                bm.countJudge(2);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -136,6 +140,7 @@ public class Wolf : MonoBehaviour
                 wm.first++;
                 jm.setJudgeImage(2);
                 jm.playJudgeSound(2);
+                bm.countJudge(2);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -145,6 +150,7 @@ public class Wolf : MonoBehaviour
                 wm.first++;
                 jm.setJudgeImage(1);
                 jm.playJudgeSound(1);
+                bm.countJudge(1);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -157,6 +163,7 @@ public class Wolf : MonoBehaviour
                 wm.first++;
                 jm.setJudgeImage(3);
                 jm.playJudgeSound(3);
+                bm.countJudge(3);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -166,6 +173,7 @@ public class Wolf : MonoBehaviour
                 wm.first++;
                 jm.setJudgeImage(2);
                 jm.playJudgeSound(2);
+                bm.countJudge(2);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -175,6 +183,7 @@ public class Wolf : MonoBehaviour
                 wm.first++;
                 jm.setJudgeImage(1);
                 jm.playJudgeSound(1);
+                bm.countJudge(1);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -197,6 +206,7 @@ public class Wolf : MonoBehaviour
                 wm.first++;
                 jm.setJudgeImage(1);
                 jm.playJudgeSound(1);
+                bm.countJudge(1);
                 // Debug.Log("Bad in");
                 Destroy(gameObject);
             }

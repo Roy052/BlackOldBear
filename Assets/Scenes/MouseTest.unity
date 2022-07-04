@@ -480,6 +480,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 40b3986883c318146b56df963d9ba49f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  patternName: Electronic_2
+  musicName: 
+  musicDuration: 0
+  gameEnd: 0
   anglePf: 0.97
   angleGr: 0.85
   scPP: 10
@@ -614,16 +618,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eda47d6de9abe2447bf8a164691f531c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  musicName: Electronic_2
+  patternName: Electronic_2
   bear: {fileID: 1940184521}
   wolf: {fileID: 3895731865497552487, guid: 441f2b27f7b954a4baae7304511fecf7, type: 3}
   fox: {fileID: 3895731865497552487, guid: a3766097c5b5a9f44a90cea29cc2cab9, type: 3}
   wolfGenerated: []
+  wolfTyped: []
   time_current: 0
   radius: 7
   curveAngle: 70
   first: 0
   clicked: 0
+  now: 0
 --- !u!1 &609049234
 GameObject:
   m_ObjectHideFlags: 0
