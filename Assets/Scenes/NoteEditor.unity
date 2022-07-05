@@ -6132,6 +6132,7 @@ MonoBehaviour:
   musics:
   - {fileID: 0}
   - {fileID: 8300000, guid: 935d03e461a53e849a5a37a0b8ce609d, type: 3}
+  - {fileID: 8300000, guid: 21c989994beca8141858b5d87b5efb2a, type: 3}
   lineManageObj: {fileID: 440216029}
   musicManageObj: {fileID: 196162820}
   metObj: {fileID: 1634168484}

@@ -56,7 +56,8 @@ public class SideMenu : MonoBehaviour
         bgmTexts = new()
         {
             "Select Music",
-            "Electronic"
+            "Electronic",
+            "Invincible"
         };
 
         loadTexts = new()

@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class WolfManager : MonoBehaviour
 {
-    public string patternName = "Electronic_2";
+    // public string patternName = "Electronic_2";
     public List<WolfData2> wData;
 
     public GameObject bear;

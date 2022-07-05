@@ -17,10 +17,10 @@
         },
         {
             "node": 5,
-            "fullBeat": 4,
+            "fullBeat": 3,
             "beat": 0,
             "angle": 198.0,
-            "type": 2
+            "type": 0
         },
         {
             "node": 9,
