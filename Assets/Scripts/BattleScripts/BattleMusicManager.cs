@@ -19,7 +19,7 @@ public class BattleMusicManager : MonoBehaviour
         audioSource = this.GetComponent<AudioSource>();
         musicLoadDelay = gm.musicLoadDelay;
 
-        audioSource.clip = Resources.Load<AudioClip>("EditorResource/"+musicName);
+        audioSource.clip = Resources.Load<AudioClip>("Musics/"+musicName);
         bm.musicDuration = audioSource.clip.length;
     }
 

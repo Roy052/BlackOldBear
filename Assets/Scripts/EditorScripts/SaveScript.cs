@@ -113,7 +113,7 @@ public class SaveScript
 
         PatternData2 newData = new();
         newData.BGM = pData.BGM;
-        AudioClip bgmfile = Resources.Load("EditorResource/" + newData.BGM) as AudioClip;
+        AudioClip bgmfile = Resources.Load("Musics/" + newData.BGM) as AudioClip;
         newData.duration = bgmfile.length;
         newData.difficult = pData.difficult;
         newData.wolfs = new();
