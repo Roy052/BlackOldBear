@@ -265,7 +265,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Card_Front: {fileID: 255123155}
   Card_Back: {fileID: 43619125}
-  Camera: {fileID: 0}
+  Camera: {fileID: 1047858306}
 --- !u!4 &98110332
 Transform:
   m_ObjectHideFlags: 0

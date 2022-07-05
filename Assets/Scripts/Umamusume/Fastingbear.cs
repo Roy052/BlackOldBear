@@ -25,23 +25,23 @@ public class Fastingbear : MonoBehaviour
             if (Input.GetMouseButtonDown(0))
             {
                 pos = transform.position;
-                if (pos.x > 5.4)
+                if (pos.x >= 5)
                 {
                     Flag1 = true;
                 }
-                if (pos.x >= 8.6)
+                if (pos.x >= 8.2)
                 {
                     Flag2 = true;
                 }
-                if (pos.y > 0)
+                if (pos.y >= -0.3)
                 {
                     Flag3 = true;
                 }
-                if (pos.x <= 8.61 && pos.y > 0)
+                if (pos.x <= 8.2 && pos.y >= -0.3)
                 {
                     Flag4 = true;
                 }
-                if (pos.y >= 4.8)
+                if (pos.y >= 3.6)
                 {
                     Flag5 = true;
                 }
@@ -53,7 +53,7 @@ public class Fastingbear : MonoBehaviour
                 }
                 else if (Flag1 && !Flag2 && !Flag3 && !Flag4 && !Flag5)
                 {
-                    transform.position = new Vector3(pos.x + Bearspeed, pos.y + Bearspeed * 0.8f, 0.0f);
+                    transform.position = new Vector3(pos.x + Bearspeed, pos.y + Bearspeed * 0.7f, 0.0f);
                 }
                 else if (Flag1 && Flag2 && !Flag3 && !Flag4 && !Flag5)
                 {
@@ -62,11 +62,11 @@ public class Fastingbear : MonoBehaviour
                 }
                 else if (Flag1 && Flag2 && Flag3 && !Flag4 && !Flag5)
                 {
-                    transform.position = new Vector3(pos.x - Bearspeed * 0.2f, pos.y + Bearspeed * 1.2f, 0.0f);
+                    transform.position = new Vector3(pos.x - Bearspeed * 0.3f, pos.y + Bearspeed * 1.2f, 0.0f);
                 }
                 else if (Flag1 && Flag2 && Flag3 && Flag4 && !Flag5)
                 {
-                    transform.position = new Vector3(pos.x - Bearspeed, pos.y + Bearspeed * 0.8f, 0.0f);
+                    transform.position = new Vector3(pos.x - Bearspeed, pos.y + Bearspeed * 0.7f, 0.0f);
                 }
                 else if (Flag1 && Flag2 && Flag3 && Flag4 && Flag5)
                 {

@@ -10,6 +10,9 @@ public class CopyCards : MonoBehaviour
     public Camera Camera;
     int i, j, k;
 
+    List<GameObject> id_front = new List<GameObject>();
+    List<GameObject> id_back = new List<GameObject>();
+
     // Start is called before the first frame update
     void Start()
     {
@@ -18,9 +21,11 @@ public class CopyCards : MonoBehaviour
         {
             for (j = -4; j <= 4; j = j + 2)
             {
-                GameObject go = Instantiate(Card_Front, new Vector3(i, j, -1), Quaternion.identity);
-                GameObject ge = Instantiate(Card_Back, new Vector3(i, j, 0), Quaternion.identity);
-//                  go.name = int i
+                GameObject input_Front = Instantiate(Card_Front, new Vector3(i, j, -1), Quaternion.identity);
+                GameObject input_Back = Instantiate(Card_Back, new Vector3(i, j, 0), Quaternion.identity);
+
+                id_front.Add(input_Front);
+                id_back.Add(input_Back);
             }
         }
     }
