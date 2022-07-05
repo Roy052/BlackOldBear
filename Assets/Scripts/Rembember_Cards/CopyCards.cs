@@ -13,6 +13,8 @@ public class CopyCards : MonoBehaviour
     int First_Choice = -999;
     GameObject Before_GameObject;
     Vector3 MousePosition;
+
+    int Left = 36;
     
 
     List<GameObject> id_front = new List<GameObject>();
@@ -45,6 +47,11 @@ public class CopyCards : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(Left == 0)
+        {
+            //우승!!!
+        }
+
         if (Input.GetMouseButtonDown(0))
         {
             MousePosition = Input.mousePosition;
@@ -72,10 +79,12 @@ public class CopyCards : MonoBehaviour
                         Debug.Log("correct");
  //                       hit.transform.gameObject.GetComponent<SpriteRenderer>().material.color = Color.yellow;
                         First_Choice = -1;
+                        Left = Left - 2;
 
                     }
                     else if(First_Choice == mixed_backNumber[now_id-1] && hit.transform.gameObject == Before_GameObject){
                         Debug.Log("click same cards");
+                        First_Choice = -1;
                     }
                     else
                     {
