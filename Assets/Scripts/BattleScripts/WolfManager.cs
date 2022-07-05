@@ -4,8 +4,7 @@ using UnityEngine;
 
 public class WolfManager : MonoBehaviour
 {
-    public string musicName = "Electronic_2";
-    PatternData2 pData;
+    public string patternName = "Electronic_2";
     public List<WolfData2> wData;
 
     public GameObject bear;
@@ -13,6 +12,7 @@ public class WolfManager : MonoBehaviour
     public GameObject fox;
     Vector3 position;
     public List<GameObject> wolfGenerated = new List<GameObject>();
+    public List<float> wolfTyped = new List<float>();
     float time_start;
     public float time_current = 0f;
     public float radius = 7f;
@@ -20,6 +20,7 @@ public class WolfManager : MonoBehaviour
     GameManager gm;
     bool noteAvailable = true;
 
+    float type = 0.0f;
     int noteCount = 0;
     int maxNote;
     bool isNextExist = true;
@@ -30,7 +31,7 @@ public class WolfManager : MonoBehaviour
     GameObject newNote;
     [HideInInspector] public int first = 0;
     [HideInInspector] public bool clicked = false;
-
+    [HideInInspector] public int now = 0;
     private void Start()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -38,11 +39,12 @@ public class WolfManager : MonoBehaviour
         time_start = Time.time;
         position = bear.transform.position;
 
-        pData = SaveScript.loadData2(musicName);
-        wData = pData.wolfs;
+        // pData = SaveScript.loadData2(patternName);
+        // wData = pData.wolfs;
 
         maxNote = wData.Count;
 
+        type = wData[noteCount].type;
         nextGenTime = wData[noteCount].time;
         nextAngle = wData[noteCount++].angle;
         nextGenPos = AngleToPosition(nextAngle);
@@ -60,7 +62,6 @@ public class WolfManager : MonoBehaviour
     {
         return position;
     }
-    //int k = 0;
     private void Update()
     {
         time_current = Time.time - time_start;
@@ -70,16 +71,28 @@ public class WolfManager : MonoBehaviour
         {
             if(noteAvailable)
             {
-                //if (k % 4 == 0)
-                //    newNote = Instantiate(wolf, nextGenPos, Quaternion.identity);
-                //else if (k % 4 == 1)
-                //    newNote = Instantiate(wolf, 2*nextGenPos, Quaternion.identity);
-                //else if (k % 4 == 2)
-                //    newNote = Instantiate(fox, Quaternion.Euler(0, 0, 70 * 0.7f)*nextGenPos, Quaternion.identity);
-                //else
-                //    newNote = Instantiate(fox, Quaternion.Euler(0, 0, 70 * 0.7f)*nextGenPos *2, Quaternion.identity);
-                //k++;
-                newNote = Instantiate(wolf, nextGenPos, Quaternion.identity);
+                if (type == 0)
+                {
+                    wolfTyped.Add(0);
+                    newNote = Instantiate(wolf, nextGenPos, Quaternion.identity);
+                }
+                else if (type == 1)
+                {
+                    wolfTyped.Add(0);
+                    newNote = Instantiate(wolf, 2 * nextGenPos, Quaternion.identity);
+                }
+                else if (type == 2)
+                {
+                    wolfTyped.Add(1);
+                    newNote = Instantiate(fox, Quaternion.Euler(0, 0, Mathf.Rad2Deg * 1.312235f) * nextGenPos, Quaternion.identity);
+                }
+                else
+                {
+                    wolfTyped.Add(1);
+                    newNote = Instantiate(fox, Quaternion.Euler(0, 0, Mathf.Rad2Deg * 1.312235f) * nextGenPos * 2, Quaternion.identity);
+                }
+
+                //newNote = Instantiate(wolf, nextGenPos, Quaternion.identity);
                 wolfGenerated.Add(newNote);
                 if(!isNextExist)
                 {
@@ -89,6 +102,7 @@ public class WolfManager : MonoBehaviour
 
             if(isNextExist)
             {
+                type = wData[noteCount].type;
                 nextGenTime = wData[noteCount].time;
                 nextAngle = wData[noteCount++].angle;
                 nextGenPos = nextGenPos = AngleToPosition(nextAngle);

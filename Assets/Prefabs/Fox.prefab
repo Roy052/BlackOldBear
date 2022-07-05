@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3895731865497552491}
   - component: {fileID: 3895731865497552490}
   - component: {fileID: 3895731865497552489}
-  - component: {fileID: 3397095895218758334}
+  - component: {fileID: -3277251200098496077}
   m_Layer: 0
   m_Name: Fox
   m_TagString: Wolf
@@ -124,7 +124,7 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &3397095895218758334
+--- !u!114 &-3277251200098496077
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -133,7 +133,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 3895731865497552487}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ddfcf8f35e9191e47a54f714045b83a8, type: 3}
+  m_Script: {fileID: 11500000, guid: 9667c560b91adb04ebc0f212ad90be61, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   judgementState: 0

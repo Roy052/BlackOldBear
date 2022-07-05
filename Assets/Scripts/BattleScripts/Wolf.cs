@@ -4,11 +4,13 @@ using UnityEngine;
 public class Wolf : MonoBehaviour
 {
     public int judgementState = 0; // 0 : out, 1 : bad, 2 : great, 3 : perfect
+
     GameManager gm;
     WolfManager wm;
     PlayerController pc;
     BattleManager bm;
     JudgeManager jm;
+    StatusManager sm;
 
     Vector3 bearPosition;
     float distance; // to Bear(center)
@@ -16,6 +18,7 @@ public class Wolf : MonoBehaviour
     float latency;
 
     //score
+    float type = 0.0f;
     float anglePf = 0.97f;
     float angleGr = 0.85f;
     int scPP = 10;
@@ -34,7 +37,8 @@ public class Wolf : MonoBehaviour
         pc = GameObject.Find("Mouse Director").GetComponent<PlayerController>();
         bm = GameObject.Find("BattleManager").GetComponent<BattleManager>();
         jm = GameObject.Find("JudgeEffect").GetComponent<JudgeManager>();
-        
+        sm = GameObject.Find("GameManager").GetComponent<StatusManager>();
+
         setScore();
         setAngle();
         currTime = Time.time;
@@ -46,11 +50,23 @@ public class Wolf : MonoBehaviour
         direction = temp / distance;
         direction = direction.normalized;
         latency = gm.speed*-0.2f + 2.2f; // set Note Speed
+
+        type = wm.wolfTyped[wm.now++];
     }
     // Update is called once per frame
     void Update()
     {
-        transform.position += direction * Time.deltaTime * (distance / latency);
+        if (type == 0.0f)
+        {
+            transform.position += direction * Time.deltaTime * (distance / latency);
+        }
+        else
+        {
+            direction = (bearPosition - this.transform.position).normalized; // set direction
+            transform.position += direction * Time.deltaTime * (distance / latency);
+            transform.RotateAround(bearPosition, Vector3.back, Time.deltaTime * 70);
+            transform.Rotate(Vector3.forward, Time.deltaTime * 70);
+        }
         if (Input.GetMouseButtonDown(0))
         {
             if(!wm.clicked)
@@ -101,6 +117,8 @@ public class Wolf : MonoBehaviour
             gm.score += scB;
             wm.first++;
             jm.setJudgeImage(1);
+            jm.playJudgeSound(1);
+            bm.countJudge(1);
             isDistroyed = true;
             // Destroy(gameObject);
         }
@@ -111,6 +129,8 @@ public class Wolf : MonoBehaviour
                 gm.score += scGP;
                 wm.first++;
                 jm.setJudgeImage(2);
+                jm.playJudgeSound(2);
+                bm.countJudge(2);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -119,6 +139,8 @@ public class Wolf : MonoBehaviour
                 gm.score += scGG;
                 wm.first++;
                 jm.setJudgeImage(2);
+                jm.playJudgeSound(2);
+                bm.countJudge(2);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -127,6 +149,8 @@ public class Wolf : MonoBehaviour
                 gm.score += scGB;
                 wm.first++;
                 jm.setJudgeImage(1);
+                jm.playJudgeSound(1);
+                bm.countJudge(1);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -138,6 +162,8 @@ public class Wolf : MonoBehaviour
                 gm.score += scPP;
                 wm.first++;
                 jm.setJudgeImage(3);
+                jm.playJudgeSound(3);
+                bm.countJudge(3);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -146,6 +172,8 @@ public class Wolf : MonoBehaviour
                 gm.score += scPG;
                 wm.first++;
                 jm.setJudgeImage(2);
+                jm.playJudgeSound(2);
+                bm.countJudge(2);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -154,6 +182,8 @@ public class Wolf : MonoBehaviour
                 gm.score += scPB;
                 wm.first++;
                 jm.setJudgeImage(1);
+                jm.playJudgeSound(1);
+                bm.countJudge(1);
                 isDistroyed = true;
                 // Destroy(gameObject);
             }
@@ -165,8 +195,8 @@ public class Wolf : MonoBehaviour
         if(collision.tag=="Bad")
         {
             float time = Time.time;
-            Debug.Log("exit time " + (time - currTime));
-            Debug.Log("mid time " + (check + time - currTime) / 2);
+            //Debug.Log("exit time " + (time - currTime));
+            //Debug.Log("mid time " + (check + time - currTime) / 2);
             currTime = time;
 
             if (!isDistroyed)
@@ -175,6 +205,8 @@ public class Wolf : MonoBehaviour
                 gm.score += scB;
                 wm.first++;
                 jm.setJudgeImage(1);
+                jm.playJudgeSound(1);
+                bm.countJudge(1);
                 // Debug.Log("Bad in");
                 Destroy(gameObject);
             }
@@ -189,7 +221,7 @@ public class Wolf : MonoBehaviour
         else if(collision.tag=="Perfect")
         {
             float time = Time.time;
-            Debug.Log("enter time " + (time - enterTime));
+            //Debug.Log("enter time " + (time - enterTime));
             check = time - enterTime;
             enterTime = time;
             judgementState = 3;

@@ -11,6 +11,7 @@ public class GameManager : MonoBehaviour
                                // y = -0.159x + 1.759 when x = speed
     public float time;
     public float musicLoadDelay = 3.0f;
+    public float musicEndDelay = 3.0f;
 
     public static float FadeTimeGap = 0.5f;
 
