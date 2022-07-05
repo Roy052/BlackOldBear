@@ -7,7 +7,7 @@ using System.IO;
 
 public class SideMenu : MonoBehaviour
 {
-    public List<AudioClip> musics = new(){ null }; // AudioClip 리스트
+    public List<AudioClip> musics; // AudioClip 리스트
     public GameObject lineManageObj, musicManageObj, metObj;
     public GameObject sideButton; // 사이드메뉴 닫기/열기 버튼
     public GameObject gridButton, webButton; // 그리드형, 거미줄형
@@ -37,7 +37,7 @@ public class SideMenu : MonoBehaviour
     public List<string> bgmTexts, loadTexts;
 
     [HideInInspector]
-    public List<int> FPSs;
+    public List<int> BPMs;
 
 
     // Start is called before the first frame update
@@ -53,19 +53,32 @@ public class SideMenu : MonoBehaviour
         musicManageScript = musicManageObj.GetComponent<MusicManage>();
         metScript = metObj.GetComponent<Metronome>();
 
+        
+
         bgmTexts = new()
         {
-            "Select Music",
-            "Electronic",
-            "Invincible"
+            "Select Music"
         };
+
+        musics = new() { null };
+        DirectoryInfo di = new DirectoryInfo("Assets/Resources/Musics");
+        foreach (FileInfo fi in di.GetFiles())
+        {
+            if (fi.Extension != ".meta")
+            {
+                string filename = fi.Name.Substring(0, fi.Name.Length - fi.Extension.Length);
+                string path = "Musics/" + filename;
+                musics.Add(Resources.Load(path) as AudioClip);
+                bgmTexts.Add(filename);
+            }
+        }
 
         loadTexts = new()
         {
             "Select File"
         };
 
-        FPSs = new()
+        BPMs = new()
         {
             120,
             140 // 1. Electronic
@@ -169,7 +182,17 @@ public class SideMenu : MonoBehaviour
     void setMusic()
     {
         musicManageScript.setMusic(musics[bgmSelect.value]);
-        bpmInput.text = FPSs[bgmSelect.value].ToString();
+        string tempBPM;
+        try 
+        {
+            tempBPM = BPMs[bgmSelect.value].ToString();
+        }
+        catch
+        {
+            tempBPM = "120";
+        }
+
+        bpmInput.text = tempBPM;
     }
 
     void saveData()
