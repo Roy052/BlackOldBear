@@ -30,11 +30,11 @@ public class AimWolfCheck : MonoBehaviour
             if (hit)
             {
                 count++;
-                Debug.Log(count);
                 Debug.Log(hit.transform.gameObject);
 
                 hit.transform.position = new Vector3(-5, -9, 0);
-                audioSource.Play();
+                if(hit.collider.name != "NextButton")
+                    audioSource.Play();
             }
         }
         

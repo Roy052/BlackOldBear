@@ -41,7 +41,6 @@ public class RewardManager : MonoBehaviour
         accessory_Info = new Accessory_Info();
 
         mapNum = SceneManager.GetActiveScene().buildIndex - 1;
-        Debug.Log(SceneManager.GetSceneByName("MapScene").buildIndex);
         switch (mapNum)
         {
             case 5: //Event
@@ -64,6 +63,7 @@ public class RewardManager : MonoBehaviour
                 
                 break;
             case 6: //Chest
+                rewardType[0] = 3;
                 rewardValue[0] = RandomAccessory(1);
                 break;
             case 7: //Enemy

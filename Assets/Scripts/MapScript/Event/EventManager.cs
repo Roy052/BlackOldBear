@@ -39,7 +39,6 @@ public class EventManager : MonoBehaviour
             switch (event_Info.eventConditionType[eventNum])
             {
                 case 1:
-                    Debug.Log(gameManagerObject.GetComponent<ItemManager>().currentMoney());
                     if (event_Info.eventConditionValue[eventNum] > gameManagerObject.GetComponent<ItemManager>().currentMoney())
                     {
                         yesText.color = Color.red;
