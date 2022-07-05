@@ -62,6 +62,9 @@ TagManager:
   - name: Wolf
     uniqueID: 4281440897
     locked: 0
+  - name: PauseMenu
+    uniqueID: 1783823287
+    locked: 0
   - name: UI
     uniqueID: 4026215027
     locked: 0

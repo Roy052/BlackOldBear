@@ -227,7 +227,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 43619125}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -14.61, y: 4.32, z: 0}
+  m_LocalPosition: {x: -16.742, y: 0.297, z: 0}
   m_LocalScale: {x: 1.2, y: 1.7, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -266,6 +266,18 @@ MonoBehaviour:
   Card_Front: {fileID: 255123155}
   Card_Back: {fileID: 43619125}
   Camera: {fileID: 1047858306}
+  cardImages:
+  - {fileID: 21300000, guid: eb570210fde1cc24c82b0b86a4b271d2, type: 3}
+  - {fileID: 21300000, guid: 59a3f3ec586c7224e9a16e8443e267c3, type: 3}
+  - {fileID: 21300000, guid: f713187d61346c64a8deb601baeb44c5, type: 3}
+  - {fileID: 21300000, guid: 91149020fa99a714eb421ce380fd8fd3, type: 3}
+  - {fileID: 21300000, guid: d5db70cbb7167b4449e5b13e645c5776, type: 3}
+  - {fileID: 21300000, guid: 3d1c1d90a316d8b4094857e7fb7c51bf, type: 3}
+  - {fileID: 21300000, guid: c0b7834ea940bda49a0f2f668ed5831c, type: 3}
+  - {fileID: 21300000, guid: 58ff6af1f5980a04996e6d8694706b99, type: 3}
+  - {fileID: 21300000, guid: 1019d0fba1b69c448936d382d8606afd, type: 3}
+  - {fileID: 21300000, guid: da8f4c94cb877ae4e81cae164311cf96, type: 3}
+  frontImage: {fileID: 21300000, guid: 3ced60acc5d5895459a2e70d39368fd6, type: 3}
 --- !u!4 &98110332
 Transform:
   m_ObjectHideFlags: 0
@@ -291,7 +303,7 @@ GameObject:
   m_Component:
   - component: {fileID: 255123159}
   - component: {fileID: 255123158}
-  - component: {fileID: 255123157}
+  - component: {fileID: 255123160}
   m_Layer: 0
   m_Name: Square-Front
   m_TagString: Untagged
@@ -299,32 +311,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!61 &255123157
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 255123155}
-  m_Enabled: 1
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0
 --- !u!212 &255123158
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -366,8 +352,8 @@ SpriteRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
-  m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
-  m_Color: {r: 0.21069232, g: 0.7830189, b: 0.12927197, a: 1}
+  m_Sprite: {fileID: 21300000, guid: 3ced60acc5d5895459a2e70d39368fd6, type: 3}
+  m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
   m_DrawMode: 0
@@ -386,7 +372,7 @@ RectTransform:
   m_GameObject: {fileID: 255123155}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1.2, y: 1.7, z: 1}
+  m_LocalScale: {x: 0.5, y: 0.5, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 0}
@@ -394,9 +380,35 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -14.62, y: 0.38000008}
+  m_AnchoredPosition: {x: -14.602, y: 0.103}
   m_SizeDelta: {x: 1, y: 1}
   m_Pivot: {x: 0.5, y: 0.5}
+--- !u!61 &255123160
+BoxCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 255123155}
+  m_Enabled: 1
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: 0, y: 0}
+  m_SpriteTilingProperty:
+    border: {x: 0, y: 0, z: 0, w: 0}
+    pivot: {x: 0.5, y: 0.5}
+    oldSize: {x: 2.4, y: 3.4}
+    newSize: {x: 1, y: 1}
+    adaptiveTilingThreshold: 0.5
+    drawMode: 0
+    adaptiveTiling: 0
+  m_AutoTiling: 0
+  serializedVersion: 2
+  m_Size: {x: 2.4, y: 3.4}
+  m_EdgeRadius: 0
 --- !u!1 &1047858304
 GameObject:
   m_ObjectHideFlags: 0
