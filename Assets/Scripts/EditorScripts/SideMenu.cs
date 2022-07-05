@@ -53,8 +53,6 @@ public class SideMenu : MonoBehaviour
         musicManageScript = musicManageObj.GetComponent<MusicManage>();
         metScript = metObj.GetComponent<Metronome>();
 
-        
-
         bgmTexts = new()
         {
             "Select Music"

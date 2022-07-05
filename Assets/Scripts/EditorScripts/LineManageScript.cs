@@ -479,6 +479,7 @@ public class LineManageScript : MonoBehaviour
     public void setMusicSpeed(float _speed)
     {
         musicSpeed = _speed;
+        musicScript.mSource.pitch = _speed;
     }
 
     public void musicPlay()
