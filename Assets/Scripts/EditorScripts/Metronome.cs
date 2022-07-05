@@ -62,14 +62,16 @@ public class Metronome : MonoBehaviour
         nextPos = (baseOffset / 1000) + (60f / BPM);
     }
 
-    void getNextPos()
+    public void getNextPos()
     {
+        Debug.Log("GetNextPos 실행됨");
         if (musicScript && musicScript.playStatus)
         {
             float currentPos = musicScript.mSource.time;
             float bo = baseOffset / 1000;
             float gap = 60f / BPM;
             nextPos = Mathf.Floor((currentPos - bo) / gap + 1) * gap + bo;
+            Debug.Log("GetNextPos 연산됨 = " + nextPos);
         }
     }
 

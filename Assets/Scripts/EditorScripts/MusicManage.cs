@@ -7,8 +7,9 @@ public class MusicManage : MonoBehaviour
     [HideInInspector]
     public AudioSource mSource;
 
-    public GameObject lineManagerObj;
+    public GameObject lineManagerObj, metronomeObj;
     LineManageScript lineManageScript;
+    Metronome metronomeScript;
     public bool playStatus = false;
 
     // Start is called before the first frame update
@@ -18,6 +19,7 @@ public class MusicManage : MonoBehaviour
         mSource.clip = null;
         mSource.time = 0;
         lineManageScript = lineManagerObj.GetComponent<LineManageScript>();
+        metronomeScript = metronomeObj.GetComponent<Metronome>();
     }
 
     // Update is called once per frame
@@ -52,6 +54,7 @@ public class MusicManage : MonoBehaviour
                 mSource.Play();
                 lineManageScript.musicPlay();
                 playStatus = true;
+                metronomeScript.getNextPos();
             }
             else
             {
