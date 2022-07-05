@@ -10,14 +10,13 @@ public class AimWolfCheck : MonoBehaviour
     private Vector3 mouseposition;
     public TextMeshProUGUI countText;
     int countMax = 16;
+    AudioSource audioSource;
 
-    // Start is called before the first frame update
     void Start()
     {
-        Debug.Log("START");
+        audioSource = this.GetComponent<AudioSource>();
     }
 
-    // Update is called once per frame
     void Update()
     {
 
@@ -30,14 +29,15 @@ public class AimWolfCheck : MonoBehaviour
 
             if (hit)
             {
-
                 count++;
                 Debug.Log(count);
                 Debug.Log(hit.transform.gameObject);
 
                 hit.transform.position = new Vector3(-5, -9, 0);
+                audioSource.Play();
             }
         }
+        
         countText.text = count + " / " + countMax;
     }
 }

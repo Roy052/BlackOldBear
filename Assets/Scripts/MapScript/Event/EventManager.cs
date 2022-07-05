@@ -15,7 +15,10 @@ public class EventManager : MonoBehaviour
     public int currentEvent;
     public Button yesButton, noButton;
     public Text descriptionText, yesText, noText;
-
+    
+    public SpriteRenderer backroundImage;
+    public Sprite[] backgroundImageSprites;
+    public GameObject hands, eventDescriptionBackground;
     private void Start()
     {
         eventSceneList = new List<string>();
@@ -24,8 +27,9 @@ public class EventManager : MonoBehaviour
         gameManagerObject = GameObject.Find("GameManager");
 
         //eventNum = Random.Range(0, event_Info.eventDescription.Length);
-        eventNum = 1;
+        eventNum = 0;
 
+        backroundImage.sprite = backgroundImageSprites[eventNum];
         descriptionText.text = event_Info.eventDescription[eventNum];
         Debug.Log(eventNum);
         Debug.Log(event_Info.eventConditionType[eventNum]);
@@ -100,7 +104,13 @@ public class EventManager : MonoBehaviour
         }
 
         if (eventNum < eventSceneList.Count)
+        {
             SceneManager.LoadSceneAsync(eventSceneList[eventNum], LoadSceneMode.Additive);
+            hands.SetActive(false);
+            backroundImage.sprite = null;
+            eventDescriptionBackground.SetActive(false);
+        }
+            
         else
         {
             //Reward
