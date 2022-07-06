@@ -41,6 +41,7 @@ public class BattleManager : MonoBehaviour
         bmm = GameObject.Find("BattleManager").GetComponent<BattleMusicManager>();
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
 
+        patternName = gm.patternName;
         pData = SaveScript.loadData2(patternName);
         wm.wData = pData.wolfs;
         musicName = pData.BGM;

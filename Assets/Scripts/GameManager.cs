@@ -12,6 +12,7 @@ public class GameManager : MonoBehaviour
     public float time;
     public float musicLoadDelay = 3.0f;
     public float musicEndDelay = 3.0f;
+    public string patternName;
 
     public static float FadeTimeGap = 0.5f;
 
