@@ -179,7 +179,7 @@ public class LineManageScript : MonoBehaviour
             else
             {
                 nodeTextList[i].SetText("" + (i + count));
-                Vector3 pos = new Vector3(xpos + 0.3f, 0.3f, -5f);
+                Vector3 pos = new Vector3(xpos + 0.3f, 0.3f, -1f);
                 Vector3 newPos = Camera.main.WorldToScreenPoint(pos);
                 nodeTextList[i].transform.position = newPos;
             }
@@ -369,7 +369,6 @@ public class LineManageScript : MonoBehaviour
                         sliderObj.transform.position = new Vector3(pos.x, 4.5f, -2.1f);
                         currentPos = musicLength * ((pos.x + 8) / 16);
                     }
-                    Debug.Log(currentPos + " / " + musicLength);
 
                     circleReload();
                 }
@@ -392,7 +391,6 @@ public class LineManageScript : MonoBehaviour
 
                 sliderObj.transform.position = new Vector3(currentPos / musicLength * 16 - 8, 4.5f, -2.1f);
 
-                Debug.Log(currentPos + " / " + musicLength);
                 circleReload();
             }
             else if (wheelInput > 0)
@@ -403,7 +401,6 @@ public class LineManageScript : MonoBehaviour
 
                 sliderObj.transform.position = new Vector3(currentPos / musicLength * 16 - 8, 4.5f, -2.1f);
 
-                Debug.Log(currentPos + " / " + musicLength);
                 circleReload();
             }
         }
