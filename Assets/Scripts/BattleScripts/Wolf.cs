@@ -4,6 +4,8 @@ using UnityEngine;
 public class Wolf : MonoBehaviour
 {
     public int judgementState = 0; // 0 : out, 1 : bad, 2 : great, 3 : perfect
+    bool isBad = false;
+    bool isMoved = false;
 
     GameManager gm;
     WolfManager wm;
@@ -30,6 +32,10 @@ public class Wolf : MonoBehaviour
     int scB = -10;
     bool isDistroyed = false;
     float currTime,enterTime;
+
+    public int wolfHP;
+    public enum WolfState {die, idle, damaged};
+    public WolfState wolfState = WolfState.idle;
     void Start()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -51,12 +57,137 @@ public class Wolf : MonoBehaviour
         direction = direction.normalized;
         latency = gm.speed*-0.2f + 2.2f; // set Note Speed
 
+        wolfHP = wm.wolfHp[wm.now];
         type = wm.wolfTyped[wm.now++];
     }
     // Update is called once per frame
     void Update()
     {
-        if (type == 0.0f)
+        if (!isMoved)
+        {
+            if (Input.GetMouseButtonDown(0))
+            {
+                if (!wm.clicked)
+                {
+                    procNote();
+                    if (!isBad && wm.wolfGenerated[wm.first - 1] == gameObject)
+                    {
+                        wolfHP--;
+                        if (wolfHP > 0)
+                        {
+                            isDistroyed = false;
+                            wolfState = WolfState.damaged;
+                            isMoved = true;
+                            wm.emptyFirst++;
+                            wm.first--;
+                        }
+                    }
+                }
+            }
+            if (Input.GetMouseButtonUp(0))
+            {
+                if (isDistroyed)
+                {
+                    if (isBad && wm.wolfGenerated[wm.first-1] == gameObject)
+                    {
+                        wm.emptyFirst += wolfHP-1;
+                    }
+                    Destroy(gameObject);
+                }
+                isBad = false;
+                wm.clicked = false;
+            }
+            if (Input.GetKeyDown(KeyCode.Space))
+            {
+                if (!wm.clicked)
+                {
+                    procNote();
+                    if (!isBad&& wm.wolfGenerated[wm.first-1] == gameObject)
+                    {
+                        wolfHP--;
+                        if (wolfHP > 0)
+                        {
+                            isDistroyed = false;
+                            wolfState = WolfState.damaged;
+                            isMoved = true;
+                            wm.emptyFirst++;
+                            wm.first--;
+                        }
+                    }
+                }
+            }
+            if (Input.GetKeyUp(KeyCode.Space))
+            {
+                if (isDistroyed)
+                {
+                    if (isBad && wm.wolfGenerated[wm.first-1] == gameObject)
+                    {
+                        wm.emptyFirst += wolfHP-1;
+                    }
+                    Destroy(gameObject);
+                }
+                isBad = false;
+                wm.clicked = false;
+            }
+        }
+
+        if (wolfState == WolfState.damaged)
+        {
+            if(isMoved)
+            {
+                wm.clicked = true;
+                try
+                {
+                    if (wm.wolfEmpty[wm.emptyFirst] == null)
+                    {
+                        isMoved = false;
+                        //wm.clicked = false;
+                        //wolfState = WolfState.idle;
+                        direction = (-this.transform.position).normalized;
+                    }
+
+                else
+                {
+                    if ((wm.wolfEmpty[wm.emptyFirst].transform.position - this.transform.localPosition).magnitude < 0.1)
+                    {
+                            direction = (bearPosition - this.transform.position).normalized;
+                            isMoved = false;
+                            wm.clicked = false;
+                        //wolfState = WolfState.idle;
+                        type = wm.wolfEmpty[wm.emptyFirst].GetComponent<EmptyWolf>().type;
+                    }
+                    direction = (wm.wolfEmpty[wm.emptyFirst].transform.position - this.transform.position).normalized * 2;
+                }
+                transform.position += direction * Time.deltaTime * (distance / latency);
+                }
+                catch
+                {
+                    Debug.Log(wm.wolfEmpty.Count+" "+wm.emptyFirst);
+                }
+            }
+            else
+            {
+                //wm.clicked = false;
+                if (type == 0.0f)
+                {
+                    direction= (bearPosition - this.transform.position).normalized; // set direction
+                    transform.position += direction * Time.deltaTime * (distance / latency);
+                }
+                else
+                {
+                    direction = (bearPosition - this.transform.position).normalized; // set direction
+                    transform.position += direction * Time.deltaTime * (distance / latency);
+                    transform.RotateAround(bearPosition, Vector3.back, Time.deltaTime * 70);
+                    transform.Rotate(Vector3.forward, Time.deltaTime * 70);
+                }
+            }
+
+            //catch
+            {
+                //.Log(wm.wolfEmpty.Count + " " + wm.emptyFirst + " " + wm.wolfGenerated.Count + " " + wm.first);
+            }
+        }
+        else if (type == 0.0f)
         {
             transform.position += direction * Time.deltaTime * (distance / latency);
         }
@@ -67,39 +198,14 @@ public class Wolf : MonoBehaviour
             transform.RotateAround(bearPosition, Vector3.back, Time.deltaTime * 70);
             transform.Rotate(Vector3.forward, Time.deltaTime * 70);
         }
-        if (Input.GetMouseButtonDown(0))
-        {
-            if(!wm.clicked)
-            {
-                procNote();
-            }
-        }
-        if (Input.GetMouseButtonUp(0))
-        {
-            if (isDistroyed)
-                Destroy(gameObject);
-            wm.clicked = false;
-        }
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            if(!wm.clicked)
-            {
-                procNote();
-            }
-        }
-        if (Input.GetKeyUp(KeyCode.Space))
-        {
-            if(isDistroyed)
-                Destroy(gameObject);
-            wm.clicked = false;
-        }
     }
 
     float cosineDistance()
     {
         float angle = pc.angle;
+        Vector3 check_direction = bearPosition - this.transform.position;
         Vector3 mDirection = new Vector3(-Mathf.Cos(angle * Mathf.Deg2Rad), -Mathf.Sin(angle * Mathf.Deg2Rad), 0);
-        return Vector3.Dot(mDirection, direction)/mDirection.magnitude/direction.magnitude;
+        return Vector3.Dot(mDirection, check_direction)/mDirection.magnitude/check_direction.magnitude;
     }
 
     void procNote()
@@ -114,12 +220,14 @@ public class Wolf : MonoBehaviour
         // Debug.Log("processing Note");
         if (judgementState == 1) // Bad
         {
+            Debug.Log("bad1");
             gm.score += scB;
             wm.first++;
             jm.setJudgeImage(1);
             jm.playJudgeSound(1);
             bm.countJudge(1);
             isDistroyed = true;
+            isBad = true;
             // Destroy(gameObject);
         }
         else if (judgementState == 2) // great
@@ -132,6 +240,7 @@ public class Wolf : MonoBehaviour
                 jm.playJudgeSound(2);
                 bm.countJudge(2);
                 isDistroyed = true;
+                isBad = false;
                 // Destroy(gameObject);
             }
             else if (cosDis > angleGr) // great
@@ -142,16 +251,19 @@ public class Wolf : MonoBehaviour
                 jm.playJudgeSound(2);
                 bm.countJudge(2);
                 isDistroyed = true;
+                isBad = false;
                 // Destroy(gameObject);
             }
             else // bad
             {
+                Debug.Log("bad2");
                 gm.score += scGB;
                 wm.first++;
                 jm.setJudgeImage(1);
                 jm.playJudgeSound(1);
                 bm.countJudge(1);
                 isDistroyed = true;
+                isBad = true;
                 // Destroy(gameObject);
             }
         }
@@ -165,6 +277,7 @@ public class Wolf : MonoBehaviour
                 jm.playJudgeSound(3);
                 bm.countJudge(3);
                 isDistroyed = true;
+                isBad = false;
                 // Destroy(gameObject);
             }
             else if (cosDis > angleGr) // great
@@ -175,16 +288,19 @@ public class Wolf : MonoBehaviour
                 jm.playJudgeSound(2);
                 bm.countJudge(2);
                 isDistroyed = true;
+                isBad = false;
                 // Destroy(gameObject);
             }
             else // bad
             {
+                Debug.Log("bad3");
                 gm.score += scPB;
                 wm.first++;
                 jm.setJudgeImage(1);
                 jm.playJudgeSound(1);
                 bm.countJudge(1);
                 isDistroyed = true;
+                isBad = true;
                 // Destroy(gameObject);
             }
         } 
@@ -192,7 +308,7 @@ public class Wolf : MonoBehaviour
     float check;
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.tag=="Bad")
+        if(collision.tag=="Bad"&&!isMoved)
         {
             float time = Time.time;
             //Debug.Log("exit time " + (time - currTime));
@@ -201,9 +317,11 @@ public class Wolf : MonoBehaviour
 
             if (!isDistroyed)
             {
+                Debug.Log("bad4"+wm.clicked);
                 judgementState = 1;
                 gm.score += scB;
                 wm.first++;
+                wm.emptyFirst += (wolfHP-1);
                 jm.setJudgeImage(1);
                 jm.playJudgeSound(1);
                 bm.countJudge(1);

@@ -10,13 +10,16 @@ public class WolfManager : MonoBehaviour
     public GameObject bear;
     public GameObject wolf;
     public GameObject fox;
+    public GameObject EmptyWolf;
     Vector3 position;
     public List<GameObject> wolfGenerated = new List<GameObject>();
     public List<float> wolfTyped = new List<float>();
+    public List<GameObject> wolfEmpty = new List<GameObject>();
     float time_start;
     public float time_current = 0f;
     public float radius = 7f;
     public float curveAngle = 70;
+    public int freq = 5;
     GameManager gm;
     bool noteAvailable = true;
 
@@ -32,6 +35,9 @@ public class WolfManager : MonoBehaviour
     [HideInInspector] public int first = 0;
     [HideInInspector] public bool clicked = false;
     [HideInInspector] public int now = 0;
+    public int emptyFirst;
+    [HideInInspector] public int[] emptyState = new int[500];
+    [HideInInspector] public int[] wolfHp = new int[500];
     private void Start()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -49,6 +55,25 @@ public class WolfManager : MonoBehaviour
         nextAngle = wData[noteCount++].angle;
         nextGenPos = AngleToPosition(nextAngle);
         //Debug.Log("time: "+nextGenTime+" / angle: "+nextAngle+" / pos: "+nextGenPos);
+
+        for(int i = 0; i < maxNote; i++)
+        {
+            wolfHp[i] = 1;
+            emptyState[i] = 0;
+        }
+        
+        for(int i = maxNote - 1; i >= 1; i--)
+        {
+            if (wData[i].time - wData[i - 1].time < 1.1f)
+            {
+                if(Random.Range(0, freq) == 0)
+                {
+                    wolfHp[i - 1] += wolfHp[i];
+                    emptyState[i] = 1;
+                }
+            }
+        }
+        emptyFirst = -1;
     }
 
     public Vector3 AngleToPosition(float Angle)
@@ -74,26 +99,43 @@ public class WolfManager : MonoBehaviour
                 if (type == 0)
                 {
                     wolfTyped.Add(0);
-                    newNote = Instantiate(wolf, nextGenPos, Quaternion.identity);
+                    if(emptyState[noteCount-1]==0)
+                        newNote = Instantiate(wolf, nextGenPos, Quaternion.identity);
+                    else
+                        newNote = Instantiate(EmptyWolf, nextGenPos, Quaternion.identity);
                 }
                 else if (type == 1)
                 {
                     wolfTyped.Add(0);
-                    newNote = Instantiate(wolf, 2 * nextGenPos, Quaternion.identity);
+                    if (emptyState[noteCount-1] == 0)
+                        newNote = Instantiate(wolf, nextGenPos*2, Quaternion.identity);
+                    else
+                        newNote = Instantiate(EmptyWolf, nextGenPos*2, Quaternion.identity);
                 }
                 else if (type == 2)
                 {
                     wolfTyped.Add(1);
-                    newNote = Instantiate(fox, Quaternion.Euler(0, 0, Mathf.Rad2Deg * 1.312235f) * nextGenPos, Quaternion.identity);
+                    if (emptyState[noteCount-1] == 0)
+                        newNote = Instantiate(fox, Quaternion.Euler(0, 0, Mathf.Rad2Deg * 1.312235f) * nextGenPos, Quaternion.identity);
+                    else
+                        newNote = Instantiate(EmptyWolf, Quaternion.Euler(0, 0, Mathf.Rad2Deg * 1.312235f) * nextGenPos, Quaternion.identity);
                 }
                 else
                 {
                     wolfTyped.Add(1);
-                    newNote = Instantiate(fox, Quaternion.Euler(0, 0, Mathf.Rad2Deg * 1.312235f) * nextGenPos * 2, Quaternion.identity);
+                    if (emptyState[noteCount-1] == 0)
+                        newNote = Instantiate(fox, Quaternion.Euler(0, 0, Mathf.Rad2Deg * 1.312235f) * nextGenPos * 2, Quaternion.identity);
+                    else
+                        newNote = Instantiate(EmptyWolf, Quaternion.Euler(0, 0, Mathf.Rad2Deg * 1.312235f) * nextGenPos*2, Quaternion.identity);
                 }
 
                 //newNote = Instantiate(wolf, nextGenPos, Quaternion.identity);
-                wolfGenerated.Add(newNote);
+                if (emptyState[noteCount-1] == 0)
+                    wolfGenerated.Add(newNote);
+                else
+                {
+                    wolfEmpty.Add(newNote);
+                }
                 if(!isNextExist)
                 {
                     noteAvailable = false;
