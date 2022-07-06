@@ -740,6 +740,9 @@ MonoBehaviour:
   backgroundImageSprites:
   - {fileID: 21300000, guid: f5b667f8aaa4042458c0d56248958f88, type: 3}
   - {fileID: 21300000, guid: c43f59cf0de69274b9469b762dcbc1c3, type: 3}
+  - {fileID: 21300000, guid: 8d70747bcd98b4d41a94f5041cf29509, type: 3}
+  - {fileID: 21300000, guid: b3b4a43e442be464fa2a84c7cb923f10, type: 3}
+  - {fileID: 21300000, guid: dcb73613572e4c14c9dcd4433171dfa6, type: 3}
   hands: {fileID: 930639569}
   eventDescriptionBackground: {fileID: 12755658}
 --- !u!1 &841764232

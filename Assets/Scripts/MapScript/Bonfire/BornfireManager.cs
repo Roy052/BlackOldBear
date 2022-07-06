@@ -53,11 +53,12 @@ public class BornfireManager : MonoBehaviour
         {
             case 0:
                 gameManagerObject.GetComponent<ItemManager>().itemChange(0, -3);
+                gameManagerObject.GetComponent<StatusManager>().Upgrade(0);
                 Debug.Log("Upgrade Damage");
                 break;
             case 1:
                 gameManagerObject.GetComponent<ItemManager>().itemChange(1, -3);
-                gameManagerObject.GetComponent<StatusManager>().ChangeMaxhealth(10);
+                gameManagerObject.GetComponent<StatusManager>().Upgrade(1);
                 Debug.Log("Upgrade Armor");
                 break;
         }

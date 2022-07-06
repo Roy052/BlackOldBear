@@ -21,17 +21,23 @@ public class CopyCards : MonoBehaviour
     Vector3 MousePosition;
 
     int Left = 36;
-    float timeLimit = 30;
+    float timeLimit = 15;
     
     List<GameObject> id_front = new List<GameObject>();
     List<int> backNumber = new List<int>() { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18 };
     List<int> mixed_backNumber = new List<int>();
     bool gameEnd = false;
 
+    GameObject gameManagerObject;
+    ItemManager itemManager;
+    StatusManager statusManager;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManagerObject = GameObject.Find("GameManager");
+        itemManager = gameManagerObject.GetComponent<ItemManager>();
+        statusManager = gameManagerObject.GetComponent<StatusManager>();
 
         mixed_backNumber = backNumber.OrderBy(a => Guid.NewGuid()).ToList(); 
 
@@ -54,14 +60,19 @@ public class CopyCards : MonoBehaviour
     void Update()
     {
 
-        timeLimit -= Time.deltaTime;
+        if (gameEnd == false)
+            timeLimit -= Time.deltaTime;
+        else timeLimit = 0;
         string timeText = (Mathf.Round(timeLimit * 10) / 10).ToString();
         clockText.text = timeText;
 
 
-        if (Left == 0 || timeLimit <= 0)
+        if (gameEnd == false && Left == 0 || timeLimit <= 0)
         {
             gameEnd = true;
+            FlipAllCard();
+            SceneByScene sbs = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneByScene>();
+            sbs.NextButtonON();
         }
 
         if (gameEnd == false && Input.GetMouseButtonDown(0))
@@ -84,14 +95,19 @@ public class CopyCards : MonoBehaviour
                 {
                     if(FindCardSpriteNum(First_Choice) == FindCardSpriteNum(mixed_backNumber[now_id-1]) && hit.transform.gameObject != Before_GameObject)
                     {
-
-                        Debug.Log("correct");
+                        //Sprite Change
                         hit.transform.gameObject.GetComponent<SpriteRenderer>().sprite
                             = cardImages[FindCardSpriteNum(mixed_backNumber[now_id - 1])];
+
+                        //Card Effect
+                        CardEffect(FindCardSpriteNum(First_Choice));
+
+                        //After Effect
                         First_Choice = -1;
                         Left = Left - 2;
                         hit.transform.gameObject.GetComponent<BoxCollider2D>().enabled = false;
                         Before_GameObject.GetComponent<BoxCollider2D>().enabled = false;
+
                         
                     }
                     else if(First_Choice == mixed_backNumber[now_id-1] && hit.transform.gameObject == Before_GameObject){
@@ -163,4 +179,53 @@ public class CopyCards : MonoBehaviour
         if(second != null)
             second.GetComponent<SpriteRenderer>().sprite = frontImage;
     }
+
+    void FlipAllCard()
+    {
+        for (int i = 0; i < id_front.Count; i++)
+        {
+            id_front[i].GetComponent<SpriteRenderer>().sprite = frontImage;
+            id_front[i].GetComponent<BoxCollider2D>().enabled = false;
+        }
+            
+    }
+
+    void CardEffect(int num)
+    {
+        Debug.Log(num + ", " + timeLimit);
+        switch (num)
+        {
+            case 0:
+                itemManager.moneyChange(7 + UnityEngine.Random.Range(0,2));
+                break;
+            case 1:
+                itemManager.moneyChange(-5 - UnityEngine.Random.Range(0, 2));
+                break;
+            case 2:
+                itemManager.itemChange(0, 1);
+                break;
+            case 3:
+                itemManager.itemChange(1, 1);
+                break;
+            case 4:
+                statusManager.Upgrade(0);
+                break;
+            case 5:
+                statusManager.Upgrade(1);
+                break;
+            case 6:
+                timeLimit += 5;
+                break;
+            case 7:
+                timeLimit -= 3;
+                break;
+            case 8:
+                statusManager.ChangeHealth(statusManager.GetMaxhealth() / 10);
+                break;
+            case 9:
+                statusManager.ChangeHealth(- statusManager.GetMaxhealth() / 20);
+                break;
+        }
+    }
+
 }

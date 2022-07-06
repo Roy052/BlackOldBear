@@ -24,10 +24,11 @@ public class EventManager : MonoBehaviour
         eventSceneList = new List<string>();
         eventSceneList.Add("Mini-AimBooster");
         eventSceneList.Add("RunningBear");
+        eventSceneList.Add("RememberCards");
         gameManagerObject = GameObject.Find("GameManager");
 
         //eventNum = Random.Range(0, event_Info.eventDescription.Length);
-        eventNum = 0;
+        eventNum = 2;
 
         backroundImage.sprite = backgroundImageSprites[eventNum];
         descriptionText.text = event_Info.eventDescription[eventNum];
@@ -115,10 +116,10 @@ public class EventManager : MonoBehaviour
             //Reward
             switch (eventNum)
             {
-                case 2:
+                case 3:
                     gameManagerObject.GetComponent<ItemManager>().itemChange(0, 3);
                     break;
-                case 3:
+                case 4:
                     gameManagerObject.GetComponent<ItemManager>().moneyChange(50);
                     break;
             }

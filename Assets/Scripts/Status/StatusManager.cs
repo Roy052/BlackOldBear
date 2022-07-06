@@ -50,4 +50,17 @@ public class StatusManager : MonoBehaviour
 
         uIBarManager.UITextUpdate(0, health, maxhealth);
     }
+
+    public void Upgrade(int num)
+    {
+        if (num == 0)
+        {
+            Debug.Log("Upgrade Damage");
+        }
+        else
+        {
+            ChangeMaxhealth(maxhealth / 20);
+            Debug.Log("Upgrade Armor");
+        }
+    }
 }
