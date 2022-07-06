@@ -32,4 +32,12 @@ public class UIBarManager : MonoBehaviour
                 break;
         }
     }
+    public void UIBarON()
+    {
+        UIBar.SetActive(true);
+    }
+    public void UIBarOFF()
+    {
+        UIBar.SetActive(false);
+    }
 }

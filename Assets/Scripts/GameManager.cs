@@ -19,6 +19,10 @@ public class GameManager : MonoBehaviour
     public int stageNum;
     //Unique GameManager
     private static GameManager gameManagerInstance;
+    FadeManager fadeManager;
+    PauseMenuManager pauseMenuManager;
+    UIBarManager uIBarManager;
+    bool pauseON = false;
     void Awake()
     {
         DontDestroyOnLoad(this);
@@ -30,16 +34,39 @@ public class GameManager : MonoBehaviour
         {
             Destroy(gameObject);
         }
+        
     }
     private void Start()
     {
         DontDestroyOnLoad(this);
         stageNum = 0;
+        fadeManager = GameObject.Find("FadeManager").GetComponent<FadeManager>();
+        StartCoroutine(fadeManager.FadeIn(1));
+
+        pauseMenuManager = GameObject.Find("PauseMenu").GetComponent<PauseMenuManager>();
+        uIBarManager = this.GetComponent<UIBarManager>();
+        uIBarManager.UIBarOFF();
+
+        pauseMenuManager.PauseOFF();
+    }
+
+    private void Update()
+    {
+        if (Input.GetKeyDown(KeyCode.Escape))
+        {
+            if(pauseON == true)
+                pauseMenuManager.PauseOFF();
+            else
+                pauseMenuManager.PauseON();
+
+            pauseON = !pauseON;
+        }
     }
 
     public void MenuToBattle()
     {
         SceneManager.LoadScene("MapScene");
+        uIBarManager.UIBarON();
     }
 
     public void GameOver()
@@ -47,4 +74,18 @@ public class GameManager : MonoBehaviour
         SceneManager.LoadScene("Menu");
     }
 
+    public void GameExit()
+    {
+        Application.Quit();
+    }
+
+    public void UIBarON()
+    {
+        uIBarManager.UIBarON();
+    }
+
+    public void UIBarOFF()
+    {
+        uIBarManager.UIBarOFF();
+    }
 }
