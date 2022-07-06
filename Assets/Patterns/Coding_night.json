@@ -74,7 +74,7 @@
         {
             "node": 17,
             "fullBeat": 4,
-            "beat": 2,
+            "beat": 0,
             "angle": 324.0,
             "type": 0
         },
@@ -86,24 +86,10 @@
             "type": 0
         },
         {
-            "node": 18,
-            "fullBeat": 4,
-            "beat": 2,
-            "angle": 324.0,
-            "type": 0
-        },
-        {
             "node": 19,
             "fullBeat": 4,
-            "beat": 1,
+            "beat": 0,
             "angle": 324.0,
-            "type": 0
-        },
-        {
-            "node": 19,
-            "fullBeat": 4,
-            "beat": 2,
-            "angle": 288.0,
             "type": 0
         },
         {
@@ -116,8 +102,8 @@
         {
             "node": 21,
             "fullBeat": 4,
-            "beat": 2,
-            "angle": 144.0,
+            "beat": 0,
+            "angle": 216.0,
             "type": 0
         },
         {
@@ -128,16 +114,9 @@
             "type": 0
         },
         {
-            "node": 22,
-            "fullBeat": 4,
-            "beat": 2,
-            "angle": 144.0,
-            "type": 0
-        },
-        {
             "node": 23,
             "fullBeat": 4,
-            "beat": 1,
+            "beat": 0,
             "angle": 144.0,
             "type": 0
         },
@@ -235,7 +214,7 @@
         {
             "node": 33,
             "fullBeat": 4,
-            "beat": 2,
+            "beat": 0,
             "angle": 144.0,
             "type": 0
         },
@@ -247,13 +226,6 @@
             "type": 0
         },
         {
-            "node": 34,
-            "fullBeat": 4,
-            "beat": 2,
-            "angle": 144.0,
-            "type": 0
-        },
-        {
             "node": 35,
             "fullBeat": 4,
             "beat": 0,
@@ -261,16 +233,16 @@
             "type": 0
         },
         {
-            "node": 35,
+            "node": 36,
             "fullBeat": 4,
-            "beat": 1,
-            "angle": 144.0,
+            "beat": 0,
+            "angle": 36.0,
             "type": 0
         },
         {
             "node": 37,
             "fullBeat": 4,
-            "beat": 2,
+            "beat": 0,
             "angle": 36.0,
             "type": 0
         },
@@ -282,24 +254,10 @@
             "type": 0
         },
         {
-            "node": 38,
-            "fullBeat": 4,
-            "beat": 2,
-            "angle": 36.0,
-            "type": 0
-        },
-        {
             "node": 39,
             "fullBeat": 4,
-            "beat": 1,
+            "beat": 0,
             "angle": 36.0,
-            "type": 0
-        },
-        {
-            "node": 39,
-            "fullBeat": 4,
-            "beat": 2,
-            "angle": 0.0,
             "type": 0
         },
         {
@@ -389,7 +347,7 @@
         {
             "node": 49,
             "fullBeat": 4,
-            "beat": 2,
+            "beat": 0,
             "angle": 108.0,
             "type": 0
         },
@@ -401,24 +359,10 @@
             "type": 0
         },
         {
-            "node": 50,
-            "fullBeat": 4,
-            "beat": 2,
-            "angle": 108.0,
-            "type": 0
-        },
-        {
             "node": 51,
             "fullBeat": 4,
             "beat": 0,
             "angle": 72.0,
-            "type": 0
-        },
-        {
-            "node": 51,
-            "fullBeat": 4,
-            "beat": 2,
-            "angle": 36.0,
             "type": 0
         },
         {
@@ -426,6 +370,13 @@
             "fullBeat": 4,
             "beat": 0,
             "angle": 36.0,
+            "type": 0
+        },
+        {
+            "node": 53,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 360.0,
             "type": 0
         },
         {
@@ -452,7 +403,7 @@
         {
             "node": 57,
             "fullBeat": 4,
-            "beat": 2,
+            "beat": 0,
             "angle": 252.0,
             "type": 0
         },
@@ -464,13 +415,6 @@
             "type": 0
         },
         {
-            "node": 58,
-            "fullBeat": 4,
-            "beat": 2,
-            "angle": 180.0,
-            "type": 0
-        },
-        {
             "node": 59,
             "fullBeat": 4,
             "beat": 0,
@@ -478,9 +422,9 @@
             "type": 0
         },
         {
-            "node": 59,
+            "node": 60,
             "fullBeat": 4,
-            "beat": 2,
+            "beat": 0,
             "angle": 180.0,
             "type": 0
         },
@@ -501,7 +445,7 @@
         {
             "node": 65,
             "fullBeat": 4,
-            "beat": 2,
+            "beat": 0,
             "angle": 72.0,
             "type": 0
         },
@@ -513,13 +457,6 @@
             "type": 0
         },
         {
-            "node": 66,
-            "fullBeat": 4,
-            "beat": 2,
-            "angle": 216.0,
-            "type": 0
-        },
-        {
             "node": 67,
             "fullBeat": 4,
             "beat": 0,
@@ -527,16 +464,16 @@
             "type": 0
         },
         {
-            "node": 67,
+            "node": 68,
             "fullBeat": 4,
-            "beat": 2,
+            "beat": 0,
             "angle": 108.0,
             "type": 0
         },
         {
-            "node": 69,
+            "node": 70,
             "fullBeat": 4,
-            "beat": 3,
+            "beat": 0,
             "angle": 324.0,
             "type": 0
         },
