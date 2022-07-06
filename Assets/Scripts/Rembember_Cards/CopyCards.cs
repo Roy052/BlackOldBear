@@ -3,6 +3,8 @@ using System.Collections.Generic;
 using UnityEngine;
 using System;
 using System.Linq;
+using TMPro;
+
 public class CopyCards : MonoBehaviour
 {
     public GameObject Card_Front;
@@ -10,6 +12,7 @@ public class CopyCards : MonoBehaviour
     public Camera Camera;
     public Sprite[] cardImages;
     public Sprite frontImage;
+    public TextMeshProUGUI clockText;
 
     int i, j, k;
     int count = 0;
@@ -18,7 +21,7 @@ public class CopyCards : MonoBehaviour
     Vector3 MousePosition;
 
     int Left = 36;
-    double timeLimit = 30;
+    float timeLimit = 30;
     
     List<GameObject> id_front = new List<GameObject>();
     List<int> backNumber = new List<int>() { 1, 1, 2, 2, 3, 3, 4, 4, 5, 5, 6, 6, 7, 7, 8, 8, 9, 9, 10, 10, 11, 11, 12, 12, 13, 13, 14, 14, 15, 15, 16, 16, 17, 17, 18, 18 };
@@ -50,7 +53,13 @@ public class CopyCards : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Left == 0 || timeLimit <= 0)
+
+        timeLimit -= Time.deltaTime;
+        string timeText = (Mathf.Round(timeLimit * 10) / 10).ToString();
+        clockText.text = timeText;
+
+
+        if (Left == 0 || timeLimit <= 0)
         {
             gameEnd = true;
         }
