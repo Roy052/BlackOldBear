@@ -14,16 +14,10 @@ public class BornfireManager : MonoBehaviour
     private void Start()
     {
         gameManagerObject = GameObject.Find("GameManager");
-        daggerText.text = "3";
         leatherText.text = "3";
         
         ItemManager itemManager = gameManagerObject.GetComponent<ItemManager>();
         int[] itemArray = itemManager.currentItem();
-        if (itemArray[0] < 3)
-        {
-            daggerText.color = Color.red;
-            damageUpgradeBox.SetActive(false);
-        }
         if (itemArray[1] < 3)
         {
             leatherText.color = Color.red;

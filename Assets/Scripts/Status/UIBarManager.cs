@@ -25,7 +25,7 @@ public class UIBarManager : MonoBehaviour
                 moneyText.text = num + "";
                 break;
             case 2:
-                daggerText.text = num + "";
+                //daggerText.text = num + "";
                 break;
             case 3:
                 leatherText.text = num + "";

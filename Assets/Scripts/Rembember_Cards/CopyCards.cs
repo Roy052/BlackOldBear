@@ -129,25 +129,17 @@ public class CopyCards : MonoBehaviour
 
     public int FindCardSpriteNum(int num)
     {
-        if (num <= 3) // Money +  [1,2,3]
+        if (num <= 4) // Money +  [1,2,3,4]
         {
             return 0;
         }
-        else if (num <= 5) // Money - [4,5]
+        else if (num <= 7) // Money - [5, 6, 7]
         {
             return 1;
         }
-        else if (num <= 7) // Dagger [6,7]
-        {
-            return 2;
-        }
-        else if (num <= 9) // Leather [8,9]
+        else if (num <= 10) // Leather [8, 9, 10]
         {
             return 3;
-        }
-        else if (num <= 10) // DamageUP [10]
-        {
-            return 4;
         }
         else if (num <= 11) // ArmorUP [11]
         {
