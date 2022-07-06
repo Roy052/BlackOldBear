@@ -4,6 +4,7 @@ using UnityEngine;
 public class Wolf : MonoBehaviour
 {
     public int judgementState = 0; // 0 : out, 1 : bad, 2 : great, 3 : perfect
+    public int difficultly = 3;
     bool isBad = false;
     bool isMoved = false;
 
@@ -223,6 +224,7 @@ public class Wolf : MonoBehaviour
             Debug.Log("bad1");
             gm.score += scB;
             wm.first++;
+            sm.ChangeHealth(-(wolfHP + difficultly));
             jm.setJudgeImage(1);
             jm.playJudgeSound(1);
             bm.countJudge(1);
@@ -259,6 +261,7 @@ public class Wolf : MonoBehaviour
                 Debug.Log("bad2");
                 gm.score += scGB;
                 wm.first++;
+                sm.ChangeHealth(-(wolfHP + difficultly));
                 jm.setJudgeImage(1);
                 jm.playJudgeSound(1);
                 bm.countJudge(1);
@@ -296,6 +299,7 @@ public class Wolf : MonoBehaviour
                 Debug.Log("bad3");
                 gm.score += scPB;
                 wm.first++;
+                sm.ChangeHealth(-(wolfHP + difficultly));
                 jm.setJudgeImage(1);
                 jm.playJudgeSound(1);
                 bm.countJudge(1);
@@ -321,6 +325,7 @@ public class Wolf : MonoBehaviour
                 judgementState = 1;
                 gm.score += scB;
                 wm.first++;
+                sm.ChangeHealth(-(wolfHP + difficultly));
                 wm.emptyFirst += (wolfHP-1);
                 jm.setJudgeImage(1);
                 jm.playJudgeSound(1);
