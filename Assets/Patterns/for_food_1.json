@@ -1,0 +1,19 @@
+{
+    "BPM": 95.0,
+    "BGM": "for_food",
+    "beat": 4,
+    "segments": 10,
+    "baseAngle": 0.0,
+    "baseOffset": 50.0,
+    "difficult": 1,
+    "speed": 5.0,
+    "wolfs": [
+        {
+            "node": 0,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 216.0,
+            "type": 0
+        }
+    ]
+}
