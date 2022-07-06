@@ -4,7 +4,7 @@
     "beat": 4,
     "segments": 20,
     "baseAngle": 0.0,
-    "baseOffset": 50.0,
+    "baseOffset": 100.0,
     "difficult": 1,
     "speed": 5.0,
     "wolfs": [
