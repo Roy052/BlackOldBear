@@ -1,10 +1,11 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+using TMPro;
 public class LineManageScript : MonoBehaviour
 {
-    public GameObject circleObj, lineObj, wolfObj, sliderObj, sideMenuObj, musicObj;
+    public GameObject circleObj, lineObj, wolfObj, sliderObj, sideMenuObj, musicObj, canvas;
+    public TMP_Text nodeText;
     SideMenu sideMenuScript;
 
     public int segments; // 원 그리는데 들어가는 직선 갯수
@@ -24,6 +25,7 @@ public class LineManageScript : MonoBehaviour
     DrawCircleLine judgeCircleLine = null;
     List<DrawCircleLine> circleList = new(); // 박자 라인 저장하는 리스트
     List<DrawLine> lineList = new(); // 방사형 선 저장하는 리스트
+    List<TMP_Text> nodeTextList = new(); // 라인 번호 저장하는 리스트
     List<WolfScript> wolfList = new();
     MusicManage musicScript;
 
@@ -55,8 +57,10 @@ public class LineManageScript : MonoBehaviour
         gapRenew(); // gap, subGap, visibleBeat 초기화
         circleCheck(); // 원형 라인 생성
         lineCheck(); // 방사형 라인 생성
+        nodeTextCheck(); // 라인 번호 생성
         circleReload(); // 원형 라인 위치 맞추기
         lineReload(); // 방사형 라인 위치 맞추기
+        nodeTextReload(); // 라인 번호 위치 맞추기
     }
 
     void gapRenew()
@@ -64,6 +68,29 @@ public class LineManageScript : MonoBehaviour
         gap = noteSpeed / (BPM / 60); // 박자간 거리
         subGap = gap / beat; // 박자 속의 비트 간 거리
         visibleBeat = (int)(screenWidth / gap) + 1; // 화면에 표시되는 박자 갯수
+    }
+
+    void nodeTextCheck()
+    {
+        int count = nodeTextList.Count;
+        // 원형 선 갯수만큼 필요한 텍스트 갯수를 맞춤
+        if (count > visibleBeat)
+        {
+            for (int i = visibleBeat; i < count; i++)
+            {
+                Destroy(nodeTextList[i]);
+            }
+            nodeTextList = nodeTextList.GetRange(0, visibleBeat);
+        }
+        else if (count < visibleBeat)
+        {
+            for (int i = count; i < visibleBeat; i++)
+            {
+                TMP_Text inst = Instantiate(nodeText);
+                inst.transform.SetParent(canvas.transform);
+                nodeTextList.Add(inst);
+            }
+        }
     }
 
     void circleCheck()
@@ -135,6 +162,30 @@ public class LineManageScript : MonoBehaviour
         }
     }
 
+    void nodeTextReload()
+    {
+        // 지금까지의 거리를 gqp으로 나누고 남은 자투리
+        float fullDist = (currentPos - baseOffset / 1000) * noteSpeed;
+        float dist = fullDist % gap;
+        float count = (int)(fullDist / gap);
+
+        for (int i = 0; i < visibleBeat; i++)
+        {
+            float xpos = boundary + gap * i - dist;
+            if (xpos < boundary)
+            {
+                nodeTextList[i].SetText("");
+            }
+            else
+            {
+                nodeTextList[i].SetText("" + (i + count));
+                Vector3 pos = new Vector3(xpos + 0.3f, 0.3f, -5f);
+                Vector3 newPos = Camera.main.WorldToScreenPoint(pos);
+                nodeTextList[i].transform.position = newPos;
+            }
+        }
+    }
+
     public void circleReload()
     {
         float dist = ((currentPos - baseOffset / 1000) * noteSpeed) % gap;
@@ -184,7 +235,7 @@ public class LineManageScript : MonoBehaviour
                 }
             }
         }
-
+        nodeTextReload();
         wolfReload();
     }
 

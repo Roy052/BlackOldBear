@@ -3358,6 +3358,8 @@ MonoBehaviour:
   sliderObj: {fileID: 1494597218}
   sideMenuObj: {fileID: 1243328702}
   musicObj: {fileID: 196162820}
+  canvas: {fileID: 357742361}
+  nodeText: {fileID: 8627685844717585525, guid: 3eaa995bd5f5c3b4eaebc2f5482e1db9, type: 3}
   segments: 10
   baseAngle: 0
   baseOffset: 0
