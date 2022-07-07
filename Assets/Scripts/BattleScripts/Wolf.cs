@@ -20,6 +20,7 @@ public class Wolf : MonoBehaviour
     public Vector3 direction; // to Bear(center)
     float latency;
 
+    SpriteRenderer sr;
     //score
     float type = 0.0f;
     float anglePf = 0.97f;
@@ -199,6 +200,12 @@ public class Wolf : MonoBehaviour
             transform.RotateAround(bearPosition, Vector3.back, Time.deltaTime * 70);
             transform.Rotate(Vector3.forward, Time.deltaTime * 70);
         }
+
+        sr = GetComponent<SpriteRenderer>();
+        if (transform.position.x > 0)
+            sr.flipX = true;
+        else
+            sr.flipX = false;
     }
 
     float cosineDistance()

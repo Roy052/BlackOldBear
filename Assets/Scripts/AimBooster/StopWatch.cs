@@ -11,6 +11,7 @@ public class StopWatch : MonoBehaviour
     public GameObject AimWolfCheck;
     private float time;
     public bool miniGameEnd = false;
+    public GameObject mainCamera;
 
     GameObject sceneManager;
     ObjectSpawner wolfSpawner;
@@ -42,13 +43,13 @@ public class StopWatch : MonoBehaviour
         {
             sceneManager.GetComponent<SceneByScene>().RewardON();
             sceneManager.GetComponent<SceneByScene>().NextButtonON();
-
+            mainCamera.SetActive(false);
             MiniGameEnd();
         }
         else if (onetime == false && time <= 0)
         {
             sceneManager.GetComponent<SceneByScene>().NextButtonON();
-
+            mainCamera.SetActive(false);
             MiniGameEnd();
         }
     }
