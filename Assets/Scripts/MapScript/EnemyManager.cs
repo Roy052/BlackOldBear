@@ -11,6 +11,7 @@ public class EnemyManager : MonoBehaviour
     GameManager gm;
     bool gameEnd = false;
     BattleManager battleManager;
+    bool onetime = false;
     private void Start()
     {
         gameManagerObject = GameObject.Find("GameManager");
@@ -34,10 +35,11 @@ public class EnemyManager : MonoBehaviour
         }
         else
             gameEnd = battleManager.gameEnd;
-        if(gameEnd == true)
+        if(onetime == false && gameEnd == true)
         {
             this.gameObject.GetComponent<SceneByScene>().NextButtonON();
             rewardManager.ratio = battleManager.scoreRatio;
+            onetime = true;
             RewardON();
             gm.UIBarON();
         }

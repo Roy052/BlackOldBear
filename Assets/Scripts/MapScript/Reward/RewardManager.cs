@@ -42,66 +42,7 @@ public class RewardManager : MonoBehaviour
         accessory_Info = new Accessory_Info();
 
         mapNum = SceneManager.GetActiveScene().buildIndex - 1;
-        switch (mapNum)
-        {
-            case 5: //Event
-                eventManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<EventManager>();
-                switch (eventManager.GetEventNum())
-                {
-                    case 0:
-                        rewardType[0] = 1;
-                        rewardValue[0] = 100;
-                        break;
-                    case 1:
-                        rewardType[0] = 2;
-                        rewardValue[0] = 1;
-                        rewardType[1] = 2;
-                        rewardValue[1] = 1;
-                        break;
-                    case 2:
-                        break;
-                }
-                
-                break;
-            case 6: //Chest
-                rewardType[0] = 3;
-                rewardValue[0] = RandomAccessory(1);
-                break;
-            case 7: //Enemy
-                rewardType[0] = 1;
-                rewardValue[0] = Random.Range(17, 24);
-                rewardType[1] = 2;
-                rewardValue[1] = 1;
-                break;
-            case 8: //MidBoss
-                rewardType[0] = 1;
-                rewardValue[0] = 100 + Random.Range(-5, 5);
-                rewardType[1] = 3;
-                rewardValue[1] = RandomAccessory(1);
-                break;
-            case 9: //Boss
-                rewardType[0] = 1;
-                rewardValue[0] = 150 + Random.Range(-10, 10); ;
-                rewardType[1] = 2;
-                rewardValue[1] = 1;
-                rewardType[2] = 3;
-                rewardValue[2] = RandomAccessory(3);
-                break;
-            default:
-                rewardType[0] = 1;
-                rewardValue[0] = Random.Range(17, 24);
-                if(ratio >= 0.9)
-                {
-                    rewardValue[0] = Random.Range(5, 10);
-                }
-                else if(ratio >= 0.8)
-                {
-                    rewardValue[0] = Random.Range(2, 7);
-                }
-                rewardType[1] = 2;
-                rewardValue[1] = 1;
-                break;
-        }
+        
     }
 
     public int RandomAccessory(int rarity)
@@ -137,6 +78,66 @@ public class RewardManager : MonoBehaviour
 
     public void RewardON()
     {
+        switch (mapNum)
+        {
+            case 5: //Event
+                eventManager = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<EventManager>();
+                switch (eventManager.GetEventNum())
+                {
+                    case 0:
+                        rewardType[0] = 1;
+                        rewardValue[0] = 100;
+                        break;
+                    case 1:
+                        rewardType[0] = 2;
+                        rewardValue[0] = 1;
+                        rewardType[1] = 2;
+                        rewardValue[1] = 1;
+                        break;
+                    case 2:
+                        break;
+                }
+
+                break;
+            case 6: //Chest
+                rewardType[0] = 3;
+                rewardValue[0] = RandomAccessory(1);
+                break;
+            case 7: //Enemy
+                rewardType[0] = 1;
+                rewardValue[0] = Random.Range(17, 24);
+                rewardType[1] = 2;
+                rewardValue[1] = 1;
+                break;
+            case 8: //MidBoss
+                rewardType[0] = 1;
+                rewardValue[0] = 100 + Random.Range(-5, 5);
+                rewardType[1] = 3;
+                rewardValue[1] = RandomAccessory(1);
+                break;
+            case 9: //Boss
+                rewardType[0] = 1;
+                rewardValue[0] = 150 + Random.Range(-10, 10); ;
+                rewardType[1] = 2;
+                rewardValue[1] = 1;
+                rewardType[2] = 3;
+                rewardValue[2] = RandomAccessory(3);
+                break;
+            default:
+                rewardType[0] = 1;
+                rewardValue[0] = Random.Range(17, 24);
+                if (ratio >= 0.9)
+                {
+                    rewardValue[0] += Random.Range(5, 10);
+                }
+                else if (ratio >= 0.8)
+                {
+                    rewardValue[0] += Random.Range(2, 7);
+                }
+                rewardType[1] = 2;
+                rewardValue[1] = 1;
+                break;
+        }
         rewardBackground.SetActive(true);
 
         for(int i = 0; i < 3; i++)

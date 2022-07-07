@@ -13,6 +13,7 @@ public class BattleManager : MonoBehaviour
     GameManager gm;
     public GameObject Mouse;
     public GameObject Center;
+    public GameObject Camera;
     public float musicDuration;
     public bool gameEnd = false;
 
@@ -63,6 +64,7 @@ public class BattleManager : MonoBehaviour
             Debug.Log(scoreRatio);
             Mouse.SetActive(false);
             Center.SetActive(false);
+            Camera.SetActive(false);
         }
     }
 

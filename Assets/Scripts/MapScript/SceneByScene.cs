@@ -37,6 +37,7 @@ public class SceneByScene : MonoBehaviour
 
     public void RewardON()
     {
+        GameObject.Find("RewardCanvas").GetComponent<Canvas>().worldCamera = GameObject.FindGameObjectWithTag("MainCamera").GetComponent<Camera>();
         rewardManager.RewardON();
     }
 

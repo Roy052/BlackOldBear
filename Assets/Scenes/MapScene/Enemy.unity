@@ -142,6 +142,62 @@ PrefabInstance:
       propertyPath: m_Camera
       value: 
       objectReference: {fileID: 1613873835}
+    - target: {fileID: 2611848758328211878, guid: ae7ebfd529fc875439850d7db26ab402, type: 3}
+      propertyPath: m_RenderMode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611848758328211878, guid: ae7ebfd529fc875439850d7db26ab402, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611848758328211879, guid: ae7ebfd529fc875439850d7db26ab402, type: 3}
+      propertyPath: m_Pivot.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611848758328211879, guid: ae7ebfd529fc875439850d7db26ab402, type: 3}
+      propertyPath: m_Pivot.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611848758328211879, guid: ae7ebfd529fc875439850d7db26ab402, type: 3}
+      propertyPath: m_SizeDelta.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611848758328211879, guid: ae7ebfd529fc875439850d7db26ab402, type: 3}
+      propertyPath: m_SizeDelta.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611848758328211879, guid: ae7ebfd529fc875439850d7db26ab402, type: 3}
+      propertyPath: m_LocalScale.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611848758328211879, guid: ae7ebfd529fc875439850d7db26ab402, type: 3}
+      propertyPath: m_LocalScale.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611848758328211879, guid: ae7ebfd529fc875439850d7db26ab402, type: 3}
+      propertyPath: m_LocalScale.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611848758328211879, guid: ae7ebfd529fc875439850d7db26ab402, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611848758328211879, guid: ae7ebfd529fc875439850d7db26ab402, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611848758328211879, guid: ae7ebfd529fc875439850d7db26ab402, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611848758328211879, guid: ae7ebfd529fc875439850d7db26ab402, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2611848758328211881, guid: ae7ebfd529fc875439850d7db26ab402, type: 3}
+      propertyPath: m_PresetInfoIsWorld
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 2611848759931057594, guid: ae7ebfd529fc875439850d7db26ab402, type: 3}
       propertyPath: nextButton
       value: 
@@ -385,7 +441,7 @@ GameObject:
   - component: {fileID: 1613873835}
   m_Layer: 0
   m_Name: Main Camera
-  m_TagString: MainCamera
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -400,7 +456,7 @@ Camera:
   m_Enabled: 1
   serializedVersion: 2
   m_ClearFlags: 1
-  m_BackGroundColor: {r: 0.19215687, g: 0.3019608, b: 0.4745098, a: 0}
+  m_BackGroundColor: {r: 1, g: 1, b: 1, a: 0}
   m_projectionMatrixMode: 1
   m_GateFitMode: 2
   m_FOVAxisMode: 0

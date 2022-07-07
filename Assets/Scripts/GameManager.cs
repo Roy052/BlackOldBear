@@ -75,6 +75,7 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        this.GetComponent<MapRecorder>().recorded = false;
         this.GetComponent<StatusManager>().ResetHealth();
         this.GetComponent<ItemManager>().ResetMoneyandItem();
         this.GetComponent<Accessory_Manager>().AccessoryReset();
