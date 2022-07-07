@@ -13,6 +13,7 @@ public class GameManager : MonoBehaviour
     public float musicLoadDelay = 3.0f;
     public float musicEndDelay = 3.0f;
     public string patternName;
+    public int perfectSize = 2; // 0 - 4
 
     public static float FadeTimeGap = 0.5f;
 

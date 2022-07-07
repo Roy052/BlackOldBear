@@ -11,7 +11,8 @@ public class BattleManager : MonoBehaviour
     WolfManager wm;
     BattleMusicManager bmm;
     GameManager gm;
-
+    public GameObject Mouse;
+    public GameObject Center;
     public float musicDuration;
     public bool gameEnd = false;
 
@@ -60,6 +61,8 @@ public class BattleManager : MonoBehaviour
             gameEnd = true;
             scoreRatio = getScoreRatio();
             Debug.Log(scoreRatio);
+            Mouse.SetActive(false);
+            Center.SetActive(false);
         }
     }
 

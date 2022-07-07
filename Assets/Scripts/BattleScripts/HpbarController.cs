@@ -25,7 +25,7 @@ public class HpbarController : MonoBehaviour
     {
         hp = sm.GetHealth();
         Hpbar.value = hp;
-        Debug.Log(hp);
+        // Debug.Log(hp);
         if (Hpbar.value <= 0)
             transform.Find("Fill Area").gameObject.SetActive(false);
         else
