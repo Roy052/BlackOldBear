@@ -57,7 +57,7 @@ public class BattleManager : MonoBehaviour
 
     void Update()
     {
-        if(gm.time>= musicLoadDelay+musicEndDelay+musicDuration && gameEnd ==false)
+        if(gm.time>= musicLoadDelay+musicEndDelay+musicDuration && gameEnd == false)
         {
             gameEnd = true;
             scoreRatio = getScoreRatio();

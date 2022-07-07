@@ -18,7 +18,7 @@ public class EnemyManager : MonoBehaviour
         rewardManager = this.gameObject.GetComponent<RewardManager>();
         
         gm = gameManagerObject.GetComponent<GameManager>();
-
+        gm.time = 0;
         gm.patternName = gm.patternList[Random.Range(0, gm.patternList.Length)];
         
         gm.UIBarOFF();
@@ -33,9 +33,9 @@ public class EnemyManager : MonoBehaviour
             if(temp != null)
                 battleManager = temp.GetComponent<BattleManager>();
         }
-        else
+        else if(onetime == false)
             gameEnd = battleManager.gameEnd;
-        if(onetime == false && gameEnd == true)
+        if(onetime == false && gameEnd == true && battleManager != null)
         {
             this.gameObject.GetComponent<SceneByScene>().NextButtonON();
             rewardManager.ratio = battleManager.scoreRatio;

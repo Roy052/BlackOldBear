@@ -29,7 +29,11 @@ public class UsingKnife : MonoBehaviour
     private void OnMouseDown()
     {
         if(notEnoughMoney == false)
-        kill = true;
+        {
+            kill = true;
+            gameManagerObject.GetComponent<ItemManager>().moneyChange(-10);
+        }
+            
     }
     void Update()
     {

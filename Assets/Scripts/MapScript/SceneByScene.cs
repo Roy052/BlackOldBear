@@ -50,6 +50,10 @@ public class SceneByScene : MonoBehaviour
     {
         StartCoroutine(fadeManager.FadeOut(term));
         yield return new WaitForSeconds(term);
+        if(SceneManager.GetActiveScene().name == "Enemy")
+        {
+            SceneManager.UnloadSceneAsync("Battle");
+        }
         SceneManager.LoadScene("MapScene");
     }
 }
