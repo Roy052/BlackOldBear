@@ -54,4 +54,17 @@ public class Accessory_Manager : MonoBehaviour
         
         clone.SetActive(true);
     }
+
+    public void AccessoryReset()
+    {
+        for(int i = accessoryList.Count - 1; i >= 0; i--)
+        {
+            Destroy(accessoryList[i]);
+            accessoryList.Remove(accessoryList[i]);
+        }
+
+        shopAccessoryList = new List<int>();
+        accessoryOwnList = new bool[accessoryInfo.nameArray.Length];
+        shopAccessoryAlreadyBuyList = new List<bool>();
+    }
 }

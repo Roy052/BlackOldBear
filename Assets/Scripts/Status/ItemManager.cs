@@ -27,7 +27,11 @@ public class ItemManager : MonoBehaviour
 
     public int moneyChange(int num)
     {
-        if (num < 0 && money + num < 0) return -1;
+        if (num < 0 && money + num < 0)
+        {
+            money = 0;
+            return -1;
+        }
         else if (num > 0 && money + num > moneyMAX) money = moneyMAX;
         else money += num;
 
@@ -38,12 +42,30 @@ public class ItemManager : MonoBehaviour
 
     public int itemChange(int type, int num)
     {
-        if (num < 0 && items[type] + num < 0) return -1;
+        if (num < 0 && items[type] + num < 0)
+        {
+            items[type] = 0;
+            return -1;
+        }
         else if (items[type] + num > itemMAX) items[type] = itemMAX;
         else items[type] += num;
 
         if (uIBarManager != null)
             uIBarManager.UITextUpdate(type+2, items[type], 0);
         return 1;
+    }
+
+    public void ResetMoneyandItem()
+    {
+
+        money = 0;
+        items[1] = 0;
+
+        if (uIBarManager != null)
+        {
+            uIBarManager.UITextUpdate(1, 0, 0);
+            uIBarManager.UITextUpdate(3, 0, 0);
+        }
+            
     }
 }

@@ -75,7 +75,11 @@ public class GameManager : MonoBehaviour
 
     public void GameOver()
     {
+        this.GetComponent<StatusManager>().ResetHealth();
+        this.GetComponent<ItemManager>().ResetMoneyandItem();
+        this.GetComponent<Accessory_Manager>().AccessoryReset();
         SceneManager.LoadScene("Menu");
+        uIBarManager.UIBarOFF();
     }
 
     public void GameExit()
