@@ -30,12 +30,12 @@ public class MapEnd : MonoBehaviour {
         
         if(gameEnd == false)
         {
-            if (Wolfpos.x < 0 && Wolfpos.y >= 3.7)
+            if (Wolfpos.x < 0 && Wolfpos.y >= 2)
             {
                 WolfReach = true;
             }
 
-            if (Bearpos.x < 0 && Bearpos.y >= 4.8)
+            if (Bearpos.x < 0 && Bearpos.y >= 2)
             {
                 BearReach = true;
             }
