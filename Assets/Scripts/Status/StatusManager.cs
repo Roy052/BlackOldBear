@@ -63,4 +63,11 @@ public class StatusManager : MonoBehaviour
             Debug.Log("Upgrade Armor");
         }
     }
+
+    public void ResetHealth()
+    {
+        maxhealth = 100;
+        health = 100;
+        uIBarManager.UITextUpdate(0, health, maxhealth);
+    }
 }
