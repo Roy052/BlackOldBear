@@ -25,9 +25,12 @@ public class GameManager : MonoBehaviour
     UIBarManager uIBarManager;
     bool pauseON = false;
 
-    public readonly string[] patternList = { "abstract_1", "ambient_1", 
-        "best_time_1", "Boom_Bap_Hip_Easy", "Chill_1", "Coding_night", "Electronic_2", 
-        "Fluidity_1","for_food_1", "spirit_1" };
+    // public readonly string[] patternList = { "abstract_1", "ambient_1", 
+    //     "best_time_1", "Boom_Bap_Hip_Easy", "Chill_1", "Coding_night", "Electronic_2", 
+    //     "Fluidity_1","for_food_1", "spirit_1" };
+
+    // for debug
+    public readonly string[] patternList = { "test_1" };    
     void Awake()
     {
         DontDestroyOnLoad(this);
