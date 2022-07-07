@@ -1018,9 +1018,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 568b66d7e068f7b46bbcdc2f1a0ff7fd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  perfect: {fileID: 21300000, guid: 935cbe48f88002641b424bb6a931cdf8, type: 3}
-  great: {fileID: 21300000, guid: 0513ffda7a534d2449700ad28d894ff0, type: 3}
-  bad: {fileID: 21300000, guid: 875012c225e64f64692172a7502fd321, type: 3}
+  perfect: {fileID: 0}
+  great: {fileID: 0}
+  bad: {fileID: 0}
   perfectSound: {fileID: 8300000, guid: 069db9d06a961054fa40eaa26527c418, type: 3}
   greatSound: {fileID: 8300000, guid: 60830f43c113efb438f5447f31196029, type: 3}
   badSound: {fileID: 8300000, guid: c2507159f0f22f841960f7e06f4d69e7, type: 3}
@@ -1065,7 +1065,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 0
   m_SortingLayer: 0
-  m_SortingOrder: 0
+  m_SortingOrder: 100
   m_Sprite: {fileID: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
