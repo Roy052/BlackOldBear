@@ -28,7 +28,7 @@ public class EventManager : MonoBehaviour
         gameManagerObject = GameObject.Find("GameManager");
 
         //eventNum = Random.Range(0, event_Info.eventDescription.Length);
-        eventNum = 1;
+        eventNum = 0;
 
         backroundImage.sprite = backgroundImageSprites[eventNum];
         descriptionText.text = event_Info.eventDescription[eventNum];
@@ -107,6 +107,8 @@ public class EventManager : MonoBehaviour
             hands.SetActive(false);
             backroundImage.sprite = null;
             eventDescriptionBackground.SetActive(false);
+            yesButton.gameObject.SetActive(false);
+            noButton.gameObject.SetActive(false);
         }
             
         else
