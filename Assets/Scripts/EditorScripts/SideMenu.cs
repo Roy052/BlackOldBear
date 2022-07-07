@@ -269,8 +269,8 @@ public class SideMenu : MonoBehaviour
     {
         transform.position = new Vector3(6.7f, 0f, -3f);
         sideButton.transform.position = new Vector3(4.8f, 0f, -3.1f);
-        gridButton.transform.position = new Vector3(7f, -4.3f, -3.1f);
-        webButton.transform.position = new Vector3(8.2f, -4.3f, -3.1f);
+        // gridButton.transform.position = new Vector3(7f, -4.3f, -3.1f);
+        // webButton.transform.position = new Vector3(8.2f, -4.3f, -3.1f);
         sideButtonRenderer.sprite = sideButtonOpened;
         isOpened = true;
         uiSetActive(true);
@@ -280,8 +280,8 @@ public class SideMenu : MonoBehaviour
     {
         transform.position = new Vector3(10.5f, 0, -3);
         sideButton.transform.position = new Vector3(8.6f, 0f, -3.1f);
-        gridButton.transform.position = new Vector3(10.8f, -4.3f, -3.1f);
-        webButton.transform.position = new Vector3(12f, -4.3f, -3.1f);
+        // gridButton.transform.position = new Vector3(10.8f, -4.3f, -3.1f);
+        // webButton.transform.position = new Vector3(12f, -4.3f, -3.1f);
         sideButtonRenderer.sprite = sideButtonClosed;
         isOpened = false;
         uiSetActive(false);
