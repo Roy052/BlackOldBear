@@ -27,12 +27,11 @@ public class EventManager : MonoBehaviour
         eventSceneList.Add("RememberCards");
         gameManagerObject = GameObject.Find("GameManager");
 
-        eventNum = Random.Range(0, event_Info.eventDescription.Length);
+        //eventNum = Random.Range(0, event_Info.eventDescription.Length);
+        eventNum = 1;
 
         backroundImage.sprite = backgroundImageSprites[eventNum];
         descriptionText.text = event_Info.eventDescription[eventNum];
-        Debug.Log(eventNum);
-        Debug.Log(event_Info.eventConditionType[eventNum]);
         
         if(event_Info.eventConditionType[eventNum] != 0)
         {
