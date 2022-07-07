@@ -12,6 +12,7 @@ public class RewardManager : MonoBehaviour
     public Text[] texts;
     public Sprite money;
     public Sprite[] itemSprite;
+    public float ratio;
 
     int mapNum;
     int[] rewardType; //0 : 빈 것, 1 : 돈, 2 : 재료, 3 : 악세서리
@@ -85,6 +86,20 @@ public class RewardManager : MonoBehaviour
                 rewardValue[1] = 1;
                 rewardType[2] = 3;
                 rewardValue[2] = RandomAccessory(3);
+                break;
+            default:
+                rewardType[0] = 1;
+                rewardValue[0] = Random.Range(17, 24);
+                if(ratio >= 0.9)
+                {
+                    rewardValue[0] = Random.Range(5, 10);
+                }
+                else if(ratio >= 0.8)
+                {
+                    rewardValue[0] = Random.Range(2, 7);
+                }
+                rewardType[1] = 2;
+                rewardValue[1] = 1;
                 break;
         }
     }

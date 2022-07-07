@@ -34,7 +34,7 @@ public class BattleManager : MonoBehaviour
 
     float musicLoadDelay;
     float musicEndDelay;
-    float scoreRatio;
+    public float scoreRatio;
     void Start()
     {
         wm = GameObject.Find("Wolfs").GetComponent<WolfManager>();
