@@ -47,4 +47,10 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/RememberCards.unity
     guid: 88129ef54e064b9489609ab4bf4b62cc
+  - enabled: 1
+    path: Assets/Scenes/BossBattle.unity
+    guid: 1c760347ea6e630408a51644972d56b3
+  - enabled: 1
+    path: Assets/Scenes/NoteEditor.unity
+    guid: 8e9557cfb26882f4f9394cb2ace4d716
   m_configObjects: {}

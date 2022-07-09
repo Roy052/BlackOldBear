@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
 {
+    public int languageType = 0;
     public int score = 0;
     [Range(1.0f, 10.0f)]
     public float speed = 5.0f; // 1 ~ 10.  1 - 생성으로부터 도착까지 1.6초 / 10 - 생성으로부터 도착까지 0.17초
@@ -61,10 +62,10 @@ public class GameManager : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Escape))
         {
-            if(pauseON == true)
-                pauseMenuManager.PauseOFF();
+            if (pauseON == true)
+                PauseMenuOFF();
             else
-                pauseMenuManager.PauseON();
+                PauseMenuON();
 
             pauseON = !pauseON;
         }
@@ -91,6 +92,23 @@ public class GameManager : MonoBehaviour
         Application.Quit();
     }
 
+    public void PauseMenuON()
+    {
+        pauseMenuManager.PauseON();
+    }
+
+    public void PauseMenuOFF()
+    {
+        pauseMenuManager.PauseOFF();
+    }
+
+    public void ToPattern()
+    {
+        SceneManager.LoadScene("NoteEditor");
+    }
+
+    
+
     public void UIBarON()
     {
         uIBarManager.UIBarON();
@@ -99,5 +117,21 @@ public class GameManager : MonoBehaviour
     public void UIBarOFF()
     {
         uIBarManager.UIBarOFF();
+    }
+
+    public void BattleToMenu()
+    {
+        SceneManager.LoadScene("Menu");
+        uIBarManager.UIBarOFF();
+    }
+
+    public void LanguageChange(int val)
+    {
+        languageType = val;
+        GameObject temp = GameObject.Find("MenuButtons");
+        if (temp != null)
+        {
+            temp.GetComponent<MenuButton>().LanguageChange(languageType);
+        }
     }
 }
