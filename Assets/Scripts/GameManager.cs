@@ -133,5 +133,35 @@ public class GameManager : MonoBehaviour
         {
             temp.GetComponent<MenuButton>().LanguageChange(languageType);
         }
+
+        temp = GameObject.FindGameObjectWithTag("SceneManager");
+        if (temp != null)
+        {
+            temp.GetComponent<SceneByScene>().LanguageChange(languageType);
+
+            switch (SceneManager.GetActiveScene().buildIndex)
+            {
+                case 3:
+                    temp.GetComponent<StartManager>().LanguageChange(languageType);
+                    break;
+                case 4:
+                    temp.GetComponent<ShopManager>().LanguageChange(languageType);
+                    break;
+                case 5:
+                    temp.GetComponent<BornfireManager>().LanguageChange(languageType);
+                    break;
+                case 6:
+                    temp.GetComponent<EventManager>().LanguageChange(languageType);
+                    break;
+                case 7:
+                    break;
+                case 8:
+                    break;
+                case 9:
+                    break;
+                case 10:
+                    break;
+            }
+        }
     }
 }

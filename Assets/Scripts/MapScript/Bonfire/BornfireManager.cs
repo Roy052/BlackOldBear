@@ -6,15 +6,19 @@ using UnityEngine.SceneManagement;
 
 public class BornfireManager : MonoBehaviour
 {
-    public GameObject bornfireMenu, healBox, damageUpgradeBox, armorUpgradeBox;
-    public Text daggerText, leatherText, healAmountText;
+    public GameObject bornfireMenu, healBox, damageUpgradeBox, armorUpgradeBox, bonfireObject;
+    public Text daggerText, leatherText, healAmountText, healText;
+    public Sprite[] bonFireImages;
     GameObject gameManagerObject;
-    int healAmount;
+    int healAmount, languageType = 0;
     
     private void Start()
     {
         gameManagerObject = GameObject.Find("GameManager");
         leatherText.text = "3";
+        LanguageChange(gameManagerObject.GetComponent<GameManager>().languageType);
+
+        
         
         ItemManager itemManager = gameManagerObject.GetComponent<ItemManager>();
         int[] itemArray = itemManager.currentItem();
@@ -62,5 +66,13 @@ public class BornfireManager : MonoBehaviour
     {
         yield return new WaitForEndOfFrame();
         this.GetComponent<SceneByScene>().NextButtonON();
+    }
+
+    public void LanguageChange(int type)
+    {
+        languageType = type;
+        bonfireObject.GetComponent<SpriteRenderer>().sprite = bonFireImages[languageType];
+        if (languageType == 0) healText.text = "Heal";
+        else healText.text = "회복";
     }
 }

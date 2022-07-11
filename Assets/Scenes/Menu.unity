@@ -1888,6 +1888,42 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1772840526, guid: 8295aa3713d5e064198c908161c5852e, type: 3}
+      propertyPath: accessorySpriteArray.Array.size
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 1772840526, guid: 8295aa3713d5e064198c908161c5852e, type: 3}
+      propertyPath: accessorySpriteArray.Array.data[2]
+      value: 
+      objectReference: {fileID: 21300000, guid: 4aa92ddfb1aca204c802f79f3a6177ea, type: 3}
+    - target: {fileID: 1772840526, guid: 8295aa3713d5e064198c908161c5852e, type: 3}
+      propertyPath: accessorySpriteArray.Array.data[3]
+      value: 
+      objectReference: {fileID: 21300000, guid: 6dbb8969e19fd5d4393a1ed96a0d976e, type: 3}
+    - target: {fileID: 1772840526, guid: 8295aa3713d5e064198c908161c5852e, type: 3}
+      propertyPath: accessorySpriteArray.Array.data[4]
+      value: 
+      objectReference: {fileID: 21300000, guid: 5ba75ab057effa244aaed0d21970ce25, type: 3}
+    - target: {fileID: 1772840526, guid: 8295aa3713d5e064198c908161c5852e, type: 3}
+      propertyPath: accessorySpriteArray.Array.data[5]
+      value: 
+      objectReference: {fileID: 21300000, guid: f0bbd0adfef95c2468b88e8eccc5ea49, type: 3}
+    - target: {fileID: 1772840526, guid: 8295aa3713d5e064198c908161c5852e, type: 3}
+      propertyPath: accessorySpriteArray.Array.data[6]
+      value: 
+      objectReference: {fileID: 21300000, guid: 666efe868ee137f44a5966cdd381b306, type: 3}
+    - target: {fileID: 1772840526, guid: 8295aa3713d5e064198c908161c5852e, type: 3}
+      propertyPath: accessorySpriteArray.Array.data[7]
+      value: 
+      objectReference: {fileID: 21300000, guid: 3ed33366ad3cf6848a572998cbc353e8, type: 3}
+    - target: {fileID: 1772840526, guid: 8295aa3713d5e064198c908161c5852e, type: 3}
+      propertyPath: accessorySpriteArray.Array.data[8]
+      value: 
+      objectReference: {fileID: 21300000, guid: c13e1125ebd20464e8a4a22accbb2100, type: 3}
+    - target: {fileID: 1772840526, guid: 8295aa3713d5e064198c908161c5852e, type: 3}
+      propertyPath: accessorySpriteArray.Array.data[9]
+      value: 
+      objectReference: {fileID: 21300000, guid: a0564cfda371c8f4db94b25de514e2ad, type: 3}
     - target: {fileID: 331809994147096581, guid: 8295aa3713d5e064198c908161c5852e, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0

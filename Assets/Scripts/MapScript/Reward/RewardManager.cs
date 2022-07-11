@@ -162,7 +162,7 @@ public class RewardManager : MonoBehaviour
                     break;
                 case 3: //Accessory
                     icons[i].sprite = accessory_Manager.accessorySpriteArray[rewardValue[i]];
-                    texts[i].text = accessory_Info.nameArray[rewardValue[i]];
+                    texts[i].text = accessory_Info.nameArray[gameManagerObject.GetComponent<GameManager>().languageType ,rewardValue[i]];
 
                     rewardboxes[i].gameObject.SetActive(true);
                     icons[i].gameObject.SetActive(true);

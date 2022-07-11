@@ -73,6 +73,7 @@ public class CopyCards : MonoBehaviour
             FlipAllCard();
             SceneByScene sbs = GameObject.FindGameObjectWithTag("SceneManager").GetComponent<SceneByScene>();
             sbs.NextButtonON();
+            GameObject.Find("EventManager").GetComponent<EventManager>().EventEnd();
         }
 
         if (gameEnd == false && Input.GetMouseButtonDown(0))

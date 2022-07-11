@@ -7,7 +7,9 @@ public class SceneByScene : MonoBehaviour
 {
     public GameObject nextButton;
     public RewardManager rewardManager;
+    public Sprite[] nextButtonImages;
 
+    int languageType = 0;
     bool ready = true, onetime = false;
     FadeManager fadeManager;
     private void Start()
@@ -15,6 +17,7 @@ public class SceneByScene : MonoBehaviour
         nextButton.SetActive(false);
         fadeManager = GameObject.FindGameObjectWithTag("FadeManager").GetComponent<FadeManager>();
         rewardManager = this.GetComponent<RewardManager>();
+        LanguageChange(GameObject.Find("GameManager").GetComponent<GameManager>().languageType);
     }
 
     private void Update()
@@ -55,5 +58,11 @@ public class SceneByScene : MonoBehaviour
             SceneManager.UnloadSceneAsync("Battle");
         }
         SceneManager.LoadScene("MapScene");
+    }
+
+    public void LanguageChange(int type)
+    {
+        languageType = type;
+        nextButton.GetComponent<SpriteRenderer>().sprite = nextButtonImages[languageType];
     }
 }

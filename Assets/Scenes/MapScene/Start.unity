@@ -470,6 +470,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1670047161}
   - component: {fileID: 1670047160}
+  - component: {fileID: 1670047162}
   m_Layer: 0
   m_Name: StartSM
   m_TagString: SceneManager
@@ -491,6 +492,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nextButton: {fileID: 1285328428}
   rewardManager: {fileID: 0}
+  nextButtonImages:
+  - {fileID: 21300000, guid: 053d2fe268ffe684188e1585766e3446, type: 3}
+  - {fileID: 21300000, guid: 61bc4023b6083e544934f559049d8916, type: 3}
 --- !u!4 &1670047161
 Transform:
   m_ObjectHideFlags: 0
@@ -506,6 +510,22 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1670047162
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1670047159}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a48f73acf6c1583428b80654667e6edf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  background: {fileID: 1448684198}
+  backgroundImages:
+  - {fileID: 21300000, guid: 060376a6656a38442a21cf1b5bc31abc, type: 3}
+  - {fileID: 21300000, guid: 461ae789eb4ae804a80e49680140af63, type: 3}
 --- !u!1 &1856329803
 GameObject:
   m_ObjectHideFlags: 0

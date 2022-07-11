@@ -46,6 +46,7 @@ public class MapEnd : MonoBehaviour {
                 Debug.Log("lose");
                 sceneManagerObject.GetComponent<SceneByScene>().NextButtonON();
                 gameEnd = true;
+                GameObject.Find("EventManager").GetComponent<EventManager>().EventEnd();
             }
             if (!WolfReach && BearReach)
             {
@@ -54,6 +55,7 @@ public class MapEnd : MonoBehaviour {
                 sceneManagerObject.GetComponent<RewardManager>().RewardON();
                 sceneManagerObject.GetComponent<SceneByScene>().NextButtonON();
                 gameEnd = true;
+                GameObject.Find("EventManager").GetComponent<EventManager>().EventEnd();
             }
         }
 

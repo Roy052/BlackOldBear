@@ -14,11 +14,13 @@ public class Accessory_Manager : MonoBehaviour
     float startX = -8.9f, startY = 4.1f, gap = 1.2f;
     List<GameObject> accessoryList = new List<GameObject>();
     bool[] accessoryOwnList;
+    GameManager gameManager;
     private void Start()
     {
         accessoryInfo = new Accessory_Info();
         shopAccessoryList = new List<int>();
         accessoryOwnList = new bool[accessoryInfo.nameArray.Length];
+        gameManager = this.GetComponent<GameManager>();
     }
 
     public bool IsAccessoryOwn(int num)
@@ -42,9 +44,9 @@ public class Accessory_Manager : MonoBehaviour
         cloneAccessory.type = accessoryInfo.typeArray[num];
         cloneAccessory.where = accessoryInfo.whereArray[num];
         cloneAccessory.thumb = accessorySpriteArray[num];
-        cloneAccessory.accessoryName = accessoryInfo.nameArray[num];
-        cloneAccessory.description = accessoryInfo.descriptionArray[num];
-        cloneAccessory.additionalText = accessoryInfo.additionalTextArray[num];
+        cloneAccessory.accessoryName = accessoryInfo.nameArray[gameManager.languageType ,num];
+        cloneAccessory.description = accessoryInfo.descriptionArray[gameManager.languageType, num] ;
+        cloneAccessory.additionalText = accessoryInfo.additionalTextArray[gameManager.languageType, num];
 
         accessoryOwnList[num] = true;
         accessaryOwnCount++;

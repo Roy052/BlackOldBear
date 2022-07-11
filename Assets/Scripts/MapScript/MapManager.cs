@@ -19,8 +19,14 @@ public class MapManager : MonoBehaviour
 
     readonly float[] nodePositions = new float[2] { -6.4f, 15.8f };
 
-    readonly string[] mapTextHeadArray = { "도입부", "중간부", "결말부", "결말의 끝" };
-    readonly string[] mapTextMainArray = {  "동굴", "숲", "사원", "??"};
+    readonly string[,] mapTextHeadArray = { 
+        {"Introduction", "Mid Section", "Ending", "End of Ending" },
+        { "도입부", "중간부", "결말부", "결말의 끝" } 
+    };
+    readonly string[,] mapTextMainArray = {
+        { "Cave", "Forest", "Temple", "??"},
+        { "동굴", "숲", "사원", "??" }
+    };
 
     // 0 : Empty, 1 : Not contain, 2 : Start, 3 : Shop,
     // 4 : Bonfire, 5 : Random Event, 6 : Chest, 7 : Enemy
@@ -31,6 +37,9 @@ public class MapManager : MonoBehaviour
 
     //Fade
     FadeManager fadeManager;
+
+    GameObject gameManagerObject;
+    int languageType = 0;
 
     //public
     public GameObject node;
@@ -43,16 +52,20 @@ public class MapManager : MonoBehaviour
     public Text mapHeadText, mapHeadShadowText, mapText, mapTextShadow;
     public GameObject mapTextBackground;
 
+   
+
     void Start()
     {
         fadeManager = GameObject.FindGameObjectWithTag("FadeManager").GetComponent<FadeManager>();
 
-        stageNum = GameObject.Find("GameManager").GetComponent<GameManager>().stageNum;
+        gameManagerObject = GameObject.Find("GameManager");
+        stageNum = gameManagerObject.GetComponent<GameManager>().stageNum;
         mapBackground.GetComponent<SpriteRenderer>().sprite = mapBackgroundSprites[stageNum];
 
+        languageType = gameManagerObject.GetComponent<GameManager>().languageType;
 
         //Map 생성 파트
-        mapRecorder = GameObject.Find("GameManager").GetComponent<MapRecorder>();
+        mapRecorder = gameManagerObject.GetComponent<MapRecorder>();
 
         //기록 없음
         if (mapRecorder.recorded == false)
@@ -344,11 +357,11 @@ public class MapManager : MonoBehaviour
     {
         yield return new WaitForSeconds(0.3f);
 
-        mapHeadText.text = mapTextHeadArray[stageNum];
-        mapHeadShadowText.text = mapTextHeadArray[stageNum];
+        mapHeadText.text = mapTextHeadArray[languageType ,stageNum];
+        mapHeadShadowText.text = mapTextHeadArray[languageType ,stageNum];
 
-        mapText.text = mapTextMainArray[stageNum];
-        mapTextShadow.text = mapTextMainArray[stageNum];
+        mapText.text = mapTextMainArray[languageType ,stageNum];
+        mapTextShadow.text = mapTextMainArray[languageType, stageNum];
 
         Color color = new Color(1, 1, 1, 0);
         Color color1 = new Color(0.25f, 0.25f, 0.25f, 0);

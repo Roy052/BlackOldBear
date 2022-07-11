@@ -45,12 +45,14 @@ public class StopWatch : MonoBehaviour
             sceneManager.GetComponent<SceneByScene>().NextButtonON();
             mainCamera.SetActive(false);
             MiniGameEnd();
+            GameObject.Find("EventManager").GetComponent<EventManager>().EventEnd();
         }
         else if (onetime == false && time <= 0)
         {
             sceneManager.GetComponent<SceneByScene>().NextButtonON();
             mainCamera.SetActive(false);
             MiniGameEnd();
+            GameObject.Find("EventManager").GetComponent<EventManager>().EventEnd();
         }
     }
 

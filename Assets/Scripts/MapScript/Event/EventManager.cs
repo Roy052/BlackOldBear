@@ -19,6 +19,8 @@ public class EventManager : MonoBehaviour
     public SpriteRenderer backroundImage;
     public Sprite[] backgroundImageSprites;
     public GameObject hands, eventDescriptionBackground;
+
+    int languageType = 0;
     private void Start()
     {
         eventSceneList = new List<string>();
@@ -26,11 +28,12 @@ public class EventManager : MonoBehaviour
         eventSceneList.Add("RunningBear");
         eventSceneList.Add("RememberCards");
         gameManagerObject = GameObject.Find("GameManager");
+        languageType = gameManagerObject.GetComponent<GameManager>().languageType;
 
-        eventNum = Random.Range(0, event_Info.eventDescription.Length);
+        eventNum = Random.Range(0, event_Info.eventConditionType.Length);
 
         backroundImage.sprite = backgroundImageSprites[eventNum];
-        descriptionText.text = event_Info.eventDescription[eventNum];
+        descriptionText.text = event_Info.eventDescription[languageType, eventNum];
         
         if(event_Info.eventConditionType[eventNum] != 0)
         {
@@ -68,13 +71,13 @@ public class EventManager : MonoBehaviour
                     }
                     break;
             }
-            yesText.text = event_Info.eventConditionValue[eventNum] + " 소모, " + event_Info.eventChoice[eventNum, 0];
+            yesText.text = event_Info.eventConditionValue[eventNum] + (languageType == 0 ? "Use, " : " 소모, ") + event_Info.eventChoice[languageType, eventNum, 0];
         }
         else
         {
-            yesText.text = event_Info.eventChoice[eventNum, 0];
+            yesText.text = event_Info.eventChoice[languageType, eventNum, 0];
         }
-        noText.text = event_Info.eventChoice[eventNum, 1];
+        noText.text = event_Info.eventChoice[languageType, eventNum, 1];
         
     }
 
@@ -134,5 +137,21 @@ public class EventManager : MonoBehaviour
     public int GetEventNum()
     {
         return eventNum;
+    }
+
+    public void EventEnd()
+    {
+        descriptionText.text = "";
+    }
+
+    public void LanguageChange(int type)
+    {
+        languageType = type;
+        descriptionText.text = event_Info.eventDescription[languageType, eventNum];
+        if (event_Info.eventConditionType[eventNum] != 0)
+            yesText.text = event_Info.eventConditionValue[eventNum] + (languageType == 0 ? "Use, " : " 소모, ") + event_Info.eventChoice[languageType, eventNum, 0];
+        else
+            yesText.text = event_Info.eventChoice[languageType, eventNum, 0];
+        noText.text = event_Info.eventChoice[languageType, eventNum, 1];
     }
 }

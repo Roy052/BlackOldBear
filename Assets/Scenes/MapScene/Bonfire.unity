@@ -835,9 +835,14 @@ MonoBehaviour:
   healBox: {fileID: 1753419256}
   damageUpgradeBox: {fileID: 0}
   armorUpgradeBox: {fileID: 2089901401}
+  bonfireObject: {fileID: 424939794}
   daggerText: {fileID: 0}
   leatherText: {fileID: 880786196}
   healAmountText: {fileID: 1840486365}
+  healText: {fileID: 967769182}
+  bonFireImages:
+  - {fileID: 21300000, guid: ceb8151292fe55044ae13e3a506ed96d, type: 3}
+  - {fileID: 21300000, guid: d5087f242eb74164b9eb2149b8dcec15, type: 3}
 --- !u!114 &1180689527 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 2611848759931057594, guid: ae7ebfd529fc875439850d7db26ab402, type: 3}

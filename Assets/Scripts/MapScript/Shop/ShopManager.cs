@@ -18,7 +18,8 @@ public class ShopManager : MonoBehaviour
     public Image[] images;
     public Text[] nameTexts, descTexts, priceTexts, itemPriceTexts;
     public GameObject[] buyBoxes, itemBuyBoxes,itemImages;
-    
+
+    int languageType = 0;
     private void Start()
     {
         //초기화
@@ -116,8 +117,8 @@ public class ShopManager : MonoBehaviour
             if(accessoryAlreadyBuyList[i] == false)
             {
                 images[i].sprite = accessory_Manager.accessorySpriteArray[accessoryList[i]];
-                nameTexts[i].text = accessory_Info.nameArray[accessoryList[i]];
-                descTexts[i].text = accessory_Info.descriptionArray[accessoryList[i]];
+                nameTexts[i].text = accessory_Info.nameArray[gameManagerObject.GetComponent<GameManager>().languageType, accessoryList[i]];
+                descTexts[i].text = accessory_Info.descriptionArray[gameManagerObject.GetComponent<GameManager>().languageType, accessoryList[i]];
                 priceTexts[i].text = accessoryPrice[i].ToString();
             }
             else
@@ -198,5 +199,27 @@ public class ShopManager : MonoBehaviour
         }
         
         ShopUpdate();
+    }
+
+    public void LanguageChange(int type)
+    {
+        languageType = type;
+        for (int i = 0; i < 3; i++)
+        {
+            if (accessoryAlreadyBuyList[i] == false)
+            {
+                nameTexts[i].text = accessory_Info.nameArray[languageType, accessoryList[i]];
+                descTexts[i].text = accessory_Info.descriptionArray[languageType, accessoryList[i]];
+                priceTexts[i].text = accessoryPrice[i].ToString();
+            }
+            else
+            {
+                images[i].gameObject.SetActive(false);
+                nameTexts[i].gameObject.SetActive(false);
+                descTexts[i].gameObject.SetActive(false);
+                priceTexts[i].gameObject.SetActive(false);
+                buyBoxes[i].SetActive(false);
+            }
+        }
     }
 }
