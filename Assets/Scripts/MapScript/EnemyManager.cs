@@ -19,7 +19,7 @@ public class EnemyManager : MonoBehaviour
         
         gm = gameManagerObject.GetComponent<GameManager>();
         gm.time = 0;
-        gm.patternName = gm.patternList[Random.Range(0, gm.patternList.Length)];
+        gm.patternName = gm.patternList[Random.Range(0, gm.patternList.Count)];
         
         gm.UIBarOFF();
         SceneManager.LoadSceneAsync("Battle", LoadSceneMode.Additive);

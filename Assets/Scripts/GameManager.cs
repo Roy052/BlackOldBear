@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.IO;
 
 public class GameManager : MonoBehaviour
 {
@@ -14,7 +15,8 @@ public class GameManager : MonoBehaviour
     public float musicLoadDelay = 3.0f;
     public float musicEndDelay = 3.0f;
     public string patternName;
-    public int perfectSize = 2; // 0 - 4
+    public float perfectSize = 1; // float
+    public int frequencyChange = 0;
 
     public static float FadeTimeGap = 0.5f;
 
@@ -26,9 +28,7 @@ public class GameManager : MonoBehaviour
     UIBarManager uIBarManager;
     bool pauseON = false;
 
-    public readonly string[] patternList = { "abstract_1", "ambient_1", 
-        "best_time_1", "Boom_Bap_Hip_Easy", "Chill_1", "Coding_night", "Electronic_2", 
-        "Fluidity_1","for_food_1", "spirit_1" };
+    public List<string> patternList = new List<string>();
 
     // for debug
     // public readonly string[] patternList = { "test_1" };    
@@ -47,6 +47,18 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         DontDestroyOnLoad(this);
+
+        //Data Load
+        var info = new DirectoryInfo("Assets/Patterns");
+        var fileInfo = info.GetFiles();
+        foreach (FileInfo file in fileInfo)
+        {
+            if(file.Name.Substring(file.Name.Length - 5, 5) != ".meta")
+            {
+                patternList.Add(file.Name.Substring(0, file.Name.Length - 5));
+            }
+        }
+
         stageNum = 0;
         fadeManager = GameObject.Find("FadeManager").GetComponent<FadeManager>();
         StartCoroutine(fadeManager.FadeIn(1));

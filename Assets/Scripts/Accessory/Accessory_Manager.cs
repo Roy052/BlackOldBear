@@ -15,6 +15,8 @@ public class Accessory_Manager : MonoBehaviour
     List<GameObject> accessoryList = new List<GameObject>();
     bool[] accessoryOwnList;
     GameManager gameManager;
+
+    
     private void Start()
     {
         accessoryInfo = new Accessory_Info();
@@ -30,6 +32,39 @@ public class Accessory_Manager : MonoBehaviour
 
     public void AddAccessory(int num)
     {
+        GameObject gameManagerObject = GameObject.Find("GameManager");
+        if(gameManagerObject != null)
+            switch (num)
+            {
+                case 1:
+                    gameManager.frequencyChange = 1;
+                    break;
+                case 2:
+                    gameManager.perfectSize += 0.3f;
+                    break;
+                case 3:
+                    gameManager.perfectSize += 0.1f;
+                    break;
+                case 4:
+                    gameManagerObject.GetComponent<StatusManager>().ChangeMaxhealth(10);
+                    break;
+                case 5:
+                    gameManagerObject.GetComponent<StatusManager>().ChangeMaxhealth(20);
+                    break;
+                case 6:
+                        gameManagerObject.GetComponent<ItemManager>().moneyChange(300);
+                    break;
+                case 7:
+                        gameManagerObject.GetComponent<ItemManager>().itemChange(1, 3);
+                    break;
+                case 8:
+                    gameManager.perfectSize += 0.5f;
+                    break;
+                case 9:
+                    gameManager.frequencyChange = 5;
+                    break;
+            }
+
         GameObject clone = Instantiate(accessoryPrefab, 
             new Vector3(startX + gap * accessoryList.Count, startY, 0), Quaternion.identity);
         clone.SetActive(false);
@@ -53,6 +88,7 @@ public class Accessory_Manager : MonoBehaviour
 
         accessoryList.Add(clone);
         DontDestroyOnLoad(clone);
+        
         
         clone.SetActive(true);
     }

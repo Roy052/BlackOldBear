@@ -65,6 +65,10 @@ public class BattleManager : MonoBehaviour
             Mouse.SetActive(false);
             Center.SetActive(false);
             Camera.SetActive(false);
+            if(GameObject.Find("GameManager").GetComponent<Accessory_Manager>().IsAccessoryOwn(0) == true)
+            {
+                GameObject.Find("GameManager").GetComponent<StatusManager>().ChangeHealth(2);
+            }
         }
     }
 

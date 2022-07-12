@@ -44,10 +44,13 @@ public class LineManageScript : MonoBehaviour
     /// 박자간 거리 = noteSpeed / (BPM / 60)
     /// </summary>
 
+    GameObject gameManagerObject;
 
     // Start is called before the first frame update
     void Start()
     {
+        gameManagerObject = GameObject.Find("GameManager");
+
         sideMenuScript = sideMenuObj.GetComponent<SideMenu>();
         musicScript = musicObj.GetComponent<MusicManage>();
 
@@ -436,6 +439,9 @@ public class LineManageScript : MonoBehaviour
     public void saveData(string filename, string bgm, int diff)
     {
         SaveScript.saveData(filename, BPM, bgm, beat, segments, baseAngle, baseOffset, diff, noteSpeed, wolfList);
+
+        if (gameManagerObject != null)
+            gameManagerObject.GetComponent<GameManager>().patternList.Add(filename);
     }
 
     public PatternData loadData(string filename)
