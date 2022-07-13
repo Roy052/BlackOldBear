@@ -10,7 +10,10 @@ public class BossManager : MonoBehaviour
     GameManager gm;
     bool gameEnd = false;
     BattleManager battleManager;
-    bool onetime = false;
+    bool onetime = false, hponetime = false;
+    WolfManager wolfManager;
+
+    int temp;
     private void Start()
     {
         gameManagerObject = GameObject.Find("GameManager");
@@ -18,9 +21,15 @@ public class BossManager : MonoBehaviour
 
         gm = gameManagerObject.GetComponent<GameManager>();
         gm.time = 0;
-        gm.patternName = gm.patternList[Random.Range(0, gm.patternList.Count)];
+        gm.patternName = gm.bossPatternList[Random.Range(0, gm.bossPatternList.Count)];
 
         gm.UIBarOFF();
+
+        //보스전 기믹용
+        temp = gm.frequencyChange;
+        gm.frequencyChange = -1;
+        gm.inBoss = true;
+
         SceneManager.LoadSceneAsync("BossBattle", LoadSceneMode.Additive);
     }
 
@@ -31,12 +40,19 @@ public class BossManager : MonoBehaviour
             GameObject temp = GameObject.Find("BattleManager");
             if (temp != null)
                 battleManager = temp.GetComponent<BattleManager>();
-            WolfManager wolfManager = GameObject.Find("Wolfs").GetComponent<WolfManager>();
-            for (int i = 0; i < 500; i++)
-                wolfManager.wolfHp[i] = 999;
+            wolfManager = GameObject.Find("Wolfs").GetComponent<WolfManager>();
         }
         else if (onetime == false)
             gameEnd = battleManager.gameEnd;
+
+        if (hponetime == false && wolfManager.hpWorkFinished)
+        {
+            for (int i = 0; i < 500; i++)
+                wolfManager.wolfHp[i] = 999;
+
+            hponetime = true;
+        }
+
         if (onetime == false && gameEnd == true && battleManager != null)
         {
             this.gameObject.GetComponent<SceneByScene>().NextButtonON();
@@ -44,6 +60,10 @@ public class BossManager : MonoBehaviour
             onetime = true;
             RewardON();
             gm.UIBarON();
+
+            //보스전 기믹 제거
+            gm.frequencyChange = temp;
+            gm.inBoss = false;
         }
 
     }

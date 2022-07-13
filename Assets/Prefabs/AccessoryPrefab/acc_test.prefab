@@ -72,8 +72,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1357587343
-  m_SortingLayer: 8
+  m_SortingLayerID: 1415796781
+  m_SortingLayer: 9
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5334b4b5024a6684287a1a167c6fd0aa, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -127,6 +127,7 @@ MonoBehaviour:
   accessoryNum: 0
   rarity: 1
   type: 0
+  where: 0
   thumb: {fileID: 21300000, guid: 5334b4b5024a6684287a1a167c6fd0aa, type: 3}
   accessoryName: "\uD56B \uCD08\uCF54 \uBC00\uD06C \uBA38\uADF8 \uCEF5"
   description: "\uC804\uD22C\uAC00 \uB05D\uB0A0 \uB54C \uCCB4\uB825\uC744 2 \uD68C\uBCF5\uD55C\uB2E4."

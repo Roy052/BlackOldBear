@@ -1,0 +1,1090 @@
+{
+    "BPM": 130.0,
+    "BGM": "abstract_design",
+    "beat": 4,
+    "segments": 20,
+    "baseAngle": 0.0,
+    "baseOffset": 100.0,
+    "difficult": 1,
+    "speed": 5.0,
+    "wolfs": [
+        {
+            "node": 8,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 342.0,
+            "type": 0
+        },
+        {
+            "node": 10,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 11,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 18.0,
+            "type": 0
+        },
+        {
+            "node": 14,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 36.0,
+            "type": 0
+        },
+        {
+            "node": 15,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 18.0,
+            "type": 0
+        },
+        {
+            "node": 16,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 342.0,
+            "type": 0
+        },
+        {
+            "node": 18,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 360.0,
+            "type": 0
+        },
+        {
+            "node": 19,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 342.0,
+            "type": 0
+        },
+        {
+            "node": 20,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 18.0,
+            "type": 0
+        },
+        {
+            "node": 22,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 36.0,
+            "type": 0
+        },
+        {
+            "node": 24,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 198.0,
+            "type": 0
+        },
+        {
+            "node": 26,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 180.0,
+            "type": 0
+        },
+        {
+            "node": 27,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 162.0,
+            "type": 0
+        },
+        {
+            "node": 30,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 144.0,
+            "type": 0
+        },
+        {
+            "node": 31,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 162.0,
+            "type": 0
+        },
+        {
+            "node": 32,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 198.0,
+            "type": 0
+        },
+        {
+            "node": 34,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 180.0,
+            "type": 0
+        },
+        {
+            "node": 35,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 198.0,
+            "type": 0
+        },
+        {
+            "node": 36,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 162.0,
+            "type": 0
+        },
+        {
+            "node": 38,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 162.0,
+            "type": 0
+        },
+        {
+            "node": 38,
+            "fullBeat": 4,
+            "beat": 2,
+            "angle": 180.0,
+            "type": 0
+        },
+        {
+            "node": 40,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 360.0,
+            "type": 0
+        },
+        {
+            "node": 41,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 18.0,
+            "type": 0
+        },
+        {
+            "node": 42,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 42,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 342.0,
+            "type": 0
+        },
+        {
+            "node": 43,
+            "fullBeat": 3,
+            "beat": 1,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 46,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 36.0,
+            "type": 0
+        },
+        {
+            "node": 47,
+            "fullBeat": 3,
+            "beat": 0,
+            "angle": 18.0,
+            "type": 0
+        },
+        {
+            "node": 48,
+            "fullBeat": 3,
+            "beat": 0,
+            "angle": 360.0,
+            "type": 0
+        },
+        {
+            "node": 49,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 18.0,
+            "type": 0
+        },
+        {
+            "node": 50,
+            "fullBeat": 3,
+            "beat": 0,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 50,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 342.0,
+            "type": 0
+        },
+        {
+            "node": 51,
+            "fullBeat": 3,
+            "beat": 1,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 52,
+            "fullBeat": 3,
+            "beat": 0,
+            "angle": 18.0,
+            "type": 0
+        },
+        {
+            "node": 54,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 36.0,
+            "type": 0
+        },
+        {
+            "node": 56,
+            "fullBeat": 3,
+            "beat": 0,
+            "angle": 360.0,
+            "type": 0
+        },
+        {
+            "node": 57,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 18.0,
+            "type": 0
+        },
+        {
+            "node": 58,
+            "fullBeat": 3,
+            "beat": 0,
+            "angle": 360.0,
+            "type": 0
+        },
+        {
+            "node": 58,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 342.0,
+            "type": 0
+        },
+        {
+            "node": 59,
+            "fullBeat": 3,
+            "beat": 1,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 62,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 36.0,
+            "type": 0
+        },
+        {
+            "node": 63,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 18.0,
+            "type": 0
+        },
+        {
+            "node": 64,
+            "fullBeat": 3,
+            "beat": 0,
+            "angle": 360.0,
+            "type": 0
+        },
+        {
+            "node": 65,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 18.0,
+            "type": 0
+        },
+        {
+            "node": 66,
+            "fullBeat": 3,
+            "beat": 0,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 66,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 342.0,
+            "type": 0
+        },
+        {
+            "node": 67,
+            "fullBeat": 3,
+            "beat": 1,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 68,
+            "fullBeat": 3,
+            "beat": 0,
+            "angle": 18.0,
+            "type": 0
+        },
+        {
+            "node": 70,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 36.0,
+            "type": 0
+        },
+        {
+            "node": 70,
+            "fullBeat": 2,
+            "beat": 1,
+            "angle": 360.0,
+            "type": 0
+        },
+        {
+            "node": 72,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 180.0,
+            "type": 0
+        },
+        {
+            "node": 72,
+            "fullBeat": 4,
+            "beat": 1,
+            "angle": 180.0,
+            "type": 0
+        },
+        {
+            "node": 72,
+            "fullBeat": 4,
+            "beat": 2,
+            "angle": 180.0,
+            "type": 0
+        },
+        {
+            "node": 72,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 162.0,
+            "type": 0
+        },
+        {
+            "node": 73,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 180.0,
+            "type": 0
+        },
+        {
+            "node": 73,
+            "fullBeat": 4,
+            "beat": 1,
+            "angle": 180.0,
+            "type": 0
+        },
+        {
+            "node": 73,
+            "fullBeat": 4,
+            "beat": 2,
+            "angle": 180.0,
+            "type": 0
+        },
+        {
+            "node": 73,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 162.0,
+            "type": 0
+        },
+        {
+            "node": 74,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 180.0,
+            "type": 0
+        },
+        {
+            "node": 75,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 360.0,
+            "type": 0
+        },
+        {
+            "node": 78,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 36.0,
+            "type": 0
+        },
+        {
+            "node": 79,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 360.0,
+            "type": 0
+        },
+        {
+            "node": 80,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 180.0,
+            "type": 0
+        },
+        {
+            "node": 80,
+            "fullBeat": 4,
+            "beat": 1,
+            "angle": 180.0,
+            "type": 0
+        },
+        {
+            "node": 80,
+            "fullBeat": 4,
+            "beat": 2,
+            "angle": 180.0,
+            "type": 0
+        },
+        {
+            "node": 80,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 162.0,
+            "type": 0
+        },
+        {
+            "node": 81,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 180.0,
+            "type": 0
+        },
+        {
+            "node": 81,
+            "fullBeat": 4,
+            "beat": 1,
+            "angle": 180.0,
+            "type": 0
+        },
+        {
+            "node": 81,
+            "fullBeat": 4,
+            "beat": 2,
+            "angle": 180.0,
+            "type": 0
+        },
+        {
+            "node": 81,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 162.0,
+            "type": 0
+        },
+        {
+            "node": 82,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 144.0,
+            "type": 0
+        },
+        {
+            "node": 83,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 360.0,
+            "type": 0
+        },
+        {
+            "node": 86,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 180.0,
+            "type": 0
+        },
+        {
+            "node": 88,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 88,
+            "fullBeat": 4,
+            "beat": 1,
+            "angle": 18.0,
+            "type": 0
+        },
+        {
+            "node": 88,
+            "fullBeat": 4,
+            "beat": 2,
+            "angle": 360.0,
+            "type": 0
+        },
+        {
+            "node": 88,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 89,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 89,
+            "fullBeat": 4,
+            "beat": 1,
+            "angle": 18.0,
+            "type": 0
+        },
+        {
+            "node": 89,
+            "fullBeat": 4,
+            "beat": 2,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 89,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 90,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 18.0,
+            "type": 0
+        },
+        {
+            "node": 91,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 180.0,
+            "type": 0
+        },
+        {
+            "node": 94,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 162.0,
+            "type": 0
+        },
+        {
+            "node": 95,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 180.0,
+            "type": 0
+        },
+        {
+            "node": 96,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 360.0,
+            "type": 0
+        },
+        {
+            "node": 96,
+            "fullBeat": 4,
+            "beat": 1,
+            "angle": 360.0,
+            "type": 0
+        },
+        {
+            "node": 96,
+            "fullBeat": 4,
+            "beat": 2,
+            "angle": 360.0,
+            "type": 0
+        },
+        {
+            "node": 96,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 18.0,
+            "type": 0
+        },
+        {
+            "node": 97,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 360.0,
+            "type": 0
+        },
+        {
+            "node": 97,
+            "fullBeat": 4,
+            "beat": 1,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 97,
+            "fullBeat": 4,
+            "beat": 2,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 97,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 18.0,
+            "type": 0
+        },
+        {
+            "node": 98,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 360.0,
+            "type": 0
+        },
+        {
+            "node": 99,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 180.0,
+            "type": 0
+        },
+        {
+            "node": 102,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 180.0,
+            "type": 0
+        },
+        {
+            "node": 102,
+            "fullBeat": 4,
+            "beat": 2,
+            "angle": 180.0,
+            "type": 0
+        },
+        {
+            "node": 111,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 116,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 118,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 18.0,
+            "type": 0
+        },
+        {
+            "node": 122,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 123,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 18.0,
+            "type": 0
+        },
+        {
+            "node": 127,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 18.0,
+            "type": 0
+        },
+        {
+            "node": 132,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 54.0,
+            "type": 0
+        },
+        {
+            "node": 134,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 90.0,
+            "type": 0
+        },
+        {
+            "node": 136,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 90.0,
+            "type": 0
+        },
+        {
+            "node": 136,
+            "fullBeat": 4,
+            "beat": 1,
+            "angle": 90.0,
+            "type": 0
+        },
+        {
+            "node": 136,
+            "fullBeat": 4,
+            "beat": 2,
+            "angle": 90.0,
+            "type": 0
+        },
+        {
+            "node": 136,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 108.0,
+            "type": 0
+        },
+        {
+            "node": 137,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 90.0,
+            "type": 0
+        },
+        {
+            "node": 137,
+            "fullBeat": 4,
+            "beat": 1,
+            "angle": 90.0,
+            "type": 0
+        },
+        {
+            "node": 137,
+            "fullBeat": 4,
+            "beat": 2,
+            "angle": 90.0,
+            "type": 0
+        },
+        {
+            "node": 137,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 108.0,
+            "type": 0
+        },
+        {
+            "node": 138,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 108.0,
+            "type": 0
+        },
+        {
+            "node": 139,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 360.0,
+            "type": 0
+        },
+        {
+            "node": 142,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 216.0,
+            "type": 0
+        },
+        {
+            "node": 143,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 198.0,
+            "type": 0
+        },
+        {
+            "node": 144,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 216.0,
+            "type": 0
+        },
+        {
+            "node": 144,
+            "fullBeat": 4,
+            "beat": 1,
+            "angle": 216.0,
+            "type": 0
+        },
+        {
+            "node": 144,
+            "fullBeat": 4,
+            "beat": 2,
+            "angle": 216.0,
+            "type": 0
+        },
+        {
+            "node": 144,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 198.0,
+            "type": 0
+        },
+        {
+            "node": 145,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 216.0,
+            "type": 0
+        },
+        {
+            "node": 145,
+            "fullBeat": 4,
+            "beat": 1,
+            "angle": 216.0,
+            "type": 0
+        },
+        {
+            "node": 145,
+            "fullBeat": 4,
+            "beat": 2,
+            "angle": 216.0,
+            "type": 0
+        },
+        {
+            "node": 145,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 198.0,
+            "type": 0
+        },
+        {
+            "node": 146,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 216.0,
+            "type": 0
+        },
+        {
+            "node": 147,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 324.0,
+            "type": 0
+        },
+        {
+            "node": 148,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 342.0,
+            "type": 0
+        },
+        {
+            "node": 150,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 152,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 152,
+            "fullBeat": 4,
+            "beat": 1,
+            "angle": 360.0,
+            "type": 0
+        },
+        {
+            "node": 152,
+            "fullBeat": 4,
+            "beat": 2,
+            "angle": 342.0,
+            "type": 0
+        },
+        {
+            "node": 152,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 153,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 153,
+            "fullBeat": 4,
+            "beat": 1,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 153,
+            "fullBeat": 4,
+            "beat": 2,
+            "angle": 342.0,
+            "type": 0
+        },
+        {
+            "node": 153,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 154,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 360.0,
+            "type": 0
+        },
+        {
+            "node": 155,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 360.0,
+            "type": 0
+        },
+        {
+            "node": 158,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 144.0,
+            "type": 0
+        },
+        {
+            "node": 159,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 162.0,
+            "type": 0
+        },
+        {
+            "node": 160,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 162.0,
+            "type": 0
+        },
+        {
+            "node": 160,
+            "fullBeat": 4,
+            "beat": 1,
+            "angle": 162.0,
+            "type": 0
+        },
+        {
+            "node": 160,
+            "fullBeat": 4,
+            "beat": 2,
+            "angle": 162.0,
+            "type": 0
+        },
+        {
+            "node": 160,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 144.0,
+            "type": 0
+        },
+        {
+            "node": 161,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 162.0,
+            "type": 0
+        },
+        {
+            "node": 161,
+            "fullBeat": 4,
+            "beat": 1,
+            "angle": 162.0,
+            "type": 0
+        },
+        {
+            "node": 161,
+            "fullBeat": 4,
+            "beat": 2,
+            "angle": 162.0,
+            "type": 0
+        },
+        {
+            "node": 161,
+            "fullBeat": 4,
+            "beat": 3,
+            "angle": 144.0,
+            "type": 0
+        },
+        {
+            "node": 162,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 162.0,
+            "type": 0
+        },
+        {
+            "node": 163,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 162.0,
+            "type": 0
+        },
+        {
+            "node": 164,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 144.0,
+            "type": 0
+        },
+        {
+            "node": 166,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 0.0,
+            "type": 0
+        },
+        {
+            "node": 168,
+            "fullBeat": 4,
+            "beat": 0,
+            "angle": 0.0,
+            "type": 0
+        }
+    ]
+}

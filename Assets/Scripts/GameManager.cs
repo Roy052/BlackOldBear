@@ -19,6 +19,7 @@ public class GameManager : MonoBehaviour
     public int frequencyChange = 0;
 
     public static float FadeTimeGap = 0.5f;
+    public bool inBoss = false;
 
     public int stageNum;
     //Unique GameManager
@@ -29,6 +30,7 @@ public class GameManager : MonoBehaviour
     bool pauseON = false;
 
     public List<string> patternList = new List<string>();
+    public List<string> bossPatternList = new List<string>();
 
     // for debug
     // public readonly string[] patternList = { "test_1" };    
@@ -56,6 +58,16 @@ public class GameManager : MonoBehaviour
             if(file.Name.Substring(file.Name.Length - 5, 5) != ".meta")
             {
                 patternList.Add(file.Name.Substring(0, file.Name.Length - 5));
+            }
+        }
+
+        info = new DirectoryInfo("Assets/BossPatterns");
+        fileInfo = info.GetFiles();
+        foreach (FileInfo file in fileInfo)
+        {
+            if (file.Name.Substring(file.Name.Length - 5, 5) != ".meta")
+            {
+                bossPatternList.Add(file.Name.Substring(0, file.Name.Length - 5));
             }
         }
 

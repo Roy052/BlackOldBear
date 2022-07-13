@@ -6,7 +6,7 @@ using UnityEngine.SceneManagement;
 
 public class BornfireManager : MonoBehaviour
 {
-    public GameObject bornfireMenu, healBox, damageUpgradeBox, armorUpgradeBox, bonfireObject;
+    public GameObject bonfireMenu, healBox, damageUpgradeBox, armorUpgradeBox, bonfireObject;
     public Text daggerText, leatherText, healAmountText, healText;
     public Sprite[] bonFireImages;
     GameObject gameManagerObject;
@@ -40,7 +40,7 @@ public class BornfireManager : MonoBehaviour
     public void Heal()
     {
         Debug.Log("Heal");
-        bornfireMenu.SetActive(false);
+        bonfireMenu.SetActive(false);
         gameManagerObject.GetComponent<StatusManager>().ChangeHealth(healAmount);
         this.GetComponent<SceneByScene>().NextButtonON();
     }
@@ -60,7 +60,7 @@ public class BornfireManager : MonoBehaviour
                 Debug.Log("Upgrade Armor");
                 break;
         }
-        bornfireMenu.SetActive(false);
+        bonfireMenu.SetActive(false);
     }
     IEnumerator OneTickAfter()
     {
@@ -71,7 +71,7 @@ public class BornfireManager : MonoBehaviour
     public void LanguageChange(int type)
     {
         languageType = type;
-        bonfireObject.GetComponent<SpriteRenderer>().sprite = bonFireImages[languageType];
+        bonfireMenu.GetComponent<SpriteRenderer>().sprite = bonFireImages[languageType];
         if (languageType == 0) healText.text = "Heal";
         else healText.text = "회복";
     }

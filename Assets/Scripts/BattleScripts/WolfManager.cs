@@ -38,6 +38,9 @@ public class WolfManager : MonoBehaviour
     public int emptyFirst;
     [HideInInspector] public int[] emptyState = new int[500];
     [HideInInspector] public int[] wolfHp = new int[500];
+    public bool hpWorkFinished = false;
+
+    public Sprite strongEnemy, boss;
     private void Start()
     {
         gm = GameObject.Find("GameManager").GetComponent<GameManager>();
@@ -47,6 +50,12 @@ public class WolfManager : MonoBehaviour
 
         // pData = SaveScript.loadData2(patternName);
         // wData = pData.wolfs;
+
+        //Frequency Change
+        if (gm.frequencyChange == -1)
+            freq = 1;
+        else
+            freq += (freq * gm.frequencyChange / 10);
 
         maxNote = wData.Count;
 
@@ -74,6 +83,7 @@ public class WolfManager : MonoBehaviour
             }
         }
         emptyFirst = -1;
+        hpWorkFinished = true;
     }
 
     public Vector3 AngleToPosition(float Angle)
@@ -99,8 +109,14 @@ public class WolfManager : MonoBehaviour
                 if (type == 0)
                 {
                     wolfTyped.Add(0);
-                    if(emptyState[noteCount-1]==0)
+                    if (emptyState[noteCount - 1] == 0)
+                    {
                         newNote = Instantiate(wolf, nextGenPos, Quaternion.identity);
+                        if (noteCount != emptyState.Length && emptyState[noteCount] == 1)
+                            newNote.GetComponent<SpriteRenderer>().sprite = strongEnemy;
+                        if (gm.inBoss)
+                            newNote.GetComponent<SpriteRenderer>().sprite = boss;
+                    } 
                     else
                         newNote = Instantiate(EmptyWolf, nextGenPos, Quaternion.identity);
                 }
@@ -108,7 +124,14 @@ public class WolfManager : MonoBehaviour
                 {
                     wolfTyped.Add(0);
                     if (emptyState[noteCount-1] == 0)
-                        newNote = Instantiate(wolf, nextGenPos*2, Quaternion.identity);
+                    {
+                        newNote = Instantiate(wolf, nextGenPos * 2, Quaternion.identity);
+
+                        if (noteCount != emptyState.Length && emptyState[noteCount] == 1)
+                            newNote.GetComponent<SpriteRenderer>().sprite = strongEnemy;
+                        if (gm.inBoss)
+                            newNote.GetComponent<SpriteRenderer>().sprite = boss;
+                    }  
                     else
                         newNote = Instantiate(EmptyWolf, nextGenPos*2, Quaternion.identity);
                 }
@@ -116,7 +139,14 @@ public class WolfManager : MonoBehaviour
                 {
                     wolfTyped.Add(1);
                     if (emptyState[noteCount-1] == 0)
+                    {
                         newNote = Instantiate(fox, Quaternion.Euler(0, 0, Mathf.Rad2Deg * 1.312235f) * nextGenPos, Quaternion.identity);
+                        
+                        if (noteCount != emptyState.Length && emptyState[noteCount] == 1)
+                            newNote.GetComponent<SpriteRenderer>().sprite = strongEnemy;
+                        if (gm.inBoss)
+                            newNote.GetComponent<SpriteRenderer>().sprite = boss;
+                    }
                     else
                         newNote = Instantiate(EmptyWolf, Quaternion.Euler(0, 0, Mathf.Rad2Deg * 1.312235f) * nextGenPos, Quaternion.identity);
                 }
@@ -124,7 +154,14 @@ public class WolfManager : MonoBehaviour
                 {
                     wolfTyped.Add(1);
                     if (emptyState[noteCount-1] == 0)
+                    {
                         newNote = Instantiate(fox, Quaternion.Euler(0, 0, Mathf.Rad2Deg * 1.312235f) * nextGenPos * 2, Quaternion.identity);
+
+                        if (noteCount != emptyState.Length && emptyState[noteCount] == 1)
+                            newNote.GetComponent<SpriteRenderer>().sprite = strongEnemy;
+                        if (gm.inBoss)
+                            newNote.GetComponent<SpriteRenderer>().sprite = boss;
+                    }
                     else
                         newNote = Instantiate(EmptyWolf, Quaternion.Euler(0, 0, Mathf.Rad2Deg * 1.312235f) * nextGenPos*2, Quaternion.identity);
                 }
