@@ -267,8 +267,8 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingBucketNormalizedSize: 0
   m_AdditionalShaderChannelsFlag: 0
-  m_SortingLayerID: 0
-  m_SortingOrder: 0
+  m_SortingLayerID: -268752269
+  m_SortingOrder: 1
   m_TargetDisplay: 0
 --- !u!224 &1273268385
 RectTransform:
@@ -355,7 +355,7 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls: []
   m_FontData:
-    m_Font: {fileID: 10102, guid: 0000000000000000e000000000000000, type: 0}
+    m_Font: {fileID: 12800000, guid: 989bc3d6c0eefd7468dcca008b1dd800, type: 3}
     m_FontSize: 50
     m_FontStyle: 0
     m_BestFit: 0
@@ -524,8 +524,13 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   background: {fileID: 1448684198}
   backgroundImages:
-  - {fileID: 21300000, guid: 060376a6656a38442a21cf1b5bc31abc, type: 3}
   - {fileID: 21300000, guid: 461ae789eb4ae804a80e49680140af63, type: 3}
+  - {fileID: 21300000, guid: d2890ec2804ba5e479a09612f3396f02, type: 3}
+  backgroundImages_eng:
+  - {fileID: 21300000, guid: 060376a6656a38442a21cf1b5bc31abc, type: 3}
+  - {fileID: 21300000, guid: ec2a9c3e91087e84c99ee41ab3cc82fa, type: 3}
+  nextBeforeButton: {fileID: 2005285760}
+  buttonText: {fileID: 1370855612}
 --- !u!1 &1856329803
 GameObject:
   m_ObjectHideFlags: 0
@@ -647,8 +652,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: 688.12, y: -220}
-  m_SizeDelta: {x: 543.77, y: 101.96}
+  m_AnchoredPosition: {x: 769, y: -223}
+  m_SizeDelta: {x: 198.88, y: 101.96}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &2005285760
 MonoBehaviour:
@@ -694,9 +699,9 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 1670047160}
+      - m_Target: {fileID: 1670047159}
         m_TargetAssemblyTypeName: SceneByScene, Assembly-CSharp
-        m_MethodName: NextButtonON
+        m_MethodName: 
         m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}

@@ -22,6 +22,7 @@ public class EnemyManager : MonoBehaviour
         gm.patternName = gm.patternList[Random.Range(0, gm.patternList.Count)];
         
         gm.UIBarOFF();
+        gm.AccessoryOFF();
         SceneManager.LoadSceneAsync("Battle", LoadSceneMode.Additive);
     }
 
@@ -42,6 +43,7 @@ public class EnemyManager : MonoBehaviour
             onetime = true;
             RewardON();
             gm.UIBarON();
+            gm.AccessoryON();
         }
             
     }

@@ -38,7 +38,6 @@ public class WolfManager : MonoBehaviour
     public int emptyFirst;
     [HideInInspector] public int[] emptyState = new int[500];
     [HideInInspector] public int[] wolfHp = new int[500];
-    public bool hpWorkFinished = false;
 
     public Sprite strongEnemy, boss;
     private void Start()
@@ -83,7 +82,6 @@ public class WolfManager : MonoBehaviour
             }
         }
         emptyFirst = -1;
-        hpWorkFinished = true;
     }
 
     public Vector3 AngleToPosition(float Angle)
@@ -112,10 +110,11 @@ public class WolfManager : MonoBehaviour
                     if (emptyState[noteCount - 1] == 0)
                     {
                         newNote = Instantiate(wolf, nextGenPos, Quaternion.identity);
-                        if (noteCount != emptyState.Length && emptyState[noteCount] == 1)
-                            newNote.GetComponent<SpriteRenderer>().sprite = strongEnemy;
                         if (gm.inBoss)
                             newNote.GetComponent<SpriteRenderer>().sprite = boss;
+                        else if (noteCount != emptyState.Length && emptyState[noteCount] == 1)
+                            newNote.GetComponent<SpriteRenderer>().sprite = strongEnemy;
+                        
                     } 
                     else
                         newNote = Instantiate(EmptyWolf, nextGenPos, Quaternion.identity);
@@ -127,10 +126,10 @@ public class WolfManager : MonoBehaviour
                     {
                         newNote = Instantiate(wolf, nextGenPos * 2, Quaternion.identity);
 
-                        if (noteCount != emptyState.Length && emptyState[noteCount] == 1)
-                            newNote.GetComponent<SpriteRenderer>().sprite = strongEnemy;
                         if (gm.inBoss)
                             newNote.GetComponent<SpriteRenderer>().sprite = boss;
+                        else if (noteCount != emptyState.Length && emptyState[noteCount] == 1)
+                            newNote.GetComponent<SpriteRenderer>().sprite = strongEnemy;
                     }  
                     else
                         newNote = Instantiate(EmptyWolf, nextGenPos*2, Quaternion.identity);
@@ -141,11 +140,11 @@ public class WolfManager : MonoBehaviour
                     if (emptyState[noteCount-1] == 0)
                     {
                         newNote = Instantiate(fox, Quaternion.Euler(0, 0, Mathf.Rad2Deg * 1.312235f) * nextGenPos, Quaternion.identity);
-                        
-                        if (noteCount != emptyState.Length && emptyState[noteCount] == 1)
-                            newNote.GetComponent<SpriteRenderer>().sprite = strongEnemy;
+
                         if (gm.inBoss)
                             newNote.GetComponent<SpriteRenderer>().sprite = boss;
+                        else if (noteCount != emptyState.Length && emptyState[noteCount] == 1)
+                            newNote.GetComponent<SpriteRenderer>().sprite = strongEnemy;
                     }
                     else
                         newNote = Instantiate(EmptyWolf, Quaternion.Euler(0, 0, Mathf.Rad2Deg * 1.312235f) * nextGenPos, Quaternion.identity);
@@ -157,10 +156,10 @@ public class WolfManager : MonoBehaviour
                     {
                         newNote = Instantiate(fox, Quaternion.Euler(0, 0, Mathf.Rad2Deg * 1.312235f) * nextGenPos * 2, Quaternion.identity);
 
-                        if (noteCount != emptyState.Length && emptyState[noteCount] == 1)
-                            newNote.GetComponent<SpriteRenderer>().sprite = strongEnemy;
                         if (gm.inBoss)
                             newNote.GetComponent<SpriteRenderer>().sprite = boss;
+                        else if (noteCount != emptyState.Length && emptyState[noteCount] == 1)
+                            newNote.GetComponent<SpriteRenderer>().sprite = strongEnemy;
                     }
                     else
                         newNote = Instantiate(EmptyWolf, Quaternion.Euler(0, 0, Mathf.Rad2Deg * 1.312235f) * nextGenPos*2, Quaternion.identity);

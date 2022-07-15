@@ -10,7 +10,7 @@ public class BossManager : MonoBehaviour
     GameManager gm;
     bool gameEnd = false;
     BattleManager battleManager;
-    bool onetime = false, hponetime = false;
+    bool onetime = false;
     WolfManager wolfManager;
 
     int temp;
@@ -24,13 +24,14 @@ public class BossManager : MonoBehaviour
         gm.patternName = gm.bossPatternList[Random.Range(0, gm.bossPatternList.Count)];
 
         gm.UIBarOFF();
+        gm.AccessoryOFF();
 
         //보스전 기믹용
         temp = gm.frequencyChange;
         gm.frequencyChange = -1;
         gm.inBoss = true;
 
-        SceneManager.LoadSceneAsync("BossBattle", LoadSceneMode.Additive);
+        SceneManager.LoadSceneAsync("Battle", LoadSceneMode.Additive);
     }
 
     private void Update()
@@ -40,17 +41,16 @@ public class BossManager : MonoBehaviour
             GameObject temp = GameObject.Find("BattleManager");
             if (temp != null)
                 battleManager = temp.GetComponent<BattleManager>();
-            wolfManager = GameObject.Find("Wolfs").GetComponent<WolfManager>();
+           
         }
         else if (onetime == false)
             gameEnd = battleManager.gameEnd;
 
-        if (hponetime == false && wolfManager.hpWorkFinished)
+        if(wolfManager == null)
         {
-            for (int i = 0; i < 500; i++)
-                wolfManager.wolfHp[i] = 999;
-
-            hponetime = true;
+            GameObject temp = GameObject.Find("Wolfs");
+            if (temp != null)
+                wolfManager = temp.GetComponent<WolfManager>();
         }
 
         if (onetime == false && gameEnd == true && battleManager != null)
@@ -60,6 +60,7 @@ public class BossManager : MonoBehaviour
             onetime = true;
             RewardON();
             gm.UIBarON();
+            gm.AccessoryON();
 
             //보스전 기믹 제거
             gm.frequencyChange = temp;

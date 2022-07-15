@@ -332,7 +332,10 @@ public class Wolf : MonoBehaviour
                 judgementState = 1;
                 gm.score += scB;
                 wm.first++;
-                sm.ChangeHealth(-(wolfHP + difficultly));
+                if (gm.inBoss)
+                    sm.ChangeHealth(-(wolfHP + difficultly) * 2);
+                else
+                    sm.ChangeHealth(-(wolfHP + difficultly));
                 wm.emptyFirst += (wolfHP-1);
                 jm.setJudgeImage(1);
                 jm.playJudgeSound(1);

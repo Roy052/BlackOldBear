@@ -106,9 +106,9 @@ public class ShopManager : MonoBehaviour
         accessoryPrice = new int[3];
         itemPrice = new int[2];
         for (int i = 0; i < 3; i++)
-            accessoryPrice[i] = 100 * accessory_Info.rarityArray[accessoryList[i]] + Random.Range(0, 50);
+            accessoryPrice[i] = 30 * accessory_Info.rarityArray[accessoryList[i]] + Random.Range(0, 20);
         for (int i = 0; i < 2; i++)
-            itemPrice[i] = 20 + Random.Range(0, 10);
+            itemPrice[i] = 20 + Random.Range(-2, 5);
     }
     public void ShopOpen()
     {

@@ -246,7 +246,7 @@ public class MapManager : MonoBehaviour
         System.Array.Clear(visitableMap, 0, visitableMap.Length);
         visitableMap[1, 0] = true;
 
-        string ForDebug = "visitablemap\n";
+        /*string ForDebug = "visitablemap\n";
         for (int i = 0; i < 3; i++)
         {
             for (int j = 0; j < stagePerMapSize[stageNum]; j++)
@@ -256,7 +256,8 @@ public class MapManager : MonoBehaviour
             ForDebug += "\n";
         }
 
-        Debug.Log(ForDebug);
+        Debug.Log(ForDebug);*/
+        //visitableMap[1, stagePerMapSize[stageNum] - 1] = true;
     }
 
         IEnumerator MapImageBuilding()

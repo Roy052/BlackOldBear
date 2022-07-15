@@ -143,6 +143,16 @@ public class GameManager : MonoBehaviour
         uIBarManager.UIBarOFF();
     }
 
+    public void AccessoryON()
+    {
+        this.GetComponent<Accessory_Manager>().AccessoryON();
+    }
+
+    public void AccessoryOFF()
+    {
+        this.GetComponent<Accessory_Manager>().AccessoryOFF();
+    }
+
     public void BattleToMenu()
     {
         SceneManager.LoadScene("Menu");
@@ -152,12 +162,18 @@ public class GameManager : MonoBehaviour
     public void LanguageChange(int val)
     {
         languageType = val;
+
+        //Menu Button Change
         GameObject temp = GameObject.Find("MenuButtons");
         if (temp != null)
         {
             temp.GetComponent<MenuButton>().LanguageChange(languageType);
         }
 
+        //Accessory Change
+        this.GetComponent<Accessory_Manager>().LanguageChange(languageType);
+
+        //SceneChange
         temp = GameObject.FindGameObjectWithTag("SceneManager");
         if (temp != null)
         {
