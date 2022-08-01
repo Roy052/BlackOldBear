@@ -3,7 +3,9 @@
     <h2> 게임 정보 </h2>
     <img src = "https://img.itch.zone/aW1nLzk0MDU3MDQucG5n/347x500/Y94HvQ.png"><br>
     <img src="https://img.shields.io/badge/Unity-yellow?style=flat-square&logo=Unity&logoColor=FFFFFF"/>
-    <img src="https://img.shields.io/badge/Puzzle-purple"/>
+    <img src="https://img.shields.io/badge/Adventure-blue"/>
+    <img src="https://img.shields.io/badge/Action-green"/>
+    <img src="https://img.shields.io/badge/Rythm-orange"/>
     <h4> 개발 일자 : 2022.07 <br><br>
     <팀원> <br><br>
       <table border="1">
