@@ -115,3 +115,191 @@
         <td><img src = "https://postfiles.pstatic.net/MjAyMjA4MDFfMTcg/MDAxNjU5MzMwNzQ3OTc1.mZ7ErPGxuqZrKdhiDdRoMbxG-Tv-9eXp-BQasuvIxvog.A9pz2I3o2FIP7H3B8paKvIqYlu0kaji3f4to3v21Neog.JPEG.tdj04131/KakaoTalk_20220801_141114267.jpg?type=w773" height = 500></td>
       </table>
   </div>
+
+   <div>
+       <h2> 주요 코드 </h2>
+       <h4> MapScript 함수 </h4>
+    </div>
+    
+```csharp
+//Map 생성 파트
+        mapRecorder = gameManagerObject.GetComponent<MapRecorder>();
+
+        //기록 없음
+        if (mapRecorder.recorded == false)
+        {
+            //Text 파트
+            StartCoroutine(MapTextONandOFF());
+
+            MapArrayBuilding();
+            VisitableMapArrayBuilding();
+
+            mapRecorder.RecordMap(map);
+            mapRecorder.RecordVisitableMap(visitableMap);
+
+            mapRecorder.currentPosition.y = 0;
+            mapRecorder.currentPosition.x = 1;
+        }
+        //기록 있음
+        else
+        {
+            mapText.text = "";
+            mapTextShadow.text = "";
+            map = mapRecorder.ReturnMap();
+            visitableMap = mapRecorder.ReturnVisitableMap();
+        }
+            
+        StartCoroutine(MapImageBuilding());
+
+        
+
+        if(map[1, stagePerMapSize[stageNum]-1] != 1)
+        {
+            nextStageButton.SetActive(false);
+        }
+
+        StartCoroutine(fadeManager.FadeIn(GameManager.FadeTimeGap));
+    }
+
+
+    void MapArrayBuilding()
+    {
+        //Initialize
+        map = new int[3, stagePerMapSize[stageNum]];
+        System.Array.Clear(map, 0, map.Length);
+
+        //Temp Map Array
+        tempMapArray = new int[stagePerMapSize[stageNum] - 2];
+        int tempMapSum = 0;
+        float meanSum = stageSum[stageNum] / (float) stagePerMapSize[stageNum];
+        Debug.Log(meanSum);
+
+        //First Value In
+        tempMapArray[0] = UnityEngine.Random.Range(0, 3) + 1;
+        tempMapSum = tempMapArray[0];
+
+        //After Value In
+        for (int i = 1; i < tempMapArray.Length; i++){
+            int tempValue = UnityEngine.Random.Range(0,3) + 1;
+            
+            //Current sum is more than mean sum
+            if( (tempMapSum + tempValue) > meanSum * (i + 1) )
+            {
+                if (tempValue != 1)
+                    tempValue -= 1;
+            }
+            else
+            {
+                if (tempValue != 3)
+                    tempValue += 1;
+            }
+
+            tempMapArray[i] = tempValue;
+            tempMapSum += tempValue;
+        }
+
+        //tempMapArray fit in stageSum
+        if (stageSum[stageNum] > tempMapSum)
+        {
+            for (int i = 0; i < stageSum[stageNum] - tempMapSum; i++)
+            {
+                for(int j = 0; j < tempMapArray.Length ; j++)
+                {
+                    if(tempMapArray[j] == 3) continue;
+                    else
+                    {
+                        tempMapArray[j]++;
+                        break;
+                    }
+                }
+            }
+
+        }
+        else if(stageSum[stageNum] < tempMapSum)
+        {
+            for (int i = 0; i < tempMapSum - stageSum[stageNum] ; i++)
+            {
+                for (int j = tempMapArray.Length - 1; j > 0; j--)
+                {
+                    if (tempMapArray[j] == 1) continue;
+                    else
+                    {
+                        tempMapArray[j]--;
+                        break;
+                    }
+                }
+            } 
+        }
+
+        //Number To Map Apperance
+        int[,] mapApperance_two = { { 0, 1 }, { 1, 2 }};
+
+        int tempMapApperance = -1;
+        for (int i = 0; i < tempMapArray.Length; i++)
+        {
+            //Full
+            if (tempMapArray[i] == 3)
+            {
+                map[0, i + 1] = 1; map[1, i + 1] = 1; map[2, i + 1] = 1;
+            }
+            else if (tempMapArray[i] == 2)
+            {
+                tempMapApperance = UnityEngine.Random.Range(0, 2);
+                for (int j = 0; j < 2; j++)
+                {
+                    map[mapApperance_two[tempMapApperance, j], i + 1] = 1;
+                }
+            }
+            else
+            {
+                map[1, i + 1] = 1;
+            }
+        }
+
+        //Map Apperance To Map Content
+        map[1, 0] = 2; // Start
+        map[1, stagePerMapSize[stageNum] - 1] = 9; // Boss
+        map[1, stagePerMapSize[stageNum] - 2] = 4; // Bonfire
+
+        for(int i = 0; i < 6; i++)
+        {
+            for(int j = 0; j < mapContentsRatio[stageNum,i]; j++)
+            {
+                mapContentQueue.Add(i + 3);
+            }
+        }
+
+        var mixedMapContentQueue = mapContentQueue.OrderBy(a => Guid.NewGuid()).ToList();
+
+        int count = 0;
+        for(int i = 0; i < 3 ; i++)
+        {
+            for(int j = 1; j < stagePerMapSize[stageNum] - 1; j++)
+            {
+                if(map[i, j] == 1)
+                {
+                    map[i,j] = mixedMapContentQueue[count++];
+                }
+            }
+        }
+
+        string ForDebug = "map\n";
+        for (int i = 0; i < 3; i++)
+        {
+            for(int j = 0; j < stagePerMapSize[stageNum]; j++)
+            {
+                ForDebug += map[i,j] + ", ";
+            }
+            ForDebug += "\n";
+        }
+
+        Debug.Log(ForDebug);
+
+```
+<div>
+    <h4> 클래스? </h4>
+</div>      
+    
+```csharp
+int main(void)
+```
